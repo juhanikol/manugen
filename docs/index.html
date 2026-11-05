@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MANUgen · Paikallinen tekoäly valmistavaan työhön</title>
+<meta name="description" content="Muuta tuotannon havainto tarkistettavaksi kirjaukseksi. Tutustu MANUgenin paikallisiin työnkulkuihin ja Windows-asennukseen.">
+<link rel="icon" href="assets/brand-symbol.svg"><link rel="stylesheet" href="style.css"><script src="release.js" defer></script>
+</head>
+<body><a class="skip" href="#sisalto">Siirry sisältöön</a>
+<header><div class="wrap bar"><a class="wordmark" href="#sisalto"><img src="assets/brand-symbol-dark.svg" alt="">MANU<span>gen</span></a><nav aria-label="Päävalikko"><a href="#kaytto">Käyttö</a><a href="#tekniikka">Tekniikka</a><a href="#asennus">Asennus</a></nav></div></header>
+<main id="sisalto"><div class="hero"><div class="wrap intro"><div>
+<p class="label"><i></i> Paikallinen tekoäly valmistavaan työhön</p>
+<h1>Teidän tietonne.<br><em>Teidän<br>työnkulkunne.</em></h1>
+<p class="lead">Kirjaa havainto omin sanoin. MANUgen jäsentää sen yrityksesi lomakkeelle omalla koneella tai sisäverkon palvelimella. Sinä tarkistat tuloksen.</p>
+<a class="button" href="#asennus">Windows-asennus <span aria-hidden="true">↓</span></a></div>
+<figure class="sample"><figcaption><img src="assets/brand-symbol-dark.svg" alt=""> Esimerkkikirjaus</figcaption>
+<div class="input"><small>TYÖNTEKIJÄN HAVAINTO</small><blockquote>”Kappaleen pinnassa on jälkiä viimeistelyn jälkeen.”</blockquote></div>
+<div class="sheet"><small>POIKKEAMAILMOITUS</small><h2>Pintajälkiä kappaleessa</h2><dl><dt>Työvaihe</dt><dd>Viimeistely</dd><dt>Havainto</dt><dd>Jälkiä kappaleen pinnassa</dd><dt>Syy</dt><dd>Avoin</dd></dl><p class="status"><b aria-hidden="true">●</b> Luonnos · odottaa tarkistusta</p></div></figure></div></div>
+<section class="wrap section" id="kaytto"><p class="label">Käyttö tuotannossa</p><h2>Havainnosta hyväksytyksi kirjaukseksi</h2>
+<div class="steps"><article><span>01 / Kirjoita</span><h3>Kerro, mitä tapahtui</h3><p>Kuvaile havainto chatissa. Lisää mittaustulos ja työvaihe, jos tiedät ne.</p></article>
+<article><span>02 / Tarkista</span><h3>Käy luonnos läpi</h3><p>Vertaa lomakkeen tietoja havaintoosi. Korjaa tulkinta tai täydennä puuttuva tieto ennen hyväksyntää.</p></article>
+<article><span>03 / Hyväksy</span><h3>Vie tieto rekisteriin</h3><p>Kun Excel-vienti on käytössä, hyväksytty poikkeamailmoitus viedään rekisteriin omaksi rivikseen.</p></article></div>
+<!-- usage-guide: insert the Finnish usage recording here; see MAINTENANCE.md -->
+</section>
+<section class="band" id="tekniikka"><div class="wrap split"><div><p class="label">Työnkulun rakentaja</p><h2>Sama havainto,<br>teidän kenttänne.</h2><p>Huoltohavainto tarvitsee eri tiedot kuin tuotannon poikkeama. Määritä selaimessa tehtävä, käsittelyohjeet ja halutut kentät. Esikatsele rakenne ja vie työnkulku sovellukseen.</p></div>
+<div class="details"><h3>Miten MANUgen toimii?</h3>
+<details open><summary>Paikallinen kielimalli</summary><p>Selainkäyttöliittymä välittää tekstin Node.js- ja Express-taustapalvelulle. Se ohjaa tehtävän vaiheet ja kutsuu llama.cpp-mallipalvelinta. Malli voi toimia samalla koneella tai yrityksen hallitsemassa sisäverkossa.</p></details>
+<details><summary>Yrityksen oma tietopohja</summary><p>Erillinen hakukomponentti hakee paikalliseen SQLite-tietokantaan valmistellusta aineistosta kohtia mallin vastauksen tueksi. Hakua on kokeiltu koneistuksen vianmääritysohjeilla.</p></details>
+<details><summary>Sovelluspaketin sisältö</summary><p>Windows-paketti kokoaa sovelluksen, työnkulun rakentajan, asetukset ja käynnistimet. Mallin asennustyökalu lataa kielimallin ja mallipalvelimen erikseen. Julkaisukohtaiset tiedot löytyvät GitHubista.</p></details></div></div></section>
+<section class="wrap section split install" id="asennus"><div><p class="label">Käyttöönotto / Windows x64</p><h2>Asenna MANUgen</h2><p>MANUgen on kehitetty Savonia-ammattikorkeakoulun opinnäytetyössä valmistavan yrityksen tarpeisiin. Pilottikäytöstä sovitaan tekijän kanssa.</p>
+<a class="button" id="release" href="https://github.com/juhanikol/manugen/releases">Avaa GitHub-julkaisut ↗</a><p id="availability" role="status">Asennuspaketin saatavuuden näet julkaisusivulta.</p></div>
+<div><h3>Ensimmäinen käynnistys</h3><ol><li>Avaa julkaisun <strong>Assets</strong> ja lataa <strong>MANUgen-setup.exe</strong>.</li><li>Suorita asennusohjelma. Valitse lopuksi <strong>Käynnistä mallin asennus</strong> ja seuraa sen ohjeita. Varaudu lataamaan mallitiedostot verkkoyhteydellä.</li><li>Avaa Käynnistä-valikosta <strong>MANUgen</strong>. Kokeile ensimmäistä kirjausta esimerkkihavainnolla.</li></ol>
+<!-- setup-guide: insert the Finnish installation recording here; see MAINTENANCE.md -->
+</div></section></main>
+<footer><div class="wrap bar"><strong>MANUgen</strong><div><a href="https://github.com/juhanikol/manugen">Projekti GitHubissa</a> · <a href="https://github.com/juhanikol/manugen/blob/main/LICENSE">Käyttöehdot</a></div></div></footer></body></html>
