@@ -1,0 +1,121 @@
+MANUgen Proprietary License
+Version 1.0 - Terms dated 2026-11-04
+
+Copyright (c) 2026 Juhani Kolehmainen.
+All rights reserved in the original material owned by the Licensor.
+
+1. Scope and ownership
+
+The Licensor is Juhani Kolehmainen. "Proprietary Software" means the original
+MANUgen application code, documentation, prompts, workflows and other
+copyright-protected material for which the Licensor owns or controls the
+necessary rights, including that material when incorporated in executables.
+
+Third-party code, libraries, runtimes, model weights, data and other third-party
+material are excluded from this definition. They remain subject to their own
+licenses. A filename, directory location or inclusion in a MANUgen executable
+does not make third-party material the property of the Licensor.
+
+The application is provided for testing and pilot use under the working title MANUgen. 
+The licensor has the right to name, brand, and commercially release the 
+software—or subsequent versions thereof—under a different product name, 
+without affecting the terms of this agreement or the rights of the parties.
+
+2. Permission to use
+
+This document does not itself grant a right to install, run or otherwise use
+the Proprietary Software. Such use requires a separate express agreement
+with the Licensor. The agreement may be written or digital proof and must identify
+the permitted recipient and the scope of use.
+
+Permission is limited to the agreed purpose, users, installation environment
+and duration. No additional rights arise from receiving the files, accessing
+source code or paying for an unrelated service.
+
+An agreed right to install and run the Proprietary Software includes the
+technical copies strictly necessary for that authorized installation and
+execution. It does not include additional deployments or distribution.
+
+3. Activities requiring express written permission
+
+Except as permitted by mandatory law, each of the following requires the
+Licensor's prior express written permission:
+(a) copying the Proprietary Software beyond section 2;
+(b) modifying, adapting, translating or creating derivative works of it;
+(c) publishing or disclosing its source code or distributing any of its copies;
+(d) selling, reselling, renting, lending, sublicensing or transferring it;
+(e) making it available to third parties as a hosted or managed service; and
+(f) removing or altering its ownership or license notices.
+
+An oral permission to use does not grant any of these rights. Written
+permission may be given in an email or another durable written record
+attributable to the Licensor. It must expressly identify the permitted activity
+and its scope.
+
+If customer editing of settings, workflows, prompts or integrations is intended,
+the separate written permission must identify those permitted changes.
+
+4. Third-party licenses and existing rights
+
+The restrictions in this document do not replace, revoke or limit rights granted
+under third-party licenses. THIRD-PARTY-NOTICES.txt and the applicable license
+files identify such material. Missing or incomplete notices do not change
+third-party ownership or applicable license terms.
+
+Original third-party notices must remain with the relevant material as required
+by its license. Modifying third-party material does not remove those obligations.
+Permission concerning a third-party component does not grant permission to use
+or distribute the Licensor's proprietary contributions.
+
+This document does not retroactively revoke rights validly granted under an
+earlier license or an existing agreement. It applies only to releases for which
+the Licensor validly adopts these terms.
+
+5. Mandatory statutory rights
+
+Nothing in this document excludes rights that cannot lawfully be excluded by
+contract, including applicable statutory rights concerning necessary backup
+copies, observation or testing of a program, and interoperability.
+Any restriction applies only to the extent permitted by applicable law.
+
+6. Customer material and services
+
+This document does not transfer ownership of customer-supplied data or documents
+to the Licensor. It does not claim ownership of generated output merely because
+the Proprietary Software produced it. Rights in third-party source material
+remain unaffected.
+
+Support, hosting, maintenance, updates, service levels and any processing of
+customer data require separate agreement. This document creates no obligation
+to provide those services or to disclose source code.
+
+7. Warranty and liability
+
+Unless separately agreed, the Proprietary Software is supplied as available,
+without contractual promises of uninterrupted operation, error-free results or
+fitness for a particular purpose. The user must verify generated information
+before relying on it.
+
+To the extent permitted by applicable law, the Licensor is not liable for
+indirect or consequential loss, loss of profit or loss of data arising from
+use or inability to use the Proprietary Software. This limitation does not
+exclude liability that cannot lawfully be excluded, including liability for
+intentional misconduct or gross negligence.
+
+8. End of permission
+
+When the agreed permission expires or otherwise lawfully ends, use of the
+Proprietary Software must stop. Copies must be deleted or returned, except
+where applicable law requires or permits their retention. Such retained copies
+may not be used beyond that legal basis.
+
+Third-party licenses and previously granted rights remain governed by their
+own terms.
+
+9. Applicable law and separate agreements
+
+These terms are governed by Finnish law, subject to mandatory applicable law.
+An express written agreement with the Licensor prevails over these terms to
+the extent that it specifically provides otherwise. An oral agreement may
+grant only the use permission described in section 2.
+
