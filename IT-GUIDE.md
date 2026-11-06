@@ -97,12 +97,23 @@ The language model uses the processor or graphics card fully while it writes an 
 | Approved tickets | tickets folder (one JSON file per ticket) | Yes |
 | Excel register | Only when export is set up; the file named in settings.json | Yes |
 | Logs | logs folder | Possibly. The model server log is verbose; treat it as user data. |
-| Knowledge base | rag\initial_index\index.sqlite. Empty in the installer. The customer builds it from own documents (rag\OHJE-FI.md). | Your own documents |
+| Knowledge base | rag\initial_index\index.sqlite. Empty in the installer. Replace it with the machining knowledge base (below), or build it from own documents (rag\OHJE-FI.md). | Delivered or own documents |
 | Downloaded model and server | models, runtime\llama, downloads | No |
 | Chat history and UI settings | The browser's own storage (per browser profile) | Yes |
 | Documents attached in chat | Memory only. Removed after 4 hours unused or at restart. | Yes |
 
 Paths are relative to the installation folder. Files are stored as plain files; they are not encrypted. Back them up and delete them according to your own practice.
+
+## Machining knowledge base (separate package)
+
+A knowledge base prepared for machining is delivered on request to pilot participants as a zip package. It contains index.sqlite, the terms (sandvik-coromant-NOTICE.txt) and a SHA-256 checksum. It is used with permission for non-commercial pilot use; do not redistribute it.
+
+1. Close MANUgen.
+2. Copy the current rag\initial_index\index.sqlite aside (for example index.sqlite.bak).
+3. Copy index.sqlite from the package to rag\initial_index\.
+4. Start MANUgen.
+
+The knowledge base works with the embedding model of the installation (multilingual E5). Updates of MANUgen do not replace it. To remove it, put the saved empty index back.
 
 ## Update and uninstall
 

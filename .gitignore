@@ -2,3 +2,11 @@ MAINTENANCE.md
 WIP.md
 # Release assets: upload to GitHub Releases, never commit
 installer/*.exe
+
+# Knowledge base content: delivered separately, never commit
+*.sqlite
+*.sqlite-*
+*.gguf
+knowledge/
+tietopohja/
+MANUgen-tietopohja-*.zip

@@ -141,6 +141,12 @@ Tietopohja
   sitä, ja chattiin liitetyt dokumentit toimivat. Oman ohje- ja dokumenttiaineiston saat sovelluksen käyttöön
   ohjeella rag\OHJE-FI.md.
 
+  Koneistuksen tietopohja: pilottiin osallistuville on saatavilla erillisenä pakettina koneistukseen
+  valmisteltu tietopohja (lähde Sandvik Coromantin oppimateriaali, käytetty luvalla ei-kaupalliseen
+  pilottikäyttöön). Pyydä se osoitteesta juhani.kolehmainen@edu.savonia.fi. Asennus: sulje MANUgen, ota
+  tiedosto rag\initial_index\index.sqlite talteen, kopioi paketin index.sqlite sen tilalle ja käynnistä
+  MANUgen. Käyttöehdot: paketin sandvik-coromant-NOTICE.txt. Tietopohjaa ei saa jakaa edelleen.
+
 Päivitys ja poisto
   Uuden version asennus korvaa sovelluksen tiedostot. Se ei korvaa tiedostoja settings.json, workflows.json,
   rag\rag.config.json ja rag\initial_index\index.sqlite eikä tikettejä, lokeja, ladattuja malleja tai mallipalvelinta.

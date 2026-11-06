@@ -1,0 +1,65 @@
+MANUgen - Koneistuksen tietopohja / Machining knowledge base
+Käyttöehdot ja lähdeilmoitus / Terms and source notice
+
+SUOMEKSI
+
+Lähde
+  Tietopohja on rakennettu Sandvik Coromantin julkisesta tietotaito-oppimateriaalista
+  (sandvik.coromant.com). Aineiston tekijänoikeudet kuuluvat Sandvikille.
+
+Lupa
+  Käyttö perustuu Sandvik Coromant Finland Oy:n lupaan 6.11.2026. Lupa koskee ei-kaupallista
+  käyttöä Savonia-ammattikorkeakoulun opinnäytetyössä ja SIX Manugenius -hankkeen pilotissa.
+
+Muokkaukset
+  MANUgenin tekijä on muotoillut, lyhentänyt ja osin suomentanut aineiston tietopohjaa varten.
+  Muokkaukset ja käännökset ovat tekijän. Sandvik ei vastaa niistä, MANUgenin vastauksista
+  eikä sovelluksen toiminnasta. Sandvik ei ole MANUgenin kehittäjä, toimittaja eikä suosittelija.
+
+Käyttöehdot vastaanottajalle
+  - Tietopohjaa saa käyttää vain MANUgen-sovelluksessa pilottikäytössä, maksutta.
+  - Tietopohjaa tai sen osia ei saa jakaa edelleen, julkaista, myydä eikä liittää maksulliseen
+    palveluun.
+  - Kun pilotti päättyy tai lupa lakkaa, tietopohja poistetaan (asennuksessa tiedosto
+    rag\initial_index\index.sqlite korvataan tyhjällä).
+  - Mallin vastaukset voivat olla virheellisiä. Tarkista tiedot ennen kuin käytät niitä.
+
+Lähteen merkintä
+  Lähdettä ei merkitä tietopohjan tekstiin. Mallille lähde näkyy tiedostonimenä. Tämä ilmoitus
+  on lähdemerkintä koko tietopohjalle, ja se toimitetaan tietopohjan mukana.
+
+Yhteystiedot
+  Juhani Kolehmainen, juhani.kolehmainen@edu.savonia.fi, https://jk-mainen.fi/
+
+
+IN ENGLISH
+
+Source
+  The knowledge base is built from the public know-how learning material of Sandvik Coromant
+  (sandvik.coromant.com). Copyright in the material belongs to Sandvik.
+
+Permission
+  Use is based on the permission of Sandvik Coromant Finland Oy given on 2026-11-06. It covers
+  non-commercial use in a thesis project at Savonia University of Applied Sciences and in the
+  pilot of the SIX Manugenius project.
+
+Changes
+  The author of MANUgen has formatted, shortened and partly translated the material into Finnish
+  for the knowledge base. Changes and translations are the author's. Sandvik is not responsible
+  for them, for answers given by MANUgen or for the application. Sandvik is not a developer,
+  supplier or endorser of MANUgen.
+
+Terms for the recipient
+  - Use the knowledge base only with the MANUgen application, in pilot use, free of charge.
+  - Do not redistribute, publish or sell the knowledge base or parts of it, and do not include it
+    in a paid service.
+  - When the pilot ends or the permission ends, delete the knowledge base (replace
+    rag\initial_index\index.sqlite with an empty index).
+  - Model answers can be wrong. Check the information before you rely on it.
+
+Source marking
+  The source is not written into the knowledge base text. The model sees the file names. This
+  notice is the source notice for the whole knowledge base and is delivered with it.
+
+Contact
+  Juhani Kolehmainen, juhani.kolehmainen@edu.savonia.fi, https://jk-mainen.fi/

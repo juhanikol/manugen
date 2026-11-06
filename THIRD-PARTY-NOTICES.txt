@@ -35,6 +35,9 @@ the complete files govern, including nested attributions. Missing excerpts are n
 Local application changes do not modify installed third-party package sources. Compilation/bundling
 changes their output representation.
 The installation package contains no knowledge content: the knowledge index rag/initial_index/index.sqlite is empty.
+A machining knowledge base built from Sandvik Coromant learning material is delivered separately to pilot
+participants, with permission for non-commercial pilot use. It is not part of the installation package.
+Its terms and source notice: licenses/content/sandvik-coromant-NOTICE.txt (also delivered with the knowledge base).
 
 3. Known gaps
 - Exact-version full texts are missing for cobble 0.1.4, magika 1.0.3 and the JavaScript entries marked MISSING below.

@@ -12,6 +12,10 @@ The user works in a browser window. A local backend runs the workflow steps. A l
 
 MANUgen was developed as part of a thesis project at Savonia University of Applied Sciences.
 
+## Machining knowledge base
+
+A knowledge base prepared for machining is available to the language model. It is built from Sandvik Coromant learning material and used with permission for non-commercial pilot use in the SIX Manugenius project. It is delivered on request to pilot participants as a separate package. The installer itself ships with an empty knowledge base. Terms: [licenses/content/sandvik-coromant-NOTICE.txt](licenses/content/sandvik-coromant-NOTICE.txt). Request: juhani.kolehmainen@edu.savonia.fi.
+
 ## Where to find what
 
 | Location | Contents |

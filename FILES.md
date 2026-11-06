@@ -22,6 +22,7 @@
 | LUEMINUT.txt | User guide in Finnish |
 | THIRD-PARTY-NOTICES.txt | Third-party components and their licenses |
 | licenses | License texts of third-party components and models |
+| licenses/content/sandvik-coromant-NOTICE.txt | Terms and source notice of the separately delivered machining knowledge base |
 
 Release assets (not in Git):
 
