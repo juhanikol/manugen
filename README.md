@@ -4,7 +4,7 @@
 
 A local AI assistant for manufacturing teams. A worker describes an observation in their own words. MANUgen prepares a structured draft. A person reviews, corrects and approves it. Teams can define their own workflows and fields.
 
-**[Explore MANUgen in Finnish](https://juhanikol.github.io/manugen/)** **[Explore MANUgen in English (compacted)](https://juhanikol.github.io/manugen/en/)**· **[Windows releases](https://github.com/juhanikol/manugen/releases)**
+**[Explore MANUgen in Finnish](https://juhanikol.github.io/manugen/)** · **[Explore MANUgen in English (condensed)](https://juhanikol.github.io/manugen/en/)** · **[Windows releases](https://github.com/juhanikol/manugen/releases)**
 
 ## Inside the application
 
@@ -28,13 +28,13 @@ A knowledge base prepared for machining is available to the language model. It i
 
 This repository holds the installer script, the scripts that run on the user's computer, the default settings and the licenses. The application source code is not published.
 
-## Features - Brief look
+## Features – a brief look
 
-The day with a different problems and a different tools.
+A day with different problems and different tools.
 
-You start your day with having problems on the machine floor. Milling parts are not as expected - they need more work. Only problem in this situation is that even more of a task is to fill deviation forms, figure out what to answer to each form field, explain tool usage and wear, and after all that walk to office explaining why the parts are not manufactured in time.
+You start your day with problems on the shop floor. The milled parts are not as expected – they need more work. The only problem in this situation is that an even bigger task is to fill in deviation forms, figure out what to answer in each form field, explain tool usage and wear, and after all that, walk to the office to explain why the parts were not manufactured on time.
 
-### Solution: Report with your own words
+### Solution: Report in your own words
 
 -> generate report -> verify and save -> let the people in the office read the generated report
 
@@ -44,40 +44,40 @@ You start your day with having problems on the machine floor. Milling parts are 
 
 ![change values](./docs/assets/change_value.gif)
 
-### You can check what the AI offers for solution or what is infered from you description
+### You can check what the AI offers as a solution or what it inferred from your description
 
 ![review AI notes](./docs/assets/review_AI_notes.gif)
 
-### But you are unsure about the solution AI offered, so you decide to check what is the reference for the suggestion
+### But you are unsure about the solution the AI offered, so you decide to check the reference for the suggestion
 
 ![look used citations](./docs/assets/used_citations.gif)
 
-### Everything looks fine or none of the fields needs changing. Just save.
+### Everything looks fine and none of the fields need changing. Just save.
 
 ![save ticket](./docs/assets/save_ticket.gif)
 
 ### Day continues
 
-You continue you day and as a senior engineer you have the luxury of sitting down behind the desk. But today - as always at the end of the month. You are required to report the handwritten shipping manifests to the system. Manager need those and you have to type those in.
+You continue your day, and as a senior engineer you have the luxury of sitting down behind a desk. But today – as always at the end of the month – you are required to enter the handwritten shipping manifests into the system. Your manager needs them, and you have to type them in.
 
 ### Another task - another workflow - just choose which to use
 
 ![choose workflow](./docs/assets/choose_workflow.gif)
 
-Not all things cannot be turned to workflows. However all the tasks you need to perform are governed by your domain. Maybe company have guidelines, instructions, steps-to-follow. Or your domain is so specific that there are simply too specific information and searching the answer to some problem is exhausting. Maybe it slipped your mind - you are sure that just yesterday you searched the answer to the same question.
+Not everything can be turned into a workflow. However, all the tasks you need to perform are governed by your domain. Maybe your company has guidelines, instructions and steps to follow. Or your domain is so specialised that there is simply too much specific information, and searching for the answer to a problem is exhausting. Maybe it slipped your mind – you are sure that just yesterday you searched for the answer to the same question.
 
-But you were smart and gave the AI all the data you use - even the sensitive guidelines - the MANUgen is in restricted network with no internet access or you work specifically offline for security reasons.
+But you were smart and gave the AI all the data you use – even the sensitive guidelines. MANUgen runs in a restricted network with no internet access, or you work offline specifically for security reasons.
 
 ### Ask something about the data stored in the system
 
 ![use_knowledge_for_answers](./docs/assets/use_knowledge_for_answers.gif)
 
-## Verify the used data
+## Verify the data used
 
-You are smart and you also check what the references are
+You are smart, so you also check what the references are.
 
 ![review_used_citations.gif](./docs/assets/review_used_citations.gif)
 
-Sometimes you need to go back to what you have done. Thankfully the MANUgen feels already familiar and everything is there where you expect it to be.
+Sometimes you need to go back to what you have done. Thankfully, MANUgen already feels familiar, and everything is where you expect it to be.
 
 ![familiar_tools.gif](./docs/assets/familiar_tools.gif)
