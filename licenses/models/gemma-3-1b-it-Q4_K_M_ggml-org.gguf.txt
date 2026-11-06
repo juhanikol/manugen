@@ -1,0 +1,22 @@
+Model file: gemma-3-1b-it-Q4_K_M_ggml-org.gguf
+
+Gemma is provided under and subject to the Gemma Terms of Use found at ai.google.dev/gemma/terms
+
+Source
+  Model: Gemma 3 1B IT (instruction-tuned), Google.
+  File: GGUF conversion, quantization Q4_K_M, published by ggml-org on Hugging Face:
+    repository ggml-org/gemma-3-1b-it-GGUF, revision f9c28bcd85737ffc5aef028638d3341d49869c27,
+    upstream file name gemma-3-1b-it-Q4_K_M.gguf, renamed locally to gemma-3-1b-it-Q4_K_M_ggml-org.gguf.
+  SHA256: 8ccc5cd1f1b3602548715ae25a66ed73fd5dc68a210412eea643eb20eb75a135 (806058240 bytes).
+  The file is not modified.
+
+Terms and use restrictions
+  Gemma Terms of Use: https://ai.google.dev/gemma/terms
+  Gemma Prohibited Use Policy: https://ai.google.dev/gemma/prohibited_use_policy
+  Use of the model is subject to these terms, including the use restrictions of the Prohibited Use Policy.
+  This distribution does not contain a full copy of the Gemma Terms of Use. Before you give this distribution to
+  another person or organization, add a copy of the terms next to this file.
+
+Use in this distribution
+  Thesis prototype for Finnish manufacturing deviation reporting. The model makes suggestions only; the user
+  reviews and approves every ticket. Model output can be wrong or incomplete.

@@ -1,0 +1,150 @@
+MANUgen - tikettisovellus
+
+Mikä tämä on
+  Tikettisovellus (ticket-demo.exe), tietopohjan embedding-palvelin (runtime\embedding ja E5-malli),
+  työnkulun rakentaja ja laitetunnistus samassa kansiossa. Kielimallia (Gemma) ja sen mallipalvelinta
+  (llama-server) ei toimiteta: ne ladataan erikseen alla olevan ohjeen mukaan. Node.js:ää, npm:ää tai
+  PowerShelliä ei tarvita. Tämä on testijakelu; koodiallekirjoitusta ei ole.
+
+Sisältö
+  ticket-demo.exe                    käynnistys ja tikettisovellus (käyttöliittymä ja sovelluksen rajapinta)
+  MANUgen.cmd                        avaa MANUgenin omaan ikkunaan ja käynnistää sen tarvittaessa
+  ticket-demo.cmd                    käynnistää ticket-demo.exe:n; ei mallin valitsimia
+  settings.json                      asetukset: mikä mallipalvelin käynnistetään, millä valitsimilla, mikä työnkulku
+  rag\rag-service.exe               erillinen tietopohjapalvelu; ei tarvitse asennettua Nodea
+  rag\rag.config.json               tietokannan polku, hakutapa ja hyväksyntäraja
+  rag\initial_index\index.sqlite    tietopohja; asennuksessa tyhjä. Oman tietopohjan rakentaminen: rag\OHJE-FI.md
+  rag\OHJE-FI.md                    ohje: oman aineiston lisääminen tietopohjaan
+  runtime\<nimi>\                    llama-server-ajoympäristöt, kukin omassa kansiossaan (toimitettu: embedding)
+  models\                            mallitiedostot (GGUF); käyttöehtoilmoitukset: licenses\models\
+  workflows.json, prompts\, ui\, public\   työnkulut, kehotteet ja käyttöliittymät
+  ticket-export.exe                  Excel-vienti: hyväksytty tiketti yhdeksi riviksi Excel-rekisteriin. Pois
+                                     käytöstä, kunnes settings.json application.export otetaan käyttöön
+  examples\                          synteettinen esimerkkirekisteri ja sitä vastaavat vientiasetukset
+                                     (ohje: CONFIGURATION.md "Excel register export")
+  workflow-builder\                  työnkulun rakentaja selaimessa (index.html; ohje: README.md)
+  tools\hardware-probe\device_sniffer.bat   koneen laitetiedot ja suositeltu malliprofiili (tulokset: results\)
+  tools\hardware-probe\profiles.json        malliprofiilit: raja-arvot, latauslinkit, mallipalvelimen valitsimet
+  tools\setup\MALLIN-ASENNUS.cmd            lataa ja asentaa suositellun kielimallin ja mallipalvelimen
+  LICENSE.txt, THIRD-PARTY-NOTICES.txt, licenses\   käyttöehdot ja kolmannen osapuolen lisenssit
+  MANIFEST.json                      toimitetut tiedostot, versiot, lähdekoodin commit ja sha256-tarkisteet
+
+Vaatimukset
+  Windows 10 tai 11, x64.
+  Microsoft Visual C++ -ajonaikainen kirjasto (x64): https://aka.ms/vc14/vc_redist.x64.exe
+    Embedding-palvelin ja llama-server tarvitsevat sen. Asennusohjelma kertoo, jos se puuttuu.
+  Vulkan-versio: näytönohjaimen ajuri, jossa on Vulkan-tuki. CUDA-versio: NVIDIA-ajuri.
+
+Kielimallin ja mallipalvelimen asennus
+  Suositeltu tapa: Käynnistä-valikko > Mallin asennus (tools\setup\MALLIN-ASENNUS.cmd). Sulje MANUgen ensin.
+  Se tunnistaa koneen, näyttää suositellun mallin ja kysyy luvan. Sen jälkeen se tarkistaa Visual C++
+  -kirjaston, lataa llama.cpp-mallipalvelimen ja mallin (1-5 Gt; keskeytynyt lataus jatkuu, kun ajat sen
+  uudelleen), purkaa ne kansioihin runtime\llama ja models, valitsee näytönohjaimen ja muuttaa settings.json:n
+  (edellinen talteen: settings.json.bak). Sen jälkeen käynnistä MANUgen. Suositukset ja mallipalvelimen
+  valitsimet ovat tiedostossa tools\hardware-probe\profiles.json; settings.json:ssa on jokaiselle profiilille
+  valmis palvelin (servers), joten tiedostoa ei tarvitse muokata käsin.
+  Jos asennus ei onnistu, ota yhteyttä toimittajaan ja liitä mukaan tools\hardware-probe\results\report.txt.
+
+  Asennus käsin (vain jos Mallin asennus ei sovi):
+  1. Aja Laitetunnistus (Käynnistä-valikko tai tools\hardware-probe\device_sniffer.bat). Se kertoo koneen
+     muistin ja näytönohjaimen sekä suositellun profiilin (results\report.txt).
+
+  2. Lataa llama.cpp-mallipalvelin koneellesi sopivana versiona ja pura zip-tiedosto kansioon runtime\llama\
+     (kansioon tulee llama-server.exe). Julkaisut: https://github.com/ggml-org/llama.cpp/releases
+       Vain suoritin (ei sopivaa näytönohjainta):
+         https://github.com/ggml-org/llama.cpp/releases/download/b12125/llama-b12125-bin-win-cpu-x64.zip
+       AMD-, Intel- tai NVIDIA-näytönohjain (Vulkan):
+         https://github.com/ggml-org/llama.cpp/releases/download/b12125/llama-b12125-bin-win-vulkan-x64.zip
+       NVIDIA-näytönohjain (CUDA): lataa molemmat saman rivin tiedostot ja pura ne samaan kansioon.
+         Ajurin tukeman CUDA-version näet komennolla nvidia-smi (oikea yläkulma "CUDA Version").
+         CUDA 13 (ajuri tukee CUDA 13.x:ää):
+           https://github.com/ggml-org/llama.cpp/releases/download/b12125/llama-b12125-bin-win-cuda-13.4-x64.zip
+           https://github.com/ggml-org/llama.cpp/releases/download/b12125/cudart-llama-bin-win-cuda-13.4-x64.zip
+         CUDA 12 (vanhempi ajuri):
+           https://github.com/ggml-org/llama.cpp/releases/download/b12125/llama-b12125-bin-win-cuda-12.4-x64.zip
+           https://github.com/ggml-org/llama.cpp/releases/download/b12125/cudart-llama-bin-win-cuda-12.4-x64.zip
+     Näytönohjaimen ajurit: NVIDIA https://www.nvidia.com/drivers
+                            AMD    https://www.amd.com/en/support/download/drivers.html
+                            Intel  https://www.intel.com/content/www/us/en/download-center/home.html
+
+  3. Lataa kielimalli kansioon models\ (tiedostonimi ennallaan).
+       Gemma 3 1B (pienin; toimii myös pelkällä suorittimella, n. 0,8 Gt):
+         https://huggingface.co/ggml-org/gemma-3-1b-it-GGUF/resolve/main/gemma-3-1b-it-Q4_K_M.gguf
+         Käyttöehdot: Gemma Terms of Use https://ai.google.dev/gemma/terms
+       Gemma 4 E2B (n. 2,5 Gt) ja sen MTP-luonnosmalli (nopeuttaa vastauksia):
+         https://huggingface.co/xbill9/gemma-4-E2B-it-qat-q4_0-exact-gguf/resolve/main/gemma-4-E2B-it-q4_0-exact.gguf
+         https://huggingface.co/ggml-org/gemma-4-E2B-it-GGUF/resolve/main/mtp-gemma-4-E2B-it-Q4_0.gguf
+       Gemma 4 E4B (n. 4,4 Gt; paras laatu, vaatii eniten muistia) ja sen MTP-luonnosmalli:
+         https://huggingface.co/ggml-org/gemma-4-E4B-it-GGUF/resolve/main/gemma-4-E4B-it-Q4_0.gguf
+         https://huggingface.co/ggml-org/gemma-4-E4B-it-GGUF/resolve/main/mtp-gemma-4-E4B-it-Q4_0.gguf
+       Gemma 4 -mallien käyttöehdot: Apache-2.0.
+
+  4. Valitse palvelin ja työnkulku komentokehotteessa (settings.json muuttuu, edellinen talteen .bak-tiedostoon):
+       tools\setup\settings_change.cmd PALVELIN TYÖNKULKU
+     PALVELIN on profiilin tunnus (profiles.json "id"); näytönohjainprofiileissa perään tulee laitteen nimi
+     pienillä kirjaimilla, esim. gemma4-e2b-vulkan-vulkan1 tai gemma4-e4b-cuda-cuda0. Laitteiden nimet:
+     runtime\llama\llama-server.exe --list-devices. TYÖNKULKU on profiilin "workflow", esim. six-roles-max4.
+     Jos jokin vaihe ei onnistu, ota yhteyttä toimittajaan.
+
+Käynnistys
+  1. Käynnistä-valikko tai työpöytä: MANUgen (MANUgen.cmd). Se avaa sovelluksen omaan ikkunaansa (Microsoft
+     Edge, muuten Google Chrome, muuten oletusselain). Jos MANUgen ei ole vielä käynnissä, se käynnistää ensin
+     ticket-demo.cmd:n tehtäväpalkkiin pienennettyyn ikkunaan "MANUgen" ja odottaa, kunnes sovellus vastaa
+     (kielimallin lataus muistiin kestää noin minuutin). Uusi käynnistys avaa vain uuden ikkunan.
+     ticket-demo.cmd käynnistää settings.json-tiedoston mukaan mallipalvelimen ("start"), embedding-palvelimen,
+     RAG-palvelun ja tikettisovelluksen. Asetuksella "connect" sovellus yhdistää erikseen käynnistettyyn
+     mallipalvelimeen osoitteessa http://127.0.0.1:8080; jos se ei vielä vastaa, sovellus käynnistyy silti.
+  2. Selaimessa: http://127.0.0.1:3000/ (chat ja tiketit) tai http://127.0.0.1:3000/standalone/ (tikettinäkymä).
+  Jos osoitteessa 8080 vastaa jo jokin palvelin "start"-asetuksella, käynnistys keskeytyy. Sitä palvelinta ei
+  käytetä eikä pysäytetä. Mallipalvelimen loki: logs\llama-<aika>.log.
+
+Pysäytys
+  Sulje tehtäväpalkin ikkuna "MANUgen" (ruksi) tai paina siinä Ctrl+C. Se pysäyttää tikettisovelluksen ja ne
+  palvelimet, jotka tämä käynnistys aloitti. Sovelluksen oman ikkunan (selain) sulkeminen ei
+  pysäytä MANUgenia.
+
+Testaus
+  1. Tarkista ikkunan polut: "executable", "settings" ja "workflow" osoittavat tähän kansioon, ja
+     "llama-server ... started" näyttää käynnistetyn mallipalvelimen ja sen lokin.
+  2. http://127.0.0.1:3000/: kirjoita chattiin lyhyt viesti. Vastaus tulee näkyviin vähitellen. Lähetä pidempi
+     pyyntö ja paina pysäytyspainiketta kesken vastauksen. Vastaus pysähtyy.
+  3. Tikettinäkymä: valitse esimerkkikuvaus ja luo tikettiehdotus. Kuuden roolin työnkulussa ajo tekee kuusi
+     mallikutsua. Tarkista kentät ja hyväksy tiketti itse.
+  4. http://127.0.0.1:3000/standalone/ avautuu ja luo tikettiehdotuksen.
+  Mallin ehdotukset voivat olla virheellisiä tai puutteellisia. Onnistunut ajo ei todista ehdotusten oikeellisuutta.
+
+Asetukset (settings.json; muutos tulee voimaan, kun sovellus käynnistetään uudelleen). Kaikki asetukset: CONFIGURATION.md
+  application.server       valittu mallipalvelin (servers-listan id)
+  application.workflow     tikettinäkymässä valittavat työnkulut: yksi id tai lista, esim.
+                           ["single-call", "three-roles", "six-roles-max2"] (tämän paketin valinta). Muut
+                           workflows.json-tiedoston työnkulut: six-roles-max4, plain-text. Valinta vaihtuu
+                           ilman uudelleenkäynnistystä; listan muutos vaatii uudelleenkäynnistyksen.
+  application.modelServer  "start" = käynnistä valittu mallipalvelin, "connect" = yhdistä käynnissä olevaan
+  application.listen       osoite, jota tikettisovellus kuuntelee (127.0.0.1:3000 = vain tämä kone)
+  application.auth.mode    "local" (vain tämä kone) tai "none" (luotettu yksityisverkko, esim. listen 0.0.0.0;
+                           ei tunnistautumista eikä käyttäjien erottelua; selain: http://<tämän koneen osoite>:3000/)
+  servers[].executable     ajoympäristö, esim. runtime/llama/llama-server.exe (suhteessa settings.json-tiedostoon)
+  servers[].args           llama-serverin omat valitsimet sellaisinaan: malli (-m models/...), laite (--device NIMI),
+                           GPU-kerrokset (-ngl), slotit (-np), konteksti (-c), säikeet (-t), --host, --port.
+  servers[].url            osoite, johon sovellus yhdistää; pidä samana kuin --host ja --port.
+  Työnkulun rinnakkaisuus ei saa ylittää mallipalvelimen slottimäärää (-np); muuten ajo päättyy virheeseen
+  SLOTS_MISMATCH. three-roles ja six-roles-max2 tarvitsevat -np 2, six-roles-max4 -np 4.
+  Muualla oleva asetustiedosto: ticket-demo.cmd --settings "C:\polku\settings.json".
+
+Tietopohja
+  Asennuksen tietopohja on tyhjä: sovellus ei sisällä valmista tietosisältöä. Chat ja tiketit toimivat ilman
+  sitä, ja chattiin liitetyt dokumentit toimivat. Oman ohje- ja dokumenttiaineiston saat sovelluksen käyttöön
+  ohjeella rag\OHJE-FI.md.
+
+Päivitys ja poisto
+  Uuden version asennus korvaa sovelluksen tiedostot. Se ei korvaa tiedostoja settings.json, workflows.json,
+  rag\rag.config.json ja rag\initial_index\index.sqlite eikä tikettejä, lokeja, ladattuja malleja tai mallipalvelinta.
+  Uuden version toimitetut työnkulut tulevat tiedostoon workflows.default.json; ota ne käyttöön Työnkulun
+  rakentajan sivulla Sovelluksen työnkulut (Päivitä toimitetut työnkulut). Samalla sivulla lisäät omat
+  työnkulut ja valitset käytössä olevat; muutokset tulevat voimaan, kun MANUgen käynnistetään uudelleen.
+  Poisto (Windowsin Asennetut sovellukset) poistaa asennetut tiedostot. Asetukset, tiketit, lokit sekä itse
+  ladatut mallit ja mallipalvelin jäävät kansioon; poista kansio itse, jos et tarvitse niitä.
+
+Käyttöehdot
+  Sovellus: LICENSE.txt. Kolmannen osapuolen osat: THIRD-PARTY-NOTICES.txt ja licenses\.
+  llama.cpp: runtime\<nimi>\ omat lisenssitiedostot. Mallit: licenses\models\.

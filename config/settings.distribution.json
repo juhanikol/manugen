@@ -1,0 +1,130 @@
+{
+  "application": {
+    "listen": {
+      "host": "127.0.0.1",
+      "port": 3000
+    },
+    "modelServer": "connect",
+    "server": "local-llama-server",
+    "workflowFile": "workflows.json",
+    "workflow": ["single-call", "three-roles", "six-roles-max2"],
+    "probeMs": 5000,
+    "ui": {
+      "integrated": "ui",
+      "standalone": "public"
+    },
+    "capacity": {
+      "maxActiveJobs": 1,
+      "queueLength": 4
+    },
+    "tickets": {
+      "directory": "tickets"
+    },
+    "export": null,
+    "rag": {
+      "mode": "start",
+      "url": "http://127.0.0.1:8090",
+      "requestTimeoutMs": 15000,
+      "readyTimeoutMs": 120000,
+      "embeddingServer": {
+        "executable": "runtime/embedding/llama-server.exe",
+        "args": ["-m", "models/multilingual-e5-small-q8_0.gguf", "--alias", "multilingual-e5-small", "--embedding", "--pooling", "mean", "--embd-normalize", "2", "--host", "127.0.0.1", "--port", "8083", "-ngl", "0", "-t", "4", "-np", "1", "-c", "512", "-b", "512", "-ub", "512"],
+        "url": "http://127.0.0.1:8083"
+      },
+      "service": {
+        "executable": "rag/rag-service.exe",
+        "args": ["--config", "rag/rag.config.json"],
+        "url": "http://127.0.0.1:8090"
+      }
+    },
+    "chatRetrieval": {
+      "responseTokens": 1024,
+      "marginTokens": 128,
+      "maxKnowledgeTokens": 768,
+      "sourceShares": {
+        "documents": 512,
+        "rag": 256
+      }
+    },
+    "auth": {
+      "mode": "local"
+    }
+  },
+  "servers": [
+    {
+      "id": "local-llama-server",
+      "description": "Separately started model server (modelServer \"connect\"): llama-server with a model that the customer downloads, at 127.0.0.1:8080. This package contains no language model. To let ticket-demo.exe start it, add \"executable\" and \"args\" (CONFIGURATION.md) and set application.modelServer to \"start\".",
+      "url": "http://127.0.0.1:8080"
+    },
+    {
+      "id": "gemma4-e4b-cuda-cuda0",
+      "description": "Gemma 4 E4B + MTP, NVIDIA (CUDA 12.4), device CUDA0. Tested: HP Nvidia T1000 4 GiB, own CUDA 12.4 build, 2026-10-25..27 (WORKING-CONFIG.md). Not tested with release b12125. Written from tools/hardware-probe/profiles.json by packaging/profile-servers.mjs; select with tools/setup/MALLIN-ASENNUS.cmd.",
+      "executable": "runtime/llama/llama-server.exe",
+      "url": "http://127.0.0.1:8080",
+      "args": ["-m", "models/gemma-4-E4B-it-Q4_0.gguf", "--model-draft", "models/mtp-gemma-4-E4B-it-Q4_0.gguf", "--spec-type", "draft-mtp", "--spec-draft-n-max", "2", "--spec-draft-p-min", "0.75", "--device", "CUDA0", "-sm", "none", "-ngl", "99", "-ngld", "99", "-ot", "per_layer_token_embd\\.weight=CPU", "-kvo", "-np", "4", "-c", "16384", "-t", "4", "--reasoning-budget", "0", "--chat-template-kwargs", "{\"enable_thinking\":false}", "--flash-attn", "on", "--cache-type-k", "f16", "--cache-type-v", "f16", "-rea", "off", "-b", "256", "-ub", "128", "--host", "127.0.0.1", "--port", "8080", "-lv", "4", "--log-colors", "off"]
+    },
+    {
+      "id": "gemma4-e4b-vulkan-vulkan0",
+      "description": "Gemma 4 E4B + MTP, GPU (Vulkan), device Vulkan0. Tested: ZBook Radeon WX3100 2 GiB, own Vulkan build b11093. Not tested with release b12125. Written from tools/hardware-probe/profiles.json by packaging/profile-servers.mjs; select with tools/setup/MALLIN-ASENNUS.cmd.",
+      "executable": "runtime/llama/llama-server.exe",
+      "url": "http://127.0.0.1:8080",
+      "args": ["-m", "models/gemma-4-E4B-it-Q4_0.gguf", "--model-draft", "models/mtp-gemma-4-E4B-it-Q4_0.gguf", "--spec-type", "draft-mtp", "--spec-draft-n-max", "2", "--spec-draft-p-min", "0.75", "--device", "Vulkan0", "-sm", "none", "-ngl", "99", "-ngld", "99", "-ot", "per_layer_token_embd\\.weight=CPU", "-kvo", "-np", "2", "-c", "8192", "-t", "4", "--reasoning-budget", "0", "--chat-template-kwargs", "{\"enable_thinking\":false}", "--flash-attn", "on", "--cache-type-k", "q8_0", "--cache-type-v", "q8_0", "-rea", "off", "-b", "256", "-ub", "128", "--host", "127.0.0.1", "--port", "8080", "-lv", "4", "--log-colors", "off"]
+    },
+    {
+      "id": "gemma4-e4b-vulkan-vulkan1",
+      "description": "Gemma 4 E4B + MTP, GPU (Vulkan), device Vulkan1. Tested: ZBook Radeon WX3100 2 GiB, own Vulkan build b11093. Not tested with release b12125. Written from tools/hardware-probe/profiles.json by packaging/profile-servers.mjs; select with tools/setup/MALLIN-ASENNUS.cmd.",
+      "executable": "runtime/llama/llama-server.exe",
+      "url": "http://127.0.0.1:8080",
+      "args": ["-m", "models/gemma-4-E4B-it-Q4_0.gguf", "--model-draft", "models/mtp-gemma-4-E4B-it-Q4_0.gguf", "--spec-type", "draft-mtp", "--spec-draft-n-max", "2", "--spec-draft-p-min", "0.75", "--device", "Vulkan1", "-sm", "none", "-ngl", "99", "-ngld", "99", "-ot", "per_layer_token_embd\\.weight=CPU", "-kvo", "-np", "2", "-c", "8192", "-t", "4", "--reasoning-budget", "0", "--chat-template-kwargs", "{\"enable_thinking\":false}", "--flash-attn", "on", "--cache-type-k", "q8_0", "--cache-type-v", "q8_0", "-rea", "off", "-b", "256", "-ub", "128", "--host", "127.0.0.1", "--port", "8080", "-lv", "4", "--log-colors", "off"]
+    },
+    {
+      "id": "gemma4-e2b-vulkan-vulkan0",
+      "description": "Gemma 4 E2B + MTP, GPU (Vulkan), device Vulkan0. Tested: ZBook Radeon WX3100 2 GiB, own Vulkan build b11093, 2026-10-25..27 (WORKING-CONFIG.md; settings.json gemma4-e2b-vulkan1-4slot). Not tested with release b12125. Written from tools/hardware-probe/profiles.json by packaging/profile-servers.mjs; select with tools/setup/MALLIN-ASENNUS.cmd.",
+      "executable": "runtime/llama/llama-server.exe",
+      "url": "http://127.0.0.1:8080",
+      "args": ["-m", "models/gemma-4-E2B-it-q4_0-exact.gguf", "--model-draft", "models/mtp-gemma-4-E2B-it-Q4_0.gguf", "--spec-type", "draft-mtp", "--spec-draft-n-max", "2", "--spec-draft-p-min", "0.75", "--device", "Vulkan0", "-sm", "none", "-ngl", "99", "-ngld", "99", "-ot", "per_layer_token_embd\\.weight=CPU", "-kvo", "-np", "4", "-c", "16384", "-t", "4", "--reasoning-budget", "0", "--chat-template-kwargs", "{\"enable_thinking\":false}", "--flash-attn", "on", "--cache-type-k", "f16", "--cache-type-v", "f16", "-rea", "off", "-b", "256", "-ub", "128", "--host", "127.0.0.1", "--port", "8080", "-lv", "4", "--log-colors", "off"]
+    },
+    {
+      "id": "gemma4-e2b-vulkan-vulkan1",
+      "description": "Gemma 4 E2B + MTP, GPU (Vulkan), device Vulkan1. Tested: ZBook Radeon WX3100 2 GiB, own Vulkan build b11093, 2026-10-25..27 (WORKING-CONFIG.md; settings.json gemma4-e2b-vulkan1-4slot). Not tested with release b12125. Written from tools/hardware-probe/profiles.json by packaging/profile-servers.mjs; select with tools/setup/MALLIN-ASENNUS.cmd.",
+      "executable": "runtime/llama/llama-server.exe",
+      "url": "http://127.0.0.1:8080",
+      "args": ["-m", "models/gemma-4-E2B-it-q4_0-exact.gguf", "--model-draft", "models/mtp-gemma-4-E2B-it-Q4_0.gguf", "--spec-type", "draft-mtp", "--spec-draft-n-max", "2", "--spec-draft-p-min", "0.75", "--device", "Vulkan1", "-sm", "none", "-ngl", "99", "-ngld", "99", "-ot", "per_layer_token_embd\\.weight=CPU", "-kvo", "-np", "4", "-c", "16384", "-t", "4", "--reasoning-budget", "0", "--chat-template-kwargs", "{\"enable_thinking\":false}", "--flash-attn", "on", "--cache-type-k", "f16", "--cache-type-v", "f16", "-rea", "off", "-b", "256", "-ub", "128", "--host", "127.0.0.1", "--port", "8080", "-lv", "4", "--log-colors", "off"]
+    },
+    {
+      "id": "gemma4-e4b-cpu",
+      "description": "Gemma 4 E4B + MTP, CPU only (no suitable GPU). Tested: NOT TESTED. Derived from the tested GPU command: GPU-only options removed (-sm, -ngl, -ngld, -ot, -kvo, --device); -np 2 -c 8192 (2 x 4096, the tested context per slot) to match six-roles-max2. To test: -t (tested GPU value 4; CPU speed depends on it), -b/-ub (GPU values), whether the MTP draft helps on CPU. Written from tools/hardware-probe/profiles.json by packaging/profile-servers.mjs; select with tools/setup/MALLIN-ASENNUS.cmd.",
+      "executable": "runtime/llama/llama-server.exe",
+      "url": "http://127.0.0.1:8080",
+      "args": ["-m", "models/gemma-4-E4B-it-Q4_0.gguf", "--model-draft", "models/mtp-gemma-4-E4B-it-Q4_0.gguf", "--spec-type", "draft-mtp", "--spec-draft-n-max", "2", "--spec-draft-p-min", "0.75", "-np", "2", "-c", "8192", "-t", "4", "--reasoning-budget", "0", "--chat-template-kwargs", "{\"enable_thinking\":false}", "--flash-attn", "on", "--cache-type-k", "f16", "--cache-type-v", "f16", "-rea", "off", "-b", "256", "-ub", "128", "--host", "127.0.0.1", "--port", "8080", "-lv", "4", "--log-colors", "off"]
+    },
+    {
+      "id": "gemma4-e2b-cpu",
+      "description": "Gemma 4 E2B + MTP, CPU only (no suitable GPU). Tested: NOT TESTED. Derived from the tested GPU command: GPU-only options removed (-sm, -ngl, -ngld, -ot, -kvo, --device); -np 2 -c 8192 (2 x 4096, the tested context per slot) to match six-roles-max2. To test: -t (tested GPU value 4; CPU speed depends on it), -b/-ub (GPU values), whether the MTP draft helps on CPU. Written from tools/hardware-probe/profiles.json by packaging/profile-servers.mjs; select with tools/setup/MALLIN-ASENNUS.cmd.",
+      "executable": "runtime/llama/llama-server.exe",
+      "url": "http://127.0.0.1:8080",
+      "args": ["-m", "models/gemma-4-E2B-it-q4_0-exact.gguf", "--model-draft", "models/mtp-gemma-4-E2B-it-Q4_0.gguf", "--spec-type", "draft-mtp", "--spec-draft-n-max", "2", "--spec-draft-p-min", "0.75", "-np", "2", "-c", "8192", "-t", "4", "--reasoning-budget", "0", "--chat-template-kwargs", "{\"enable_thinking\":false}", "--flash-attn", "on", "--cache-type-k", "f16", "--cache-type-v", "f16", "-rea", "off", "-b", "256", "-ub", "128", "--host", "127.0.0.1", "--port", "8080", "-lv", "4", "--log-colors", "off"]
+    },
+    {
+      "id": "gemma3-1b-vulkan-vulkan0",
+      "description": "Gemma 3 1B, GPU (Vulkan), small computers, device Vulkan0. Tested: ZBook WX3100 Vulkan1, own build b11093 (settings.json gemma3-1b-vulkan1-4slot). Not tested with release b12125. Written from tools/hardware-probe/profiles.json by packaging/profile-servers.mjs; select with tools/setup/MALLIN-ASENNUS.cmd.",
+      "executable": "runtime/llama/llama-server.exe",
+      "url": "http://127.0.0.1:8080",
+      "args": ["-m", "models/gemma-3-1b-it-Q4_K_M.gguf", "--device", "Vulkan0", "-np", "4", "-c", "16384", "-b", "256", "-ub", "128", "-t", "8", "--host", "127.0.0.1", "--port", "8080", "-lv", "4", "--log-colors", "off", "-ngl", "99", "-kvo"]
+    },
+    {
+      "id": "gemma3-1b-vulkan-vulkan1",
+      "description": "Gemma 3 1B, GPU (Vulkan), small computers, device Vulkan1. Tested: ZBook WX3100 Vulkan1, own build b11093 (settings.json gemma3-1b-vulkan1-4slot). Not tested with release b12125. Written from tools/hardware-probe/profiles.json by packaging/profile-servers.mjs; select with tools/setup/MALLIN-ASENNUS.cmd.",
+      "executable": "runtime/llama/llama-server.exe",
+      "url": "http://127.0.0.1:8080",
+      "args": ["-m", "models/gemma-3-1b-it-Q4_K_M.gguf", "--device", "Vulkan1", "-np", "4", "-c", "16384", "-b", "256", "-ub", "128", "-t", "8", "--host", "127.0.0.1", "--port", "8080", "-lv", "4", "--log-colors", "off", "-ngl", "99", "-kvo"]
+    },
+    {
+      "id": "gemma3-1b-cpu",
+      "description": "Gemma 3 1B, CPU only (no suitable GPU). Tested: NOT TESTED on CPU only. -np 1 -c 2048 was run on Vulkan (launcher path, WORKING-CONFIG.md). Test needed. Written from tools/hardware-probe/profiles.json by packaging/profile-servers.mjs; select with tools/setup/MALLIN-ASENNUS.cmd.",
+      "executable": "runtime/llama/llama-server.exe",
+      "url": "http://127.0.0.1:8080",
+      "args": ["-m", "models/gemma-3-1b-it-Q4_K_M.gguf", "-np", "1", "-c", "2048", "--host", "127.0.0.1", "--port", "8080"]
+    }
+  ]
+}

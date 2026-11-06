@@ -1,0 +1,7 @@
+Model file: mtp-gemma-4-E2B-it-Q4_0.gguf
+Local MTP GGUF file, used unchanged with Gemma 4 E2B.
+Base model: Google Gemma 4 E2B, https://huggingface.co/google/gemma-4-E2B
+Upstream license: Apache-2.0, https://www.apache.org/licenses/LICENSE-2.0
+The local extraction/conversion revision is not established by this notice.
+Package MANIFEST.json records the actual delivered file hash.
+The upstream license named above applies; its full text is at the link above.

@@ -1,0 +1,113 @@
+{
+  "_about": "One catalog (2026-11-05): device_sniffer recommends the first profile whose limits match the computer. Limits: ramGiB = memory Windows can use (min), gpu = vendor of a working GPU (NVIDIA, AMD, Intel; any; null = no GPU needed), vramGiB = that GPU's memory (min; unknown memory never matches). The runtime file name gives the backend (cpu, vulkan, cuda). After a change run: node ticket-demo/packaging/profile-servers.mjs (writes the servers into settings.distribution.json; the packaging test fails while they differ). Model paths are relative to the installation folder.",
+  "llamaRelease": "b12125",
+  "_devices": "GPU profiles get one settings.json server per device name below, id PROFILE-device in lower case (e.g. gemma4-e4b-cuda-cuda0), with {device} replaced. The setup (MALLIN-ASENNUS.cmd) takes the device name from llama-server --list-devices.",
+  "devices": { "cuda": ["CUDA0"], "vulkan": ["Vulkan0", "Vulkan1"] },
+  "_cuda": "CUDA 12.4 build is used for every NVIDIA profile: CUDA 13 drivers also run CUDA 12 programs. Driver and its highest CUDA version: run nvidia-smi (top right \"CUDA Version\"). A CUDA 13.4 profile can be added later for drivers that support it.",
+  "profiles": [
+    {
+      "id": "gemma4-e4b-cuda",
+      "label": "Gemma 4 E4B + MTP, NVIDIA (CUDA 12.4)",
+      "tested": "Owner, HP Nvidia T1000 4 GiB, own CUDA 12.4 build, 2026-10-25..27 (WORKING-CONFIG.md). Not tested with release b12125.",
+      "limits": { "ramGiB": 7, "gpu": "NVIDIA", "vramGiB": 3.5 },
+      "runtime": [
+        "https://github.com/ggml-org/llama.cpp/releases/download/b12125/llama-b12125-bin-win-cuda-12.4-x64.zip",
+        "https://github.com/ggml-org/llama.cpp/releases/download/b12125/cudart-llama-bin-win-cuda-12.4-x64.zip"
+      ],
+      "models": [
+        "https://huggingface.co/ggml-org/gemma-4-E4B-it-GGUF/resolve/main/gemma-4-E4B-it-Q4_0.gguf",
+        "https://huggingface.co/ggml-org/gemma-4-E4B-it-GGUF/resolve/main/mtp-gemma-4-E4B-it-Q4_0.gguf"
+      ],
+      "workflow": "six-roles-max4",
+      "args": ["-m", "models/gemma-4-E4B-it-Q4_0.gguf", "--model-draft", "models/mtp-gemma-4-E4B-it-Q4_0.gguf", "--spec-type", "draft-mtp", "--spec-draft-n-max", "2", "--spec-draft-p-min", "0.75", "--device", "{device}", "-sm", "none", "-ngl", "99", "-ngld", "99", "-ot", "per_layer_token_embd\\.weight=CPU", "-kvo", "-np", "4", "-c", "16384", "-t", "4", "--reasoning-budget", "0", "--chat-template-kwargs", "{\"enable_thinking\":false}", "--flash-attn", "on", "--cache-type-k", "f16", "--cache-type-v", "f16", "-rea", "off", "-b", "256", "-ub", "128", "--host", "127.0.0.1", "--port", "8080", "-lv", "4", "--log-colors", "off"]
+    },
+    {
+      "id": "gemma4-e4b-vulkan",
+      "label": "Gemma 4 E4B + MTP, GPU (Vulkan)",
+      "tested": "Owner, ZBook Radeon WX3100 2 GiB, own Vulkan build b11093. Not tested with release b12125.",
+      "limits": { "ramGiB": 28, "gpu": "any", "vramGiB": 2.5 },
+      "runtime": [
+        "https://github.com/ggml-org/llama.cpp/releases/download/b12125/llama-b12125-bin-win-vulkan-x64.zip"
+      ],
+      "models": [
+        "https://huggingface.co/ggml-org/gemma-4-E4B-it-GGUF/resolve/main/gemma-4-E4B-it-Q4_0.gguf",
+        "https://huggingface.co/ggml-org/gemma-4-E4B-it-GGUF/resolve/main/mtp-gemma-4-E4B-it-Q4_0.gguf"
+      ],
+      "workflow": "six-roles-max2",
+      "args": ["-m", "models/gemma-4-E4B-it-Q4_0.gguf", "--model-draft", "models/mtp-gemma-4-E4B-it-Q4_0.gguf", "--spec-type", "draft-mtp", "--spec-draft-n-max", "2", "--spec-draft-p-min", "0.75", "--device", "{device}", "-sm", "none", "-ngl", "99", "-ngld", "99", "-ot", "per_layer_token_embd\\.weight=CPU", "-kvo", "-np", "2", "-c", "8192", "-t", "4", "--reasoning-budget", "0", "--chat-template-kwargs", "{\"enable_thinking\":false}", "--flash-attn", "on", "--cache-type-k", "q8_0", "--cache-type-v", "q8_0", "-rea", "off", "-b", "256", "-ub", "128", "--host", "127.0.0.1", "--port", "8080", "-lv", "4", "--log-colors", "off"]
+    },
+    {
+      "id": "gemma4-e2b-vulkan",
+      "label": "Gemma 4 E2B + MTP, GPU (Vulkan)",
+      "tested": "Owner, ZBook Radeon WX3100 2 GiB, own Vulkan build b11093, 2026-10-25..27 (WORKING-CONFIG.md; settings.json gemma4-e2b-vulkan1-4slot). Not tested with release b12125.",
+      "limits": { "ramGiB": 14, "gpu": "any", "vramGiB": 1.5 },
+      "runtime": [
+        "https://github.com/ggml-org/llama.cpp/releases/download/b12125/llama-b12125-bin-win-vulkan-x64.zip"
+      ],
+      "models": [
+        "https://huggingface.co/xbill9/gemma-4-E2B-it-qat-q4_0-exact-gguf/resolve/main/gemma-4-E2B-it-q4_0-exact.gguf",
+        "https://huggingface.co/ggml-org/gemma-4-E2B-it-GGUF/resolve/main/mtp-gemma-4-E2B-it-Q4_0.gguf"
+      ],
+      "workflow": "six-roles-max4",
+      "args": ["-m", "models/gemma-4-E2B-it-q4_0-exact.gguf", "--model-draft", "models/mtp-gemma-4-E2B-it-Q4_0.gguf", "--spec-type", "draft-mtp", "--spec-draft-n-max", "2", "--spec-draft-p-min", "0.75", "--device", "{device}", "-sm", "none", "-ngl", "99", "-ngld", "99", "-ot", "per_layer_token_embd\\.weight=CPU", "-kvo", "-np", "4", "-c", "16384", "-t", "4", "--reasoning-budget", "0", "--chat-template-kwargs", "{\"enable_thinking\":false}", "--flash-attn", "on", "--cache-type-k", "f16", "--cache-type-v", "f16", "-rea", "off", "-b", "256", "-ub", "128", "--host", "127.0.0.1", "--port", "8080", "-lv", "4", "--log-colors", "off"]
+    },
+    {
+      "id": "gemma4-e4b-cpu",
+      "label": "Gemma 4 E4B + MTP, CPU only (no suitable GPU)",
+      "tested": "NOT TESTED. Derived from the tested GPU command: GPU-only options removed (-sm, -ngl, -ngld, -ot, -kvo, --device); -np 2 -c 8192 (2 x 4096, the tested context per slot) to match six-roles-max2. To test: -t (tested GPU value 4; CPU speed depends on it), -b/-ub (GPU values), whether the MTP draft helps on CPU.",
+      "limits": { "ramGiB": 28, "gpu": null, "vramGiB": 0 },
+      "runtime": [
+        "https://github.com/ggml-org/llama.cpp/releases/download/b12125/llama-b12125-bin-win-cpu-x64.zip"
+      ],
+      "models": [
+        "https://huggingface.co/ggml-org/gemma-4-E4B-it-GGUF/resolve/main/gemma-4-E4B-it-Q4_0.gguf",
+        "https://huggingface.co/ggml-org/gemma-4-E4B-it-GGUF/resolve/main/mtp-gemma-4-E4B-it-Q4_0.gguf"
+      ],
+      "workflow": "six-roles-max2",
+      "args": ["-m", "models/gemma-4-E4B-it-Q4_0.gguf", "--model-draft", "models/mtp-gemma-4-E4B-it-Q4_0.gguf", "--spec-type", "draft-mtp", "--spec-draft-n-max", "2", "--spec-draft-p-min", "0.75", "-np", "2", "-c", "8192", "-t", "4", "--reasoning-budget", "0", "--chat-template-kwargs", "{\"enable_thinking\":false}", "--flash-attn", "on", "--cache-type-k", "f16", "--cache-type-v", "f16", "-rea", "off", "-b", "256", "-ub", "128", "--host", "127.0.0.1", "--port", "8080", "-lv", "4", "--log-colors", "off"]
+    },
+    {
+      "id": "gemma4-e2b-cpu",
+      "label": "Gemma 4 E2B + MTP, CPU only (no suitable GPU)",
+      "tested": "NOT TESTED. Derived from the tested GPU command: GPU-only options removed (-sm, -ngl, -ngld, -ot, -kvo, --device); -np 2 -c 8192 (2 x 4096, the tested context per slot) to match six-roles-max2. To test: -t (tested GPU value 4; CPU speed depends on it), -b/-ub (GPU values), whether the MTP draft helps on CPU.",
+      "limits": { "ramGiB": 14, "gpu": null, "vramGiB": 0 },
+      "runtime": [
+        "https://github.com/ggml-org/llama.cpp/releases/download/b12125/llama-b12125-bin-win-cpu-x64.zip"
+      ],
+      "models": [
+        "https://huggingface.co/xbill9/gemma-4-E2B-it-qat-q4_0-exact-gguf/resolve/main/gemma-4-E2B-it-q4_0-exact.gguf",
+        "https://huggingface.co/ggml-org/gemma-4-E2B-it-GGUF/resolve/main/mtp-gemma-4-E2B-it-Q4_0.gguf"
+      ],
+      "workflow": "six-roles-max2",
+      "args": ["-m", "models/gemma-4-E2B-it-q4_0-exact.gguf", "--model-draft", "models/mtp-gemma-4-E2B-it-Q4_0.gguf", "--spec-type", "draft-mtp", "--spec-draft-n-max", "2", "--spec-draft-p-min", "0.75", "-np", "2", "-c", "8192", "-t", "4", "--reasoning-budget", "0", "--chat-template-kwargs", "{\"enable_thinking\":false}", "--flash-attn", "on", "--cache-type-k", "f16", "--cache-type-v", "f16", "-rea", "off", "-b", "256", "-ub", "128", "--host", "127.0.0.1", "--port", "8080", "-lv", "4", "--log-colors", "off"]
+    },
+    {
+      "id": "gemma3-1b-vulkan",
+      "label": "Gemma 3 1B, GPU (Vulkan), small computers",
+      "tested": "Owner, ZBook WX3100 Vulkan1, own build b11093 (settings.json gemma3-1b-vulkan1-4slot). Not tested with release b12125.",
+      "limits": { "ramGiB": 7, "gpu": "any", "vramGiB": 1.5 },
+      "runtime": [
+        "https://github.com/ggml-org/llama.cpp/releases/download/b12125/llama-b12125-bin-win-vulkan-x64.zip"
+      ],
+      "models": [
+        "https://huggingface.co/ggml-org/gemma-3-1b-it-GGUF/resolve/main/gemma-3-1b-it-Q4_K_M.gguf"
+      ],
+      "workflow": "six-roles-max4",
+      "args": ["-m", "models/gemma-3-1b-it-Q4_K_M.gguf", "--device", "{device}", "-np", "4", "-c", "16384", "-b", "256", "-ub", "128", "-t", "8", "--host", "127.0.0.1", "--port", "8080", "-lv", "4", "--log-colors", "off", "-ngl", "99", "-kvo"]
+    },
+    {
+      "id": "gemma3-1b-cpu",
+      "label": "Gemma 3 1B, CPU only (no suitable GPU)",
+      "tested": "NOT TESTED on CPU only. -np 1 -c 2048 was run on Vulkan (launcher path, WORKING-CONFIG.md). Owner test needed.",
+      "limits": { "ramGiB": 7, "gpu": null, "vramGiB": 0 },
+      "runtime": [
+        "https://github.com/ggml-org/llama.cpp/releases/download/b12125/llama-b12125-bin-win-cpu-x64.zip"
+      ],
+      "models": [
+        "https://huggingface.co/ggml-org/gemma-3-1b-it-GGUF/resolve/main/gemma-3-1b-it-Q4_K_M.gguf"
+      ],
+      "workflow": "single-call",
+      "args": ["-m", "models/gemma-3-1b-it-Q4_K_M.gguf", "-np", "1", "-c", "2048", "--host", "127.0.0.1", "--port", "8080"]
+    }
+  ]
+}

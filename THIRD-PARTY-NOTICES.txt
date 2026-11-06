@@ -1,0 +1,3498 @@
+MANUgen - Third-party notices
+Release 0.9.0. Status: final.
+
+1. Rights and scope
+MANUgen original material is licensed under LICENSE.txt (MANUgen Proprietary License).
+That license covers only original material whose rights the licensor holds.
+Third-party code, runtimes, models and other material keep their own licenses, listed below.
+The source repository root LICENSE is the original llama.cpp MIT text: Copyright (c) 2023-2026 The ggml authors.
+An exact byte copy is at licenses/llama-cpp-MIT.txt.
+Retained llama.cpp expression, including modified UI files, remains under the upstream MIT license.
+Existing valid MIT grants and other agreements are not revoked.
+
+UI reference: ggml-org/llama.cpp commit fa2bde5543f8e74866f1cd1e85abff29d5fc4e59.
+File comparison: 675 identical files, 105 changed files at upstream paths, 43 paths absent from this reference.
+Modified UI scope includes Finnish labels, branding, ticket routes and same-origin integration.
+Original copyright headers and the upstream MIT license remain. This notice does not relicense upstream work.
+
+2. How the inventory was made
+Node bundles were inspected with esbuild input metafiles for ticket-demo.exe, embedding.exe, rag/rag.exe
+and rag/rag-service.exe. js-yaml and markdown-it are included in rag.exe; they are not merely build tools.
+UI client and server module graphs were captured separately from a Vite build of the release sources.
+Only client modules and identified generated runtime/assets are listed below; SSR build output is not delivered.
+Installed JavaScript versions were checked against the three lockfiles. devDependencies is not an exclusion.
+esbuild, postject, resedit, sharp and Go compilation tools run during the build; their tool executables are
+not copied into the application. Node/Go runtimes, Vite helper code, Workbox, generated CSS and fonts
+are distributed material and are listed below.
+MarkItDown: the converter (exe plus _internal) was matched file by file by SHA-256. The .spec,
+Analysis/COLLECT/EXE/PYZ TOCs and Python 3.11.9 environment were inspected. Component versions below come
+from matching TOC inputs to installed distributions. Full license texts were copied from those distributions
+when present. Supplemental exact-version upstream/sdist texts are explicitly distinguished. A metadata classifier
+or SPDX label is not a substitute for full terms, NOTICE content or corresponding-source obligations.
+Go module versions were read from the actual ticket-export.exe with go version -m (Go 1.27.1).
+All full license and NOTICE copies below retain their source bytes. Copyright excerpts are an index;
+the complete files govern, including nested attributions. Missing excerpts are not a claim of no copyright.
+Local application changes do not modify installed third-party package sources. Compilation/bundling
+changes their output representation.
+The installation package contains no knowledge content: the knowledge index rag/initial_index/index.sqlite is empty.
+
+3. Known gaps
+- Exact-version full texts are missing for cobble 0.1.4, magika 1.0.3 and the JavaScript entries marked MISSING below.
+- DOMPurify alternative-license wording follows its package metadata; its versioned terms govern.
+- certifi (MPL-2.0) and lxml native iconv (LGPL-2.1) carry their own source obligations; their upstream projects are named below.
+- Native subcomponents of Python extensions (including cryptography/Rust/OpenSSL), ONNX Runtime, PDFium and the
+  Microsoft VC/UCRT DLLs are listed through the license files of the packages that ship them; no per-DLL mapping.
+- Magika's included standard_v3_3 model.onnx is a separate model asset without a separate weight license file.
+- The E5 GGUF conversion revision is not recorded; see section 7.
+- The language-model runtime (llama.cpp release) and language models are downloaded by the model setup
+  (tools/setup/MALLIN-ASENNUS.cmd), not delivered in the installation package. Their own license files apply.
+
+4. Bundled JavaScript, Python and Go components
+
+JavaScript (client/runtime modules)
+===================================
+
+@braintree/sanitize-url 7.1.2
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed @braintree/sanitize-url/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2017 Braintree
+Full licenses / upstream notices:
+  licenses/npm/@braintree__sanitize-url-7.1.2/LICENSE
+
+@floating-ui/core 1.7.5
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed @floating-ui/core/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2021-present Floating UI contributors
+Full licenses / upstream notices:
+  licenses/npm/@floating-ui__core-1.7.5/LICENSE
+
+@floating-ui/dom 1.7.6
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed @floating-ui/dom/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2021-present Floating UI contributors
+Full licenses / upstream notices:
+  licenses/npm/@floating-ui__dom-1.7.6/LICENSE
+
+@floating-ui/utils 0.2.11
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed @floating-ui/utils/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2021-present Floating UI contributors
+Full licenses / upstream notices:
+  licenses/npm/@floating-ui__utils-0.2.11/LICENSE
+
+@iconify/utils 3.1.3
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed @iconify/utils/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2021-PRESENT Vjacheslav Trushkin
+Full licenses / upstream notices:
+  licenses/npm/@iconify__utils-3.1.3/lib/misc/licenses.d.ts
+  licenses/npm/@iconify__utils-3.1.3/lib/misc/licenses.js
+  licenses/npm/@iconify__utils-3.1.3/license.txt
+
+@lucide/svelte 1.25.0
+Scope: ui/ client JavaScript
+Terms: ISC
+Choice/conditions: ISC plus MIT for listed Feather-derived icons, not an alternative-license choice.
+Version evidence: package-lock.json and installed @lucide/svelte/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2026 Lucide Icons and Contributors
+  Copyright (c) 2013-present Cole Bemis
+Full licenses / upstream notices:
+  licenses/npm/@lucide__svelte-1.25.0/LICENSE
+  licenses/npm/@lucide__svelte-1.25.0/dist/icons/copyright.d.ts
+  licenses/npm/@lucide__svelte-1.25.0/dist/icons/copyright.js
+  licenses/npm/@lucide__svelte-1.25.0/dist/icons/copyright.svelte
+  licenses/npm/@lucide__svelte-1.25.0/dist/icons/copyright.svelte.d.ts
+
+@mermaid-js/parser 1.1.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed @mermaid-js/parser/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2023 Yokozuna59
+Full licenses / upstream notices:
+  licenses/npm/@mermaid-js__parser-1.1.1/LICENSE
+
+@modelcontextprotocol/sdk 1.30.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed @modelcontextprotocol/sdk/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2024 Anthropic, PBC
+Full licenses / upstream notices:
+  licenses/npm/@modelcontextprotocol__sdk-1.30.0/LICENSE
+
+@sveltejs/kit 2.70.2
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed @sveltejs/kit/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2020 [these people](https://github.com/sveltejs/kit/graphs/contributors)
+Full licenses / upstream notices:
+  licenses/npm/@sveltejs__kit-2.70.2/LICENSE
+
+@ungap/structured-clone 1.3.1
+Scope: ui/ client JavaScript
+Terms: ISC
+Version evidence: package-lock.json and installed @ungap/structured-clone/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2021, Andrea Giammarchi, @WebReflection
+Full licenses / upstream notices:
+  licenses/npm/@ungap__structured-clone-1.3.1/LICENSE
+
+@upsetjs/venn.js 2.0.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed @upsetjs/venn.js/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2013 Ben Frederickson
+  Copyright (c) 2021 Samuel Gratzl
+Full licenses / upstream notices:
+  licenses/npm/@upsetjs__venn.js-2.0.0/LICENSE
+
+accepts 2.0.0
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed accepts/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014 Jonathan Ong <me@jongleberry.com>
+  Copyright (c) 2015 Douglas Christopher Wilson <doug@somethingdoug.com>
+Full licenses / upstream notices:
+  licenses/npm/accepts-2.0.0/LICENSE
+
+ajv 8.20.0
+Scope: ticket-demo.exe; embedding.exe; ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed ajv/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2015-2021 Evgeny Poberezkin
+Full licenses / upstream notices:
+  licenses/npm/ajv-8.20.0/LICENSE
+
+ajv-formats 3.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed ajv-formats/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2020 Evgeny Poberezkin
+Full licenses / upstream notices:
+  licenses/npm/ajv-formats-3.0.1/LICENSE
+
+bail 2.0.2
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed bail/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/bail-2.0.2/license
+
+bits-ui 2.18.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed bits-ui/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2023 Hunter Johnston
+Full licenses / upstream notices:
+  licenses/npm/bits-ui-2.18.1/LICENSE
+
+body-parser 2.3.0
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed body-parser/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014 Jonathan Ong <me@jongleberry.com>
+  Copyright (c) 2014-2015 Douglas Christopher Wilson <doug@somethingdoug.com>
+Full licenses / upstream notices:
+  licenses/npm/body-parser-2.3.0/LICENSE
+
+bytes 3.1.2
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed bytes/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2012-2014 TJ Holowaychuk <tj@vision-media.ca>
+  Copyright (c) 2015 Jed Watson <jed.watson@me.com>
+Full licenses / upstream notices:
+  licenses/npm/bytes-3.1.2/LICENSE
+
+call-bind-apply-helpers 1.0.2
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed call-bind-apply-helpers/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2024 Jordan Harband
+Full licenses / upstream notices:
+  licenses/npm/call-bind-apply-helpers-1.0.2/LICENSE
+
+call-bound 1.0.4
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed call-bound/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2024 Jordan Harband
+Full licenses / upstream notices:
+  licenses/npm/call-bound-1.0.4/LICENSE
+
+ccount 2.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed ccount/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/ccount-2.0.1/license
+
+character-entities-html4 2.1.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed character-entities-html4/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/character-entities-html4-2.1.0/license
+
+character-entities-legacy 3.0.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed character-entities-legacy/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/character-entities-legacy-3.0.0/license
+
+clsx 2.1.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed clsx/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Luke Edwards <luke.edwards05@gmail.com> (lukeed.com)
+Full licenses / upstream notices:
+  licenses/npm/clsx-2.1.1/license
+
+comma-separated-tokens 2.0.3
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed comma-separated-tokens/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/comma-separated-tokens-2.0.3/license
+
+content-disposition 1.1.0
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed content-disposition/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014-2017 Douglas Christopher Wilson
+Full licenses / upstream notices:
+  licenses/npm/content-disposition-1.1.0/LICENSE
+
+content-type 1.0.5
+Scope: ticket-demo.exe; ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed content-type/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2015 Douglas Christopher Wilson
+Full licenses / upstream notices:
+  licenses/npm/content-type-1.0.5/LICENSE
+
+content-type 2.1.0
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed content-type/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2015 Douglas Christopher Wilson
+Full licenses / upstream notices:
+  licenses/npm/content-type-2.1.0/LICENSE
+
+cookie 0.7.2
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed cookie/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2012-2014 Roman Shtylman <shtylman@gmail.com>
+  Copyright (c) 2015 Douglas Christopher Wilson <doug@somethingdoug.com>
+Full licenses / upstream notices:
+  licenses/npm/cookie-0.7.2/LICENSE
+
+cookie-signature 1.2.2
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed cookie-signature/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2012–2024 LearnBoost <tj@learnboost.com> and other contributors;
+Full licenses / upstream notices:
+  licenses/npm/cookie-signature-1.2.2/LICENSE
+
+cose-base 1.0.3
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed cose-base/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2019 - present, iVis@Bilkent.
+Full licenses / upstream notices:
+  licenses/npm/cose-base-1.0.3/LICENSE
+
+cose-base 2.2.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed cose-base/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2019 - present, iVis@Bilkent.
+Full licenses / upstream notices:
+  licenses/npm/cose-base-2.2.0/LICENSE
+
+cytoscape 3.34.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed cytoscape/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2016-2026, The Cytoscape Consortium.
+  const license = `Copyright (c) 2016-${year}, The Cytoscape Consortium.
+Full licenses / upstream notices:
+  licenses/npm/cytoscape-3.34.0/LICENSE
+  licenses/npm/cytoscape-3.34.0/license-update.mjs
+
+cytoscape-cose-bilkent 4.1.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed cytoscape-cose-bilkent/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2016-2018, The Cytoscape Consortium.
+Full licenses / upstream notices:
+  licenses/npm/cytoscape-cose-bilkent-4.1.0/LICENSE
+
+cytoscape-fcose 2.2.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed cytoscape-fcose/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2018 - present, iVis-at-Bilkent.
+Full licenses / upstream notices:
+  licenses/npm/cytoscape-fcose-2.2.0/LICENSE
+
+d3-array 2.12.1
+Scope: ui/ client JavaScript
+Terms: BSD-3-Clause
+Version evidence: package-lock.json and installed d3-array/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2010-2020 Mike Bostock
+Full licenses / upstream notices:
+  licenses/npm/d3-array-2.12.1/LICENSE
+
+d3-array 3.2.4
+Scope: ui/ client JavaScript
+Terms: ISC
+Version evidence: package-lock.json and installed d3-array/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2010-2023 Mike Bostock
+Full licenses / upstream notices:
+  licenses/npm/d3-array-3.2.4/LICENSE
+
+d3-axis 3.0.0
+Scope: ui/ client JavaScript
+Terms: ISC
+Version evidence: package-lock.json and installed d3-axis/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2010-2021 Mike Bostock
+Full licenses / upstream notices:
+  licenses/npm/d3-axis-3.0.0/LICENSE
+
+d3-color 3.1.0
+Scope: ui/ client JavaScript
+Terms: ISC
+Version evidence: package-lock.json and installed d3-color/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2010-2022 Mike Bostock
+Full licenses / upstream notices:
+  licenses/npm/d3-color-3.1.0/LICENSE
+
+d3-dispatch 3.0.1
+Scope: ui/ client JavaScript
+Terms: ISC
+Version evidence: package-lock.json and installed d3-dispatch/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2010-2021 Mike Bostock
+Full licenses / upstream notices:
+  licenses/npm/d3-dispatch-3.0.1/LICENSE
+
+d3-ease 3.0.1
+Scope: ui/ client JavaScript
+Terms: BSD-3-Clause
+Version evidence: package-lock.json and installed d3-ease/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2010-2021 Mike Bostock
+  Copyright 2001 Robert Penner
+Full licenses / upstream notices:
+  licenses/npm/d3-ease-3.0.1/LICENSE
+
+d3-format 3.1.2
+Scope: ui/ client JavaScript
+Terms: ISC
+Version evidence: package-lock.json and installed d3-format/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2010-2026 Mike Bostock
+Full licenses / upstream notices:
+  licenses/npm/d3-format-3.1.2/LICENSE
+
+d3-hierarchy 3.1.2
+Scope: ui/ client JavaScript
+Terms: ISC
+Version evidence: package-lock.json and installed d3-hierarchy/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2010-2021 Mike Bostock
+Full licenses / upstream notices:
+  licenses/npm/d3-hierarchy-3.1.2/LICENSE
+
+d3-interpolate 3.0.1
+Scope: ui/ client JavaScript
+Terms: ISC
+Version evidence: package-lock.json and installed d3-interpolate/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2010-2021 Mike Bostock
+Full licenses / upstream notices:
+  licenses/npm/d3-interpolate-3.0.1/LICENSE
+
+d3-path 1.0.9
+Scope: ui/ client JavaScript
+Terms: BSD-3-Clause
+Version evidence: package-lock.json and installed d3-path/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2015-2016 Mike Bostock
+Full licenses / upstream notices:
+  licenses/npm/d3-path-1.0.9/LICENSE
+
+d3-path 3.1.0
+Scope: ui/ client JavaScript
+Terms: ISC
+Version evidence: package-lock.json and installed d3-path/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2015-2022 Mike Bostock
+Full licenses / upstream notices:
+  licenses/npm/d3-path-3.1.0/LICENSE
+
+d3-sankey 0.12.3
+Scope: ui/ client JavaScript
+Terms: BSD-3-Clause
+Version evidence: package-lock.json and installed d3-sankey/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2015, Mike Bostock
+Full licenses / upstream notices:
+  licenses/npm/d3-sankey-0.12.3/LICENSE
+
+d3-scale 4.0.2
+Scope: ui/ client JavaScript
+Terms: ISC
+Version evidence: package-lock.json and installed d3-scale/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2010-2021 Mike Bostock
+Full licenses / upstream notices:
+  licenses/npm/d3-scale-4.0.2/LICENSE
+
+d3-scale-chromatic 3.1.0
+Scope: ui/ client JavaScript
+Terms: ISC
+Version evidence: package-lock.json and installed d3-scale-chromatic/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2010-2024 Mike Bostock
+  Copyright 2002 Cynthia Brewer, Mark Harrower, and The Pennsylvania State University
+Full licenses / upstream notices:
+  licenses/npm/d3-scale-chromatic-3.1.0/LICENSE
+
+d3-selection 3.0.0
+Scope: ui/ client JavaScript
+Terms: ISC
+Version evidence: package-lock.json and installed d3-selection/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2010-2021 Mike Bostock
+Full licenses / upstream notices:
+  licenses/npm/d3-selection-3.0.0/LICENSE
+
+d3-shape 1.3.7
+Scope: ui/ client JavaScript
+Terms: BSD-3-Clause
+Version evidence: package-lock.json and installed d3-shape/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2010-2015 Mike Bostock
+Full licenses / upstream notices:
+  licenses/npm/d3-shape-1.3.7/LICENSE
+
+d3-shape 3.2.0
+Scope: ui/ client JavaScript
+Terms: ISC
+Version evidence: package-lock.json and installed d3-shape/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2010-2022 Mike Bostock
+Full licenses / upstream notices:
+  licenses/npm/d3-shape-3.2.0/LICENSE
+
+d3-time 3.1.0
+Scope: ui/ client JavaScript
+Terms: ISC
+Version evidence: package-lock.json and installed d3-time/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2010-2022 Mike Bostock
+Full licenses / upstream notices:
+  licenses/npm/d3-time-3.1.0/LICENSE
+
+d3-time-format 4.1.0
+Scope: ui/ client JavaScript
+Terms: ISC
+Version evidence: package-lock.json and installed d3-time-format/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2010-2021 Mike Bostock
+Full licenses / upstream notices:
+  licenses/npm/d3-time-format-4.1.0/LICENSE
+
+d3-timer 3.0.1
+Scope: ui/ client JavaScript
+Terms: ISC
+Version evidence: package-lock.json and installed d3-timer/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2010-2021 Mike Bostock
+Full licenses / upstream notices:
+  licenses/npm/d3-timer-3.0.1/LICENSE
+
+d3-transition 3.0.1
+Scope: ui/ client JavaScript
+Terms: ISC
+Version evidence: package-lock.json and installed d3-transition/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2010-2021 Mike Bostock
+Full licenses / upstream notices:
+  licenses/npm/d3-transition-3.0.1/LICENSE
+
+d3-zoom 3.0.0
+Scope: ui/ client JavaScript
+Terms: ISC
+Version evidence: package-lock.json and installed d3-zoom/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2010-2021 Mike Bostock
+Full licenses / upstream notices:
+  licenses/npm/d3-zoom-3.0.0/LICENSE
+
+dagre-d3-es 7.0.14
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed dagre-d3-es/package.json; bundle input graph.
+Copyright statements:
+  Original dagre-d3 copyright: Copyright (c) 2013 Chris Pettitt
+  Original dagre copyright: Copyright (c) 2012-2014 Chris Pettitt
+  Original graphlib copyright: Copyright (c) 2012-2014 Chris Pettitt
+  Copyright (c) 2022-2024 Thibaut Lassalle, David Newell, Alois Klink, Sidharth Vinod and dagre-es contributors
+Full licenses / upstream notices:
+  licenses/npm/dagre-d3-es-7.0.14/LICENSE.md
+
+dayjs 1.11.21
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed dayjs/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2018-present, iamkun
+Full licenses / upstream notices:
+  licenses/npm/dayjs-1.11.21/LICENSE
+
+debug 4.4.3
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed debug/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014-2017 TJ Holowaychuk <tj@vision-media.ca>
+  Copyright (c) 2018-2021 Josh Junon
+Full licenses / upstream notices:
+  licenses/npm/debug-4.4.3/LICENSE
+
+decode-named-character-reference 1.3.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed decode-named-character-reference/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/decode-named-character-reference-1.3.0/license
+
+depd 2.0.0
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed depd/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014-2018 Douglas Christopher Wilson
+Full licenses / upstream notices:
+  licenses/npm/depd-2.0.0/LICENSE
+
+devlop 1.1.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed devlop/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2023 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/devlop-1.1.0/license
+
+dexie 4.4.3
+Scope: ui/ client JavaScript
+Terms: Apache-2.0
+Version evidence: package-lock.json and installed dexie/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014-2017 David Fahlander
+Full licenses / upstream notices:
+  licenses/npm/dexie-4.4.3/LICENSE
+  licenses/npm/dexie-4.4.3/NOTICE
+
+dompurify 3.4.13
+Scope: ui/ client JavaScript
+Terms: (MPL-2.0 OR Apache-2.0)
+Choice/conditions: Package metadata declares MPL-2.0 OR Apache-2.0; collected LICENSE contains Apache-2.0. Final choice/reconciliation with the source header remains OPEN.
+Version evidence: package-lock.json and installed dompurify/package.json; bundle input graph.
+Copyright: see full texts and retained source headers; individual statement review remains open.
+Full licenses / upstream notices:
+  licenses/npm/dompurify-3.4.13/LICENSE
+  licenses/npm/dompurify-3.4.13/LICENSE-MPL
+  licenses/npm/dompurify-3.4.13/src/license_header
+
+dunder-proto 1.0.1
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed dunder-proto/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2024 ECMAScript Shims
+Full licenses / upstream notices:
+  licenses/npm/dunder-proto-1.0.1/LICENSE
+
+ee-first 1.1.1
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed ee-first/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014 Jonathan Ong me@jongleberry.com
+Full licenses / upstream notices:
+  licenses/npm/ee-first-1.1.1/LICENSE
+
+encodeurl 2.0.0
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed encodeurl/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2016 Douglas Christopher Wilson
+Full licenses / upstream notices:
+  licenses/npm/encodeurl-2.0.0/LICENSE
+
+entities 8.1.0
+Scope: rag/rag-service.exe; rag/rag.exe
+Terms: BSD-2-Clause
+Version evidence: package-lock.json and installed entities/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Felix Böhm
+Full licenses / upstream notices:
+  licenses/npm/entities-8.1.0/LICENSE
+
+es-define-property 1.0.1
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed es-define-property/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2024 Jordan Harband
+Full licenses / upstream notices:
+  licenses/npm/es-define-property-1.0.1/LICENSE
+
+es-errors 1.3.0
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed es-errors/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2024 Jordan Harband
+Full licenses / upstream notices:
+  licenses/npm/es-errors-1.3.0/LICENSE
+
+es-object-atoms 1.1.2
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed es-object-atoms/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2024 Jordan Harband
+Full licenses / upstream notices:
+  licenses/npm/es-object-atoms-1.1.2/LICENSE
+
+es-toolkit 1.47.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed es-toolkit/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2024 Viva Republica, Inc
+Full licenses / upstream notices:
+  licenses/npm/es-toolkit-1.47.0/LICENSE
+
+escape-html 1.0.3
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed escape-html/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2012-2013 TJ Holowaychuk
+  Copyright (c) 2015 Andreas Lubbe
+  Copyright (c) 2015 Tiancheng "Timothy" Gu
+Full licenses / upstream notices:
+  licenses/npm/escape-html-1.0.3/LICENSE
+
+escape-string-regexp 5.0.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed escape-string-regexp/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
+Full licenses / upstream notices:
+  licenses/npm/escape-string-regexp-5.0.0/license
+
+esm-env 1.2.2
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed esm-env/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2022 Benjamin McCann
+Full licenses / upstream notices:
+  licenses/npm/esm-env-1.2.2/LICENSE
+
+etag 1.8.1
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed etag/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014-2016 Douglas Christopher Wilson
+Full licenses / upstream notices:
+  licenses/npm/etag-1.8.1/LICENSE
+
+eventsource 3.0.7
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed eventsource/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) EventSource GitHub organisation
+Full licenses / upstream notices:
+  licenses/npm/eventsource-3.0.7/LICENSE
+
+eventsource-parser 3.1.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed eventsource-parser/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2026 Espen Hovlandsdal <espen@hovlandsdal.com>
+Full licenses / upstream notices:
+  licenses/npm/eventsource-parser-3.1.0/LICENSE
+
+express 5.2.1
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed express/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2009-2014 TJ Holowaychuk <tj@vision-media.ca>
+  Copyright (c) 2013-2014 Roman Shtylman <shtylman+expressjs@gmail.com>
+  Copyright (c) 2014-2015 Douglas Christopher Wilson <doug@somethingdoug.com>
+Full licenses / upstream notices:
+  licenses/npm/express-5.2.1/LICENSE
+
+extend 3.0.2
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed extend/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014 Stefan Thomas
+Full licenses / upstream notices:
+  licenses/npm/extend-3.0.2/LICENSE
+
+fast-deep-equal 3.1.3
+Scope: ticket-demo.exe; embedding.exe; ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed fast-deep-equal/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2017 Evgeny Poberezkin
+Full licenses / upstream notices:
+  licenses/npm/fast-deep-equal-3.1.3/LICENSE
+
+fast-uri 3.1.8
+Scope: ticket-demo.exe; embedding.exe; ui/ client JavaScript
+Terms: BSD-3-Clause
+Version evidence: package-lock.json and installed fast-uri/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2011-2021, Gary Court until https://github.com/garycourt/uri-js/commit/a1acf730b4bba3f1097c9f52e7d9d3aba8cdcaae
+  Copyright (c) 2021-present The Fastify team <https://github.com/fastify/fastify#team>
+Full licenses / upstream notices:
+  licenses/npm/fast-uri-3.1.8/LICENSE
+
+fflate 0.8.3
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed fflate/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2026 Arjun Barrett
+Full licenses / upstream notices:
+  licenses/npm/fflate-0.8.3/LICENSE
+
+finalhandler 2.1.1
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed finalhandler/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014-2022 Douglas Christopher Wilson <doug@somethingdoug.com>
+Full licenses / upstream notices:
+  licenses/npm/finalhandler-2.1.1/LICENSE
+
+forwarded 0.2.0
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed forwarded/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014-2017 Douglas Christopher Wilson
+Full licenses / upstream notices:
+  licenses/npm/forwarded-0.2.0/LICENSE
+
+fresh 2.0.0
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed fresh/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2012 TJ Holowaychuk <tj@vision-media.ca>
+  Copyright (c) 2016-2017 Douglas Christopher Wilson <doug@somethingdoug.com>
+Full licenses / upstream notices:
+  licenses/npm/fresh-2.0.0/LICENSE
+
+function-bind 1.1.2
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed function-bind/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2013 Raynos.
+Full licenses / upstream notices:
+  licenses/npm/function-bind-1.1.2/LICENSE
+
+get-intrinsic 1.3.0
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed get-intrinsic/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2020 Jordan Harband
+Full licenses / upstream notices:
+  licenses/npm/get-intrinsic-1.3.0/LICENSE
+
+get-proto 1.0.1
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed get-proto/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2025 Jordan Harband
+Full licenses / upstream notices:
+  licenses/npm/get-proto-1.0.1/LICENSE
+
+gopd 1.2.0
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed gopd/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2022 Jordan Harband
+Full licenses / upstream notices:
+  licenses/npm/gopd-1.2.0/LICENSE
+
+has-symbols 1.1.0
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed has-symbols/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2016 Jordan Harband
+Full licenses / upstream notices:
+  licenses/npm/has-symbols-1.1.0/LICENSE
+
+hasown 2.0.4
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed hasown/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Jordan Harband and contributors
+Full licenses / upstream notices:
+  licenses/npm/hasown-2.0.4/LICENSE
+
+hast-util-from-dom 5.0.1
+Scope: ui/ client JavaScript
+Terms: ISC
+Version evidence: package-lock.json and installed hast-util-from-dom/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Keith McKnight <keith@mcknig.ht>
+Full licenses / upstream notices:
+  licenses/npm/hast-util-from-dom-5.0.1/license
+
+hast-util-from-html-isomorphic 2.0.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed hast-util-from-html-isomorphic/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2023 Remco Haszing <remcohaszing@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/hast-util-from-html-isomorphic-2.0.0/license
+
+hast-util-is-element 3.0.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed hast-util-is-element/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/hast-util-is-element-3.0.0/license
+
+hast-util-parse-selector 4.0.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed hast-util-parse-selector/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/hast-util-parse-selector-4.0.0/license
+
+hast-util-to-html 9.0.5
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed hast-util-to-html/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/hast-util-to-html-9.0.5/license
+
+hast-util-to-text 4.0.2
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed hast-util-to-text/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2019 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/hast-util-to-text-4.0.2/license
+
+hast-util-whitespace 3.0.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed hast-util-whitespace/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/hast-util-whitespace-3.0.0/license
+
+hastscript 9.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed hastscript/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/hastscript-9.0.1/license
+
+highlight.js 11.11.1
+Scope: ui/ client JavaScript
+Terms: BSD-3-Clause
+Version evidence: package-lock.json and installed highlight.js/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2006, Ivan Sagalaev.
+Full licenses / upstream notices:
+  licenses/npm/highlight.js-11.11.1/LICENSE
+
+html-void-elements 3.0.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed html-void-elements/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/html-void-elements-3.0.0/license
+
+http-errors 2.0.1
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed http-errors/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014 Jonathan Ong me@jongleberry.com
+  Copyright (c) 2016 Douglas Christopher Wilson doug@somethingdoug.com
+Full licenses / upstream notices:
+  licenses/npm/http-errors-2.0.1/LICENSE
+
+iconv-lite 0.7.3
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed iconv-lite/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2011 Alexander Shtuchkin
+Full licenses / upstream notices:
+  licenses/npm/iconv-lite-0.7.3/LICENSE
+
+inherits 2.0.4
+Scope: ticket-demo.exe
+Terms: ISC
+Version evidence: package-lock.json and installed inherits/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Isaac Z. Schlueter
+Full licenses / upstream notices:
+  licenses/npm/inherits-2.0.4/LICENSE
+
+inline-style-parser 0.2.7
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed inline-style-parser/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2012 TJ Holowaychuk <tj@vision-media.ca>
+Full licenses / upstream notices:
+  licenses/npm/inline-style-parser-0.2.7/LICENSE
+
+internmap 2.0.3
+Scope: ui/ client JavaScript
+Terms: ISC
+Version evidence: package-lock.json and installed internmap/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2021 Mike Bostock
+Full licenses / upstream notices:
+  licenses/npm/internmap-2.0.3/LICENSE
+
+ipaddr.js 1.9.1
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed ipaddr.js/package.json; bundle input graph.
+Copyright statements:
+  Copyright (C) 2011-2017 whitequark <whitequark@whitequark.org>
+Full licenses / upstream notices:
+  licenses/npm/ipaddr.js-1.9.1/LICENSE
+
+is-plain-obj 4.1.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed is-plain-obj/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
+Full licenses / upstream notices:
+  licenses/npm/is-plain-obj-4.1.0/license
+
+is-promise 4.0.0
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed is-promise/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014 Forbes Lindesay
+Full licenses / upstream notices:
+  licenses/npm/is-promise-4.0.0/LICENSE
+
+js-yaml 5.5.0
+Scope: rag/rag-service.exe; rag/rag.exe
+Terms: MIT
+Version evidence: package-lock.json and installed js-yaml/package.json; bundle input graph.
+Copyright statements:
+  Copyright (C) 2011-2015 by Vitaly Puzrin
+Full licenses / upstream notices:
+  licenses/npm/js-yaml-5.5.0/LICENSE
+
+json-schema-traverse 1.0.0
+Scope: ticket-demo.exe; embedding.exe; ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed json-schema-traverse/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2017 Evgeny Poberezkin
+Full licenses / upstream notices:
+  licenses/npm/json-schema-traverse-1.0.0/LICENSE
+
+katex 0.16.47
+Scope: ui/ client JavaScript; ui/ inline KaTeX fonts and CSS
+Terms: MIT
+Version evidence: package-lock.json and installed katex/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2013-2020 Khan Academy and other contributors
+Full licenses / upstream notices:
+  licenses/npm/katex-0.16.47/LICENSE
+
+khroma 2.1.0
+Scope: ui/ client JavaScript
+Terms: MIT (from full license text)
+Version evidence: package-lock.json and installed khroma/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2019-present Fabio Spampinato, Andrew Maney
+Full licenses / upstream notices:
+  licenses/npm/khroma-2.1.0/license
+
+layout-base 1.0.2
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed layout-base/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2019 iVis@Bilkent
+Full licenses / upstream notices:
+  licenses/npm/layout-base-1.0.2/LICENSE
+
+layout-base 2.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed layout-base/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2019 iVis@Bilkent
+Full licenses / upstream notices:
+  licenses/npm/layout-base-2.0.1/LICENSE
+
+linkify-it 6.1.0
+Scope: rag/rag-service.exe; rag/rag.exe
+Terms: MIT
+Version evidence: package-lock.json and installed linkify-it/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2015 Vitaly Puzrin.
+Full licenses / upstream notices:
+  licenses/npm/linkify-it-6.1.0/LICENSE
+
+lodash-es 4.18.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed lodash-es/package.json; bundle input graph.
+Copyright: see full texts and retained source headers; individual statement review remains open.
+Full licenses / upstream notices:
+  licenses/npm/lodash-es-4.18.1/LICENSE
+
+longest-streak 3.1.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed longest-streak/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2015 Titus Wormer <mailto:tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/longest-streak-3.1.0/license
+
+lowlight 3.3.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed lowlight/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/lowlight-3.3.0/license
+
+markdown-it 15.0.3
+Scope: rag/rag-service.exe; rag/rag.exe
+Terms: MIT
+Version evidence: package-lock.json and installed markdown-it/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014 Vitaly Puzrin, Alex Kocharin.
+Full licenses / upstream notices:
+  licenses/npm/markdown-it-15.0.3/LICENSE
+
+markdown-table 3.0.4
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed markdown-table/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/markdown-table-3.0.4/license
+
+marked 16.4.2
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed marked/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2018+, MarkedJS (https://github.com/markedjs/)
+  Copyright (c) 2011-2018, Christopher Jeffrey (https://github.com/chjj/)
+  Copyright © 2004, John Gruber
+Full licenses / upstream notices:
+  licenses/npm/marked-16.4.2/LICENSE.md
+
+math-intrinsics 1.1.0
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed math-intrinsics/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2024 ECMAScript Shims
+Full licenses / upstream notices:
+  licenses/npm/math-intrinsics-1.1.0/LICENSE
+
+mdast-util-find-and-replace 3.0.2
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed mdast-util-find-and-replace/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/mdast-util-find-and-replace-3.0.2/license
+
+mdast-util-from-markdown 2.0.3
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed mdast-util-from-markdown/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/mdast-util-from-markdown-2.0.3/license
+
+mdast-util-gfm 3.1.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed mdast-util-gfm/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/mdast-util-gfm-3.1.0/license
+
+mdast-util-gfm-autolink-literal 2.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed mdast-util-gfm-autolink-literal/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2020 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/mdast-util-gfm-autolink-literal-2.0.1/license
+
+mdast-util-gfm-footnote 2.1.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed mdast-util-gfm-footnote/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/mdast-util-gfm-footnote-2.1.0/license
+
+mdast-util-gfm-strikethrough 2.0.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed mdast-util-gfm-strikethrough/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2020 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/mdast-util-gfm-strikethrough-2.0.0/license
+
+mdast-util-gfm-table 2.0.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed mdast-util-gfm-table/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2020 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/mdast-util-gfm-table-2.0.0/license
+
+mdast-util-gfm-task-list-item 2.0.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed mdast-util-gfm-task-list-item/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2020 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/mdast-util-gfm-task-list-item-2.0.0/license
+
+mdast-util-math 3.0.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed mdast-util-math/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2020 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/mdast-util-math-3.0.0/license
+
+mdast-util-newline-to-break 2.0.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed mdast-util-newline-to-break/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2017 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/mdast-util-newline-to-break-2.0.0/license
+
+mdast-util-phrasing 4.1.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed mdast-util-phrasing/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2017 Titus Wormer <tituswormer@gmail.com>
+  Copyright (c) 2017 Victor Felder <victor@draft.li>
+Full licenses / upstream notices:
+  licenses/npm/mdast-util-phrasing-4.1.0/license
+
+mdast-util-to-hast 13.2.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed mdast-util-to-hast/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/mdast-util-to-hast-13.2.1/license
+
+mdast-util-to-markdown 2.1.2
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed mdast-util-to-markdown/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/mdast-util-to-markdown-2.1.2/license
+
+mdast-util-to-string 4.0.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed mdast-util-to-string/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/mdast-util-to-string-4.0.0/license
+
+mdurl 2.1.0
+Scope: rag/rag-service.exe; rag/rag.exe
+Terms: MIT
+Version evidence: package-lock.json and installed mdurl/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2015 Vitaly Puzrin, Alex Kocharin.
+Full licenses / upstream notices:
+  licenses/npm/mdurl-2.1.0/LICENSE
+
+media-typer 1.1.1
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed media-typer/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014-2017 Douglas Christopher Wilson
+Full licenses / upstream notices:
+  licenses/npm/media-typer-1.1.1/LICENSE
+
+merge-descriptors 2.0.0
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed merge-descriptors/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Jonathan Ong <me@jongleberry.com>
+  Copyright (c) Douglas Christopher Wilson <doug@somethingdoug.com>
+  Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
+Full licenses / upstream notices:
+  licenses/npm/merge-descriptors-2.0.0/license
+
+mermaid 11.15.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed mermaid/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014 - 2022 Knut Sveidqvist
+Full licenses / upstream notices:
+  licenses/npm/mermaid-11.15.0/LICENSE
+
+micromark 4.0.2
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-4.0.2/license
+
+micromark-core-commonmark 2.0.3
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark-core-commonmark/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-core-commonmark-2.0.3/license
+
+micromark-extension-gfm 3.0.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark-extension-gfm/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2020 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-extension-gfm-3.0.0/license
+
+micromark-extension-gfm-autolink-literal 2.1.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark-extension-gfm-autolink-literal/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2020 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-extension-gfm-autolink-literal-2.1.0/license
+
+micromark-extension-gfm-footnote 2.1.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark-extension-gfm-footnote/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2021 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-extension-gfm-footnote-2.1.0/license
+
+micromark-extension-gfm-strikethrough 2.1.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark-extension-gfm-strikethrough/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2020 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-extension-gfm-strikethrough-2.1.0/license
+
+micromark-extension-gfm-table 2.1.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark-extension-gfm-table/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-extension-gfm-table-2.1.1/license
+
+micromark-extension-gfm-task-list-item 2.1.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark-extension-gfm-task-list-item/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2020 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-extension-gfm-task-list-item-2.1.0/license
+
+micromark-extension-math 3.1.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark-extension-math/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2020 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-extension-math-3.1.0/license
+
+micromark-factory-destination 2.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark-factory-destination/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-factory-destination-2.0.1/license
+
+micromark-factory-label 2.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark-factory-label/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-factory-label-2.0.1/license
+
+micromark-factory-space 2.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark-factory-space/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-factory-space-2.0.1/license
+
+micromark-factory-title 2.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark-factory-title/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-factory-title-2.0.1/license
+
+micromark-factory-whitespace 2.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark-factory-whitespace/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-factory-whitespace-2.0.1/license
+
+micromark-util-character 2.1.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark-util-character/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-util-character-2.1.1/license
+
+micromark-util-chunked 2.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark-util-chunked/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-util-chunked-2.0.1/license
+
+micromark-util-classify-character 2.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark-util-classify-character/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-util-classify-character-2.0.1/license
+
+micromark-util-combine-extensions 2.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark-util-combine-extensions/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-util-combine-extensions-2.0.1/license
+
+micromark-util-decode-numeric-character-reference 2.0.2
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark-util-decode-numeric-character-reference/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-util-decode-numeric-character-reference-2.0.2/license
+
+micromark-util-decode-string 2.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark-util-decode-string/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-util-decode-string-2.0.1/license
+
+micromark-util-html-tag-name 2.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark-util-html-tag-name/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-util-html-tag-name-2.0.1/license
+
+micromark-util-normalize-identifier 2.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark-util-normalize-identifier/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-util-normalize-identifier-2.0.1/license
+
+micromark-util-resolve-all 2.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark-util-resolve-all/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-util-resolve-all-2.0.1/license
+
+micromark-util-sanitize-uri 2.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark-util-sanitize-uri/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-util-sanitize-uri-2.0.1/license
+
+micromark-util-subtokenize 2.1.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed micromark-util-subtokenize/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/micromark-util-subtokenize-2.1.0/license
+
+mime-db 1.54.0
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed mime-db/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014 Jonathan Ong <me@jongleberry.com>
+  Copyright (c) 2015-2022 Douglas Christopher Wilson <doug@somethingdoug.com>
+Full licenses / upstream notices:
+  licenses/npm/mime-db-1.54.0/LICENSE
+
+mime-types 3.0.2
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed mime-types/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014 Jonathan Ong <me@jongleberry.com>
+  Copyright (c) 2015 Douglas Christopher Wilson <doug@somethingdoug.com>
+Full licenses / upstream notices:
+  licenses/npm/mime-types-3.0.2/LICENSE
+
+mode-watcher 1.1.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed mode-watcher/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2024 Hunter Johnston <https://github.com/huntabyte>
+  Copyright (c) 2024 Svecosystem <https://github.com/svecosystem>
+Full licenses / upstream notices:
+  licenses/npm/mode-watcher-1.1.0/LICENSE
+
+ms 2.1.3
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed ms/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2020 Vercel, Inc.
+Full licenses / upstream notices:
+  licenses/npm/ms-2.1.3/license.md
+
+negotiator 1.1.0
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed negotiator/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2012-2014 Federico Romero
+  Copyright (c) 2012-2014 Isaac Z. Schlueter
+  Copyright (c) 2014-2015 Douglas Christopher Wilson
+Full licenses / upstream notices:
+  licenses/npm/negotiator-1.1.0/LICENSE
+
+object-inspect 1.13.4
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed object-inspect/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2013 James Halliday
+Full licenses / upstream notices:
+  licenses/npm/object-inspect-1.13.4/LICENSE
+
+on-finished 2.4.1
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed on-finished/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2013 Jonathan Ong <me@jongleberry.com>
+  Copyright (c) 2014 Douglas Christopher Wilson <doug@somethingdoug.com>
+Full licenses / upstream notices:
+  licenses/npm/on-finished-2.4.1/LICENSE
+
+once 1.4.0
+Scope: ticket-demo.exe
+Terms: ISC
+Version evidence: package-lock.json and installed once/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Isaac Z. Schlueter and Contributors
+Full licenses / upstream notices:
+  licenses/npm/once-1.4.0/LICENSE
+
+parseurl 1.3.3
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed parseurl/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014 Jonathan Ong <me@jongleberry.com>
+  Copyright (c) 2014-2017 Douglas Christopher Wilson <doug@somethingdoug.com>
+Full licenses / upstream notices:
+  licenses/npm/parseurl-1.3.3/LICENSE
+
+path-to-regexp 8.4.2
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed path-to-regexp/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014 Blake Embrey (hello@blakeembrey.com)
+Full licenses / upstream notices:
+  licenses/npm/path-to-regexp-8.4.2/LICENSE
+
+pdfjs-dist 5.4.54
+Scope: ui/ client JavaScript; ui/ PDF worker and library
+Terms: Apache-2.0
+Version evidence: package-lock.json and installed pdfjs-dist/package.json; bundle input graph.
+Copyright statements:
+  %%Copyright: Copyright 1990-2009 Adobe Systems Incorporated.
+  // Copyright 2014 PDFium Authors. All rights reserved.
+  Digitized data copyright (c) 2010 Google Corporation
+  Copyright (c) 2012 Red Hat, Inc.
+  Copyright (c) 2002-2014, Universite catholique de Louvain (UCL), Belgium
+  Copyright (c) 2002-2014, Professor Benoit Macq
+  Copyright (c) 2003-2014, Antonin Descampe
+  Copyright (c) 2003-2009, Francois-Olivier Devaux
+  Copyright (c) 2005, Herve Drolon, FreeImage Team
+  Copyright (c) 2002-2003, Yannick Verschueren
+  Copyright (c) 2001-2003, David Janssens
+  Copyright (c) 2011-2012, Centre National d'Etudes Spatiales (CNES), France
+  Copyright (c) 2012, CS Systemes d'Information, France
+  Copyright (c) 2024, Mozilla Foundation
+  Copyright (c) 2025, Mozilla Foundation
+  Copyright (C) 2009-2024 Mozilla Corporation
+  Copyright (C) 1998-2007 Marti Maria
+Full licenses / upstream notices:
+  licenses/npm/pdfjs-dist-5.4.54/LICENSE
+  licenses/npm/pdfjs-dist-5.4.54/cmaps/LICENSE
+  licenses/npm/pdfjs-dist-5.4.54/iccs/LICENSE
+  licenses/npm/pdfjs-dist-5.4.54/standard_fonts/LICENSE_FOXIT
+  licenses/npm/pdfjs-dist-5.4.54/standard_fonts/LICENSE_LIBERATION
+  licenses/npm/pdfjs-dist-5.4.54/wasm/LICENSE_OPENJPEG
+  licenses/npm/pdfjs-dist-5.4.54/wasm/LICENSE_PDFJS_OPENJPEG
+  licenses/npm/pdfjs-dist-5.4.54/wasm/LICENSE_PDFJS_QCMS
+  licenses/npm/pdfjs-dist-5.4.54/wasm/LICENSE_QCMS
+
+pkce-challenge 5.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed pkce-challenge/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2019
+Full licenses / upstream notices:
+  licenses/npm/pkce-challenge-5.0.1/LICENSE
+
+property-information 7.2.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed property-information/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <mailto:tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/property-information-7.2.0/license
+
+proxy-addr 2.0.8
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed proxy-addr/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014-2016 Douglas Christopher Wilson
+Full licenses / upstream notices:
+  licenses/npm/proxy-addr-2.0.8/LICENSE
+
+punycode.js 2.3.1
+Scope: rag/rag-service.exe; rag/rag.exe
+Terms: MIT
+Version evidence: package-lock.json and installed punycode.js/package.json; bundle input graph.
+Copyright: see full texts and retained source headers; individual statement review remains open.
+Full licenses / upstream notices:
+  licenses/npm/punycode.js-2.3.1/LICENSE-MIT.txt
+
+qs 6.16.0
+Scope: ticket-demo.exe
+Terms: BSD-3-Clause
+Version evidence: package-lock.json and installed qs/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014, Nathan LaFreniere and other [contributors](https://github.com/ljharb/qs/graphs/contributors)
+Full licenses / upstream notices:
+  licenses/npm/qs-6.16.0/LICENSE.md
+
+range-parser 1.3.0
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed range-parser/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2012-2014 TJ Holowaychuk <tj@vision-media.ca>
+  Copyright (c) 2015-2016 Douglas Christopher Wilson <doug@somethingdoug.com
+Full licenses / upstream notices:
+  licenses/npm/range-parser-1.3.0/LICENSE
+
+raw-body 3.0.2
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed raw-body/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2013-2014 Jonathan Ong <me@jongleberry.com>
+  Copyright (c) 2014-2022 Douglas Christopher Wilson <doug@somethingdoug.com>
+Full licenses / upstream notices:
+  licenses/npm/raw-body-3.0.2/LICENSE
+
+rehype-highlight 7.0.2
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed rehype-highlight/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/rehype-highlight-7.0.2/license
+
+rehype-katex 7.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed rehype-katex/package.json; bundle input graph.
+Copyright: see full texts and retained source headers; individual statement review remains open.
+Full license: MISSING - release blocker.
+
+rehype-stringify 10.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed rehype-stringify/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer
+Full licenses / upstream notices:
+  licenses/npm/rehype-stringify-10.0.1/license
+
+remark 15.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed remark/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/remark-15.0.1/license
+
+remark-breaks 4.0.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed remark-breaks/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2017 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/remark-breaks-4.0.0/license
+
+remark-gfm 4.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed remark-gfm/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/remark-gfm-4.0.1/license
+
+remark-math 6.0.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed remark-math/package.json; bundle input graph.
+Copyright: see full texts and retained source headers; individual statement review remains open.
+Full license: MISSING - release blocker.
+
+remark-parse 11.0.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed remark-parse/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/remark-parse-11.0.0/license
+
+remark-rehype 11.1.2
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed remark-rehype/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/remark-rehype-11.1.2/license
+
+remark-stringify 11.0.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed remark-stringify/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/remark-stringify-11.0.0/license
+
+roughjs 4.6.6
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed roughjs/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2019 Preet Shihn
+Full licenses / upstream notices:
+  licenses/npm/roughjs-4.6.6/LICENSE
+
+router 2.2.0
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed router/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2013 Roman Shtylman
+  Copyright (c) 2014-2022 Douglas Christopher Wilson
+Full licenses / upstream notices:
+  licenses/npm/router-2.2.0/LICENSE
+
+runed 0.23.4
+Scope: ui/ client JavaScript
+Terms: MIT (from full license text)
+Version evidence: package-lock.json and installed runed/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2024 Hunter Johnston <https://github.com/huntabyte>
+  Copyright (c) 2024 Thomas G. Lopes <https://github.com/tglide>
+Full licenses / upstream notices:
+  licenses/npm/runed-0.23.4/LICENSE
+
+runed 0.25.0
+Scope: ui/ client JavaScript
+Terms: MIT (from full license text)
+Version evidence: package-lock.json and installed runed/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2024 Hunter Johnston <https://github.com/huntabyte>
+  Copyright (c) 2024 Thomas G. Lopes <https://github.com/tglide>
+Full licenses / upstream notices:
+  licenses/npm/runed-0.25.0/LICENSE
+
+runed 0.28.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed runed/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2024 Hunter Johnston <https://github.com/huntabyte>
+  Copyright (c) 2024 Thomas G. Lopes <https://github.com/tglide>
+Full licenses / upstream notices:
+  licenses/npm/runed-0.28.0/LICENSE
+
+runed 0.35.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed runed/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2024 Hunter Johnston <https://github.com/huntabyte>
+  Copyright (c) 2024 Thomas G. Lopes <https://github.com/tglide>
+Full licenses / upstream notices:
+  licenses/npm/runed-0.35.1/LICENSE
+
+safer-buffer 2.1.2
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed safer-buffer/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2018 Nikita Skovoroda <chalkerx@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/safer-buffer-2.1.2/LICENSE
+
+send 1.2.1
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed send/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2012 TJ Holowaychuk
+  Copyright (c) 2014-2022 Douglas Christopher Wilson
+Full licenses / upstream notices:
+  licenses/npm/send-1.2.1/LICENSE
+
+serve-static 2.2.1
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed serve-static/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2010 Sencha Inc.
+  Copyright (c) 2011 LearnBoost
+  Copyright (c) 2011 TJ Holowaychuk
+  Copyright (c) 2014-2016 Douglas Christopher Wilson
+Full licenses / upstream notices:
+  licenses/npm/serve-static-2.2.1/LICENSE
+
+setprototypeof 1.2.0
+Scope: ticket-demo.exe
+Terms: ISC
+Version evidence: package-lock.json and installed setprototypeof/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2015, Wes Todd
+Full licenses / upstream notices:
+  licenses/npm/setprototypeof-1.2.0/LICENSE
+
+side-channel 1.1.1
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed side-channel/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2019 Jordan Harband
+Full licenses / upstream notices:
+  licenses/npm/side-channel-1.1.1/LICENSE
+
+side-channel-list 1.0.1
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed side-channel-list/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2024 Jordan Harband
+Full licenses / upstream notices:
+  licenses/npm/side-channel-list-1.0.1/LICENSE
+
+side-channel-map 1.0.1
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed side-channel-map/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2024 Jordan Harband
+Full licenses / upstream notices:
+  licenses/npm/side-channel-map-1.0.1/LICENSE
+
+side-channel-weakmap 1.0.2
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed side-channel-weakmap/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2019 Jordan Harband
+Full licenses / upstream notices:
+  licenses/npm/side-channel-weakmap-1.0.2/LICENSE
+
+space-separated-tokens 2.0.2
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed space-separated-tokens/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/space-separated-tokens-2.0.2/license
+
+statuses 2.0.2
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed statuses/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014 Jonathan Ong <me@jongleberry.com>
+  Copyright (c) 2016 Douglas Christopher Wilson <doug@somethingdoug.com>
+Full licenses / upstream notices:
+  licenses/npm/statuses-2.0.2/LICENSE
+
+stringify-entities 4.0.4
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed stringify-entities/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2015 Titus Wormer <mailto:tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/stringify-entities-4.0.4/license
+
+style-to-object 1.0.14
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed style-to-object/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2017 Menglin "Mark" Xu <mark@remarkablemark.org>
+Full licenses / upstream notices:
+  licenses/npm/style-to-object-1.0.14/LICENSE
+
+stylis 4.4.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed stylis/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2016-present Sultan Tarimo
+Full licenses / upstream notices:
+  licenses/npm/stylis-4.4.0/LICENSE
+
+svelte 5.56.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed svelte/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2016-2025 [Svelte Contributors](https://github.com/sveltejs/svelte/graphs/contributors)
+Full licenses / upstream notices:
+  licenses/npm/svelte-5.56.1/LICENSE.md
+
+svelte-sonner 1.1.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed svelte-sonner/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2024 Robert Soriano
+Full licenses / upstream notices:
+  licenses/npm/svelte-sonner-1.1.1/LICENSE
+
+svelte-toolbelt 0.10.6
+Scope: ui/ client JavaScript
+Terms: MIT (from full license text)
+Version evidence: package-lock.json and installed svelte-toolbelt/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2024 Hunter Johnston <https://github.com/huntabyte>
+  Copyright (c) 2024 Thomas G. Lopes <https://github.com/tglide>
+Full licenses / upstream notices:
+  licenses/npm/svelte-toolbelt-0.10.6/LICENSE
+
+svelte-toolbelt 0.7.1
+Scope: ui/ client JavaScript
+Terms: MIT (from full license text)
+Version evidence: package-lock.json and installed svelte-toolbelt/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2024 Hunter Johnston <https://github.com/huntabyte>
+  Copyright (c) 2024 Thomas G. Lopes <https://github.com/tglide>
+Full licenses / upstream notices:
+  licenses/npm/svelte-toolbelt-0.7.1/LICENSE
+
+tabbable 6.4.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed tabbable/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2015 David Clark
+Full licenses / upstream notices:
+  licenses/npm/tabbable-6.4.0/LICENSE
+
+tailwind-merge 3.6.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed tailwind-merge/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2021 Dany Castillo
+Full licenses / upstream notices:
+  licenses/npm/tailwind-merge-3.6.0/LICENSE.md
+
+tailwind-variants 3.3.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed tailwind-variants/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2020 Tailwid Variants
+Full licenses / upstream notices:
+  licenses/npm/tailwind-variants-3.3.1/LICENSE
+
+tailwindcss 4.3.0
+Scope: ui/ generated CSS
+Terms: MIT
+Version evidence: package-lock.json and installed tailwindcss/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Tailwind Labs, Inc.
+Full licenses / upstream notices:
+  licenses/npm/tailwindcss-4.3.0/LICENSE
+
+toidentifier 1.0.1
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed toidentifier/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2016 Douglas Christopher Wilson <doug@somethingdoug.com>
+Full licenses / upstream notices:
+  licenses/npm/toidentifier-1.0.1/LICENSE
+
+trim-lines 3.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed trim-lines/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2015 Titus Wormer <mailto:tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/trim-lines-3.0.1/license
+
+trough 2.2.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed trough/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/trough-2.2.0/license
+
+ts-dedent 2.2.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed ts-dedent/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2018 Tamino Martinius
+Full licenses / upstream notices:
+  licenses/npm/ts-dedent-2.2.0/LICENSE
+
+tw-animate-css 1.4.0
+Scope: ui/ generated CSS
+Terms: MIT
+Version evidence: package-lock.json and installed tw-animate-css/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2025 Wombosvideo
+Full licenses / upstream notices:
+  licenses/npm/tw-animate-css-1.4.0/LICENSE
+
+type-is 2.1.0
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed type-is/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014 Jonathan Ong <me@jongleberry.com>
+  Copyright (c) 2014-2015 Douglas Christopher Wilson <doug@somethingdoug.com>
+Full licenses / upstream notices:
+  licenses/npm/type-is-2.1.0/LICENSE
+
+uc.micro 3.0.0
+Scope: rag/rag-service.exe; rag/rag.exe
+Terms: MIT
+Version evidence: package-lock.json and installed uc.micro/package.json; bundle input graph.
+Copyright: see full texts and retained source headers; individual statement review remains open.
+Full licenses / upstream notices:
+  licenses/npm/uc.micro-3.0.0/LICENSE.txt
+
+unified 11.0.5
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed unified/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/unified-11.0.5/license
+
+unist-util-find-after 5.0.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed unist-util-find-after/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/unist-util-find-after-5.0.0/license
+
+unist-util-is 6.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed unist-util-is/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/unist-util-is-6.0.1/license
+
+unist-util-position 5.0.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed unist-util-position/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/unist-util-position-5.0.0/license
+
+unist-util-stringify-position 4.0.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed unist-util-stringify-position/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/unist-util-stringify-position-4.0.0/license
+
+unist-util-visit 5.1.0
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed unist-util-visit/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/unist-util-visit-5.1.0/license
+
+unist-util-visit-parents 6.0.2
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed unist-util-visit-parents/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/unist-util-visit-parents-6.0.2/license
+
+unpipe 1.0.0
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed unpipe/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2015 Douglas Christopher Wilson <doug@somethingdoug.com>
+Full licenses / upstream notices:
+  licenses/npm/unpipe-1.0.0/LICENSE
+
+uuid 13.0.2
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed uuid/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2010-2020 Robert Kieffer and other contributors
+Full licenses / upstream notices:
+  licenses/npm/uuid-13.0.2/LICENSE.md
+
+vary 1.1.2
+Scope: ticket-demo.exe
+Terms: MIT
+Version evidence: package-lock.json and installed vary/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2014-2017 Douglas Christopher Wilson
+Full licenses / upstream notices:
+  licenses/npm/vary-1.1.2/LICENSE
+
+vfile 6.0.3
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed vfile/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2015 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/vfile-6.0.3/license
+
+vfile-message 4.0.3
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed vfile-message/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/vfile-message-4.0.3/license
+
+vite 7.3.6
+Scope: ui/ generated module/preload runtime
+Terms: MIT
+Version evidence: package-lock.json and installed vite/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2019-present, VoidZero Inc. and Vite contributors
+  > Copyright 2024 Justin Ridgewell <justin@ridgewell.name>
+  > Copyright 2019 Justin Ridgewell <jridgewell@google.com>
+  > Copyright (c) 2024-present VoidZero Inc. & Contributors
+  > Copyright (c) 2019 RollupJS Plugin Contributors (https://github.com/rollup/plugins/graphs/contributors)
+  > Copyright (c) 2019 Elan Shanker, Paul Miller (https://paulmillr.com)
+  > Copyright (c) 2020-present, Yuxi (Evan) You
+  > Copyright (c) 2023-present, sapphi-red
+  > Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
+  > Copyright (c) Paul Miller (https://paulmillr.com)
+  > Copyright (c) 2014-present, Jon Schlinkert.
+  > Copyright (c) EGOIST <0x142857@gmail.com> (https://github.com/egoist)
+  > Copyright (c) 2012-2019 Paul Miller (https://paulmillr.com), Elan Shanker
+  > Copyright (c) 2013 James Halliday (mail@substack.net)
+  > Copyright (c) 2010 Sencha Inc.
+  > Copyright (c) 2011 LearnBoost
+  > Copyright (c) 2011-2014 TJ Holowaychuk
+  > Copyright (c) 2015 Douglas Christopher Wilson
+  > Copyright 2013 Thorsten Lorenz.
+  > Copyright (c) 2013 Troy Goode <troygoode@gmail.com>
+  > Copyright (c) 2018 Made With MOXY Lda <hello@moxy.studio>
+  > Copyright (c) 2015, Scott Motte
+  > Copyright (c) 2016, Scott Motte
+  > Copyright (c) 2014 Jonathan Ong me@jongleberry.com
+  > Copyright (c) 2016 Douglas Christopher Wilson
+  > Copyright (c) Felix Böhm
+  > Copyright (C) 2018-2022 Guy Bedford
+  > Copyright (c) 2012-2013 TJ Holowaychuk
+  > Copyright (c) 2015 Andreas Lubbe
+  > Copyright (c) 2015 Tiancheng "Timothy" Gu
+  > Copyright (c) 2015-20 [these people](https://github.com/Rich-Harris/estree-walker/graphs/contributors)
+  > Copyright (c) 2014-2016 Douglas Christopher Wilson
+  > Copyright (c) 2014-2017 Douglas Christopher Wilson <doug@somethingdoug.com>
+  > Copyright 2014–present Olivier Lalonde <olalonde@gmail.com>, James Talmage <james@talmage.io>, Ruben Verborgh
+  > Copyright (c) 2015 Alexey Litvinov
+  > Copyright (c) 2015, 2019 Elan Shanker
+  > Copyright (c) 2025 sapphi-red
+  > Copyright (c) 2010-2025 William Stein, Charlie Robbins, Jarrett Cruger & the Contributors.
+  > Copyright 2018 Glen Maddern
+  > Copyright (c) 2019 Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com), Paul Miller (https://paulmillr.com)
+  > Copyright (c) 2014-2016, Jon Schlinkert
+  > Copyright (c) 2014-2017, Jon Schlinkert.
+  > Copyright (c) Isaac Z. Schlueter and Contributors
+  > Copyright (c) 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Simon Lydell
+  > Copyright (c) 2017-present, Yuxi (Evan) You
+  > Copyright (c) 2022 Anton Kastritskiy
+  > Copyright 2018 Rich Harris
+  > Copyright (c) Pooya Parsa <pooya@pi0.io>
+  > Copyright (c) Luke Edwards <luke.edwards05@gmail.com> (https://lukeed.com)
+  > Copyright (c) 2014-2018, Jon Schlinkert.
+  > Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
+  > Copyright © 2025-PRESENT Kevin Deng (https://github.com/sxzz)
+  > Copyright (c) 2014-2017 TJ Holowaychuk <tj@vision-media.ca>
+  > Copyright (c) 2018-2021 Josh Junon
+  > Copyright (c) 2013 Jonathan Ong <me@jongleberry.com>
+  > Copyright (c) 2014 Douglas Christopher Wilson <doug@somethingdoug.com>
+  > Copyright (c) 2013-2019 Ivan Nikulin (ifaaan@gmail.com, https://github.com/inikulin)
+  > Copyright (c) 2014 Jonathan Ong <me@jongleberry.com>
+  > Copyright (c) 2019 Rich Harris
+  > Copyright (c) 2021-2024 Oleksii Raspopov, Kostiantyn Denysov, Anton Verinov
+  > Copyright (c) 2014 Maxime Thirouin, Jason Campbell & Kevin Mårtensson
+  > Copyright 2015-present Alexander Madyankin <alexander@madyankin.name>
+  > Copyright 2015 Glen Maddern
+  > Copyright 2015 Mark Dalgleish <mark.john.dalgleish@gmail.com>
+  > Copyright (c) 2015, Glen Maddern
+  > Copyright (c) Ben Briggs <beneb.info@gmail.com> (http://beneb.info)
+  > Copyright (c) Bogdan Chadkin <trysound@yandex.ru>
+  > Copyright (c) 2012-2019 Thorsten Lorenz, Paul Miller (https://paulmillr.com)
+  > Copyright (c) Luke Edwards <luke.edwards05@gmail.com> (lukeed.com)
+  > Copyright (c) Kevin Mårtensson <kevinmartensson@gmail.com> (github.com/kevva)
+  > Copyright (c) 2016 Douglas Christopher Wilson <doug@somethingdoug.com>
+  > Copyright (c) 2022 Anthony Fu <https://github.com/antfu>
+  > Copyright (c) 2015-present, Jon Schlinkert.
+  > Copyright (c) 2021-present dominikg and [contributors](https://github.com/dominikg/tsconfck/graphs/contributors)
+  > Copyright (c) 2015 Douglas Christopher Wilson <doug@somethingdoug.com>
+  > Copyright (c) 2014 Nathan Rajlich <nathan@tootallnate.net>
+  > Copyright (c) 2013-2017 Jared Hanson
+  > Copyright (c) 2014-2017 Douglas Christopher Wilson
+  > Copyright (c) 2011 Einar Otto Stangvik <einaros@gmail.com>
+  > Copyright (c) 2013 Arnout Kazemier and contributors
+  > Copyright (c) 2016 Luigi Pinca and contributors
+Full licenses / upstream notices:
+  licenses/npm/vite-7.3.6/LICENSE.md
+
+web-namespaces 2.0.1
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed web-namespaces/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/web-namespaces-2.0.1/license
+
+workbox-cacheable-response 7.4.1
+Scope: ui/workbox-*.js
+Terms: MIT
+Version evidence: package-lock.json and installed workbox-cacheable-response/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2018 Google LLC
+Full licenses / upstream notices:
+  licenses/npm/workbox-cacheable-response-7.4.1/LICENSE
+
+workbox-core 7.4.1
+Scope: ui/workbox-*.js
+Terms: MIT
+Version evidence: package-lock.json and installed workbox-core/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2018 Google LLC
+Full licenses / upstream notices:
+  licenses/npm/workbox-core-7.4.1/LICENSE
+
+workbox-expiration 7.4.1
+Scope: ui/workbox-*.js
+Terms: MIT
+Version evidence: package-lock.json and installed workbox-expiration/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2018 Google LLC
+Full licenses / upstream notices:
+  licenses/npm/workbox-expiration-7.4.1/LICENSE
+
+workbox-precaching 7.4.1
+Scope: ui/workbox-*.js
+Terms: MIT
+Version evidence: package-lock.json and installed workbox-precaching/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2018 Google LLC
+Full licenses / upstream notices:
+  licenses/npm/workbox-precaching-7.4.1/LICENSE
+
+workbox-routing 7.4.1
+Scope: ui/workbox-*.js
+Terms: MIT
+Version evidence: package-lock.json and installed workbox-routing/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2018 Google LLC
+Full licenses / upstream notices:
+  licenses/npm/workbox-routing-7.4.1/LICENSE
+
+workbox-strategies 7.4.1
+Scope: ui/workbox-*.js
+Terms: MIT
+Version evidence: package-lock.json and installed workbox-strategies/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2018 Google LLC
+Full licenses / upstream notices:
+  licenses/npm/workbox-strategies-7.4.1/LICENSE
+
+workbox-window 7.4.1
+Scope: ui/ client JavaScript; ui/ service-worker registration
+Terms: MIT
+Version evidence: package-lock.json and installed workbox-window/package.json; bundle input graph.
+Copyright statements:
+  Copyright 2018 Google LLC
+Full licenses / upstream notices:
+  licenses/npm/workbox-window-7.4.1/LICENSE
+
+wrappy 1.0.2
+Scope: ticket-demo.exe
+Terms: ISC
+Version evidence: package-lock.json and installed wrappy/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) Isaac Z. Schlueter and Contributors
+Full licenses / upstream notices:
+  licenses/npm/wrappy-1.0.2/LICENSE
+
+zod 4.4.3
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed zod/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2025 Colin McDonnell
+Full licenses / upstream notices:
+  licenses/npm/zod-4.4.3/LICENSE
+
+zod-to-json-schema 3.25.2
+Scope: ui/ client JavaScript
+Terms: ISC
+Version evidence: package-lock.json and installed zod-to-json-schema/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2020, Stefan Terdell
+Full licenses / upstream notices:
+  licenses/npm/zod-to-json-schema-3.25.2/LICENSE
+
+zwitch 2.0.4
+Scope: ui/ client JavaScript
+Terms: MIT
+Version evidence: package-lock.json and installed zwitch/package.json; bundle input graph.
+Copyright statements:
+  Copyright (c) 2016 Titus Wormer <tituswormer@gmail.com>
+Full licenses / upstream notices:
+  licenses/npm/zwitch-2.0.4/license
+
+Python distributions in the converter
+=====================================
+
+beautifulsoup4 4.15.0
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: MIT License
+Version evidence: PyInstaller TOCs and beautifulsoup4 4.15.0 distribution metadata.
+Copyright statements:
+  Copyright (c) Leonard Richardson
+  also made available under the MIT license. Copyright (c) James Graham
+  which is also made available under the MIT license. Copyright (c)
+Full licenses / upstream notices:
+  licenses/python/beautifulsoup4-4.15.0/beautifulsoup4-4.15.0.dist-info/licenses/AUTHORS
+  licenses/python/beautifulsoup4-4.15.0/beautifulsoup4-4.15.0.dist-info/licenses/LICENSE
+
+certifi 2026.10.23
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: MPL-2.0
+Choice/conditions: MPL-2.0 source-availability obligations for included files must be completed before distribution.
+Version evidence: PyInstaller TOCs and certifi 2026.10.23 distribution metadata.
+Copyright: see full texts and retained source headers; individual statement review remains open.
+Full licenses / upstream notices:
+  licenses/python/certifi-2026.10.23/certifi-2026.10.23.dist-info/licenses/LICENSE
+
+cffi 2.1.1
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: MIT-0
+Version evidence: PyInstaller TOCs and cffi 2.1.1 distribution metadata.
+Copyright: see full texts and retained source headers; individual statement review remains open.
+Full licenses / upstream notices:
+  licenses/python/cffi-2.1.1/cffi-2.1.1.dist-info/licenses/LICENSE
+
+charset-normalizer 3.5.2
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: MIT
+Version evidence: PyInstaller TOCs and charset-normalizer 3.5.2 distribution metadata.
+Copyright statements:
+  Copyright (c) 2025 TAHRI Ahmed R.
+Full licenses / upstream notices:
+  licenses/python/charset-normalizer-3.5.2/charset_normalizer-3.5.2.dist-info/licenses/LICENSE
+
+cobble 0.1.4
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: See full text; metadata does not identify a complete license
+Supplemental exact-version source: https://files.pythonhosted.org/packages/54/7a/a507c709be2c96e1bb6102eb7b7f4026c5e5e223ef7d745a17d239e9d844/cobble-0.1.4.tar.gz
+Copyright: see full texts and retained source headers; individual statement review remains open.
+Full license: MISSING - release blocker.
+
+cryptography 50.0.2
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: Apache-2.0 OR BSD-3-Clause
+Choice/conditions: BSD-3-Clause for cryptography itself: LICENSE explicitly permits either LICENSE.APACHE or LICENSE.BSD. Native dependencies remain separate.
+Version evidence: PyInstaller TOCs and cryptography 50.0.2 distribution metadata.
+Copyright statements:
+  Copyright (c) Individual contributors.
+Full licenses / upstream notices:
+  licenses/python/cryptography-50.0.2/cryptography-50.0.2.dist-info/licenses/LICENSE
+  licenses/python/cryptography-50.0.2/cryptography-50.0.2.dist-info/licenses/LICENSE.APACHE
+  licenses/python/cryptography-50.0.2/cryptography-50.0.2.dist-info/licenses/LICENSE.BSD
+
+defusedxml 0.7.1
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: PSFL
+Version evidence: PyInstaller TOCs and defusedxml 0.7.1 distribution metadata.
+Copyright statements:
+  License Agreement and PSF's notice of copyright, i.e., "Copyright (c)
+Full licenses / upstream notices:
+  licenses/python/defusedxml-0.7.1/defusedxml-0.7.1.dist-info/LICENSE
+
+et_xmlfile 2.0.0
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: MIT
+Version evidence: PyInstaller TOCs and et_xmlfile 2.0.0 distribution metadata.
+Copyright statements:
+  Copyright (c) 2001-present Python Software Foundation; All Rights Reserved
+  i.e., "Copyright (c) 2001-2024 Python Software Foundation; All Rights Reserved"
+  License Agreement and CNRI's notice of copyright, i.e., "Copyright (c)
+  Copyright (c) 1991 - 1995, Stichting Mathematisch Centrum Amsterdam,
+  Copyright (c) 2010 openpyxl
+Full licenses / upstream notices:
+  licenses/python/et_xmlfile-2.0.0/et_xmlfile-2.0.0.dist-info/AUTHORS.txt
+  licenses/python/et_xmlfile-2.0.0/et_xmlfile-2.0.0.dist-info/LICENCE.python
+  licenses/python/et_xmlfile-2.0.0/et_xmlfile-2.0.0.dist-info/LICENCE.rst
+
+idna 3.20
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: BSD-3-Clause
+Version evidence: PyInstaller TOCs and idna 3.20 distribution metadata.
+Copyright statements:
+  Copyright (c) 2013-2026, Kim Davies and contributors.
+Full licenses / upstream notices:
+  licenses/python/idna-3.20/idna-3.20.dist-info/licenses/LICENSE.md
+
+lxml 6.1.3
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: BSD-3-Clause
+Version evidence: PyInstaller TOCs and lxml 6.1.3 distribution metadata.
+Copyright statements:
+  Copyright (c) 2004 Infrae. All rights reserved.
+  Copyright (C) 1998-2012 Daniel Veillard.  All Rights Reserved.
+  Copyright (C) The Libxml2 Contributors.
+  Copyright (C) 2001-2002 Daniel Veillard.  All Rights Reserved.
+  Copyright (C) 2001-2002 Thomas Broyer, Charlie Bozeman and Daniel Veillard.
+Full licenses / upstream notices:
+  licenses/python/lxml-6.1.3/lxml-6.1.3.dist-info/licenses/LICENSE.txt
+  licenses/python/lxml-6.1.3/lxml-6.1.3.dist-info/licenses/LICENSES.txt
+
+magika 1.0.3
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: Apache-2.0
+Supplemental exact-version source: https://files.pythonhosted.org/packages/00/be/fa7d512ec15763ad7d8ba083e39bb445fa969ce5159361fa449a02569cf9/magika-1.0.3.tar.gz
+Copyright: see full texts and retained source headers; individual statement review remains open.
+Full license: MISSING - release blocker.
+
+mammoth 1.13.0
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: BSD-2-Clause
+Version evidence: PyInstaller TOCs and mammoth 1.13.0 distribution metadata.
+Copyright statements:
+  Copyright (c) 2013, Michael Williamson
+Full licenses / upstream notices:
+  licenses/python/mammoth-1.13.0/mammoth-1.13.0.dist-info/licenses/LICENSE
+
+markdownify 1.2.3
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: See full text; metadata does not identify a complete license
+Version evidence: PyInstaller TOCs and markdownify 1.2.3 distribution metadata.
+Copyright statements:
+  Copyright 2012-2018 Matthew Tretter
+Full licenses / upstream notices:
+  licenses/python/markdownify-1.2.3/markdownify-1.2.3.dist-info/LICENSE
+
+markitdown 0.1.9
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: MIT
+Supplemental exact-version source: https://raw.githubusercontent.com/microsoft/markitdown/v0.1.9/LICENSE
+Copyright statements:
+  Copyright (c) Microsoft Corporation.
+Full licenses / upstream notices:
+  licenses/python/markitdown-0.1.9/upstream-v0.1.9/LICENSE
+
+numpy 2.4.6
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0
+Version evidence: PyInstaller TOCs and numpy 2.4.6 distribution metadata.
+Copyright statements:
+  Copyright (c) 2005-2025, NumPy Developers.
+  Copyright (c) 2011-2014, The OpenBLAS Project
+  Copyright (c) 1992-2013 The University of Tennessee and The University
+  Copyright (c) 2000-2013 The University of California Berkeley. All
+  Copyright (c) 2006-2013 The University of Colorado Denver.  All rights
+  Copyright (C) 2002-2017 Free Software Foundation, Inc.
+  Copyright (C) 2009 Free Software Foundation, Inc. <https://fsf.org/>
+  Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+  Copyright (C) 2010 - 2019 ridiculous_fish, <libdivide@ridiculousfish.com>
+  Copyright (C) 2016 - 2019 Kim Walisch, <kim.walisch@gmail.com>
+  Copyright (c) The Highway Project Authors. All rights reserved.
+  Copyright (c) 2014 Ryan Juckett
+  Copyright (c) 2022, Intel. All rights reserved.
+  Copyright (c) 2005-2021, NumPy Developers.
+  Copyright (C) 2010-2018 Max-Planck-Society
+  Copyright (c) 2006, University of Georgia and Pierre G.F. Gerard-Marchant
+  Copyright (c) 2019 Kevin Sheppard. All rights reserved.**
+  Copyright (c) 2005-2017, NumPy Developers.
+  Copyright (c) 2009-2019: Jeff Bezanson, Stefan Karpinski, Viral B. Shah,
+  Copyright (c) 2003-2005, Jean-Sebastien Roy (js@jeannot.org)
+  Copyright (C) 1997 - 2002, Makoto Matsumoto and Takuji Nishimura,
+  Copyright 2014 Melissa O'Neill <oneill@pcg-random.org>
+  Copyright 2010-2012, D. E. Shaw Research.
+  Copyright (c) 2018 Melissa E. O'Neill
+Full licenses / upstream notices:
+  licenses/python/numpy-2.4.6/numpy-2.4.6.dist-info/licenses/LICENSE.txt
+  licenses/python/numpy-2.4.6/numpy-2.4.6.dist-info/licenses/numpy/_core/include/numpy/libdivide/LICENSE.txt
+  licenses/python/numpy-2.4.6/numpy-2.4.6.dist-info/licenses/numpy/_core/src/common/pythoncapi-compat/COPYING
+  licenses/python/numpy-2.4.6/numpy-2.4.6.dist-info/licenses/numpy/_core/src/highway/LICENSE
+  licenses/python/numpy-2.4.6/numpy-2.4.6.dist-info/licenses/numpy/_core/src/multiarray/dragon4_LICENSE.txt
+  licenses/python/numpy-2.4.6/numpy-2.4.6.dist-info/licenses/numpy/_core/src/npysort/x86-simd-sort/LICENSE.md
+  licenses/python/numpy-2.4.6/numpy-2.4.6.dist-info/licenses/numpy/_core/src/umath/svml/LICENSE
+  licenses/python/numpy-2.4.6/numpy-2.4.6.dist-info/licenses/numpy/fft/pocketfft/LICENSE.md
+  licenses/python/numpy-2.4.6/numpy-2.4.6.dist-info/licenses/numpy/linalg/lapack_lite/LICENSE.txt
+  licenses/python/numpy-2.4.6/numpy-2.4.6.dist-info/licenses/numpy/ma/LICENSE
+  licenses/python/numpy-2.4.6/numpy-2.4.6.dist-info/licenses/numpy/random/LICENSE.md
+  licenses/python/numpy-2.4.6/numpy-2.4.6.dist-info/licenses/numpy/random/src/distributions/LICENSE.md
+  licenses/python/numpy-2.4.6/numpy-2.4.6.dist-info/licenses/numpy/random/src/mt19937/LICENSE.md
+  licenses/python/numpy-2.4.6/numpy-2.4.6.dist-info/licenses/numpy/random/src/pcg64/LICENSE.md
+  licenses/python/numpy-2.4.6/numpy-2.4.6.dist-info/licenses/numpy/random/src/philox/LICENSE.md
+  licenses/python/numpy-2.4.6/numpy-2.4.6.dist-info/licenses/numpy/random/src/sfc64/LICENSE.md
+  licenses/python/numpy-2.4.6/numpy-2.4.6.dist-info/licenses/numpy/random/src/splitmix64/LICENSE.md
+  licenses/python/numpy-2.4.6/numpy/_core/include/numpy/random/LICENSE.txt
+  licenses/python/numpy-2.4.6/numpy/ma/LICENSE
+  licenses/python/numpy-2.4.6/numpy/random/LICENSE.md
+
+olefile 0.47
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: BSD
+Version evidence: PyInstaller TOCs and olefile 0.47 distribution metadata.
+Copyright statements:
+  olefile (formerly OleFileIO_PL) is copyright (c) 2005-2023 Philippe Lagadec
+  - Copyright (c) 1997-2009 by Secret Labs AB
+  - Copyright (c) 1995-2009 by Fredrik Lundh
+  olefile (formerly OleFileIO_PL) is copyright (c) 2005-2015 Philippe Lagadec
+  - Copyright (c) 1997-2005 by Secret Labs AB
+  - Copyright (c) 1995-2005 by Fredrik Lundh
+  <p>olefile (formerly OleFileIO_PL) is copyright (c) 2005-2015 Philippe Lagadec (<a href="http://www.decalage.info">http://www.decalage.info</a>)</p>
+  <li>Copyright (c) 1997-2005 by Secret Labs AB</li>
+  <li>Copyright (c) 1995-2005 by Fredrik Lundh</li>
+  olefile (formerly OleFileIO_PL) is copyright (c) 2005-2015 Philippe Lagadec ([http://www.decalage.info](http://www.decalage.info))
+Full licenses / upstream notices:
+  licenses/python/olefile-0.47/olefile-0.47.dist-info/LICENSE.txt
+  licenses/python/olefile-0.47/olefile/LICENSE.txt
+  licenses/python/olefile-0.47/olefile/doc/License.html
+  licenses/python/olefile-0.47/olefile/doc/License.md
+
+onnxruntime 1.31.1
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: MIT License
+Version evidence: PyInstaller TOCs and onnxruntime 1.31.1 distribution metadata.
+Copyright statements:
+  Copyright (c) Microsoft Corporation
+  Copyright (c) 2018 Intel Corporation.
+  Copyright 2008 Google Inc.  All rights reserved.
+  Copyright (c) 2016 Wenzel Jakob <wenzel.jakob@epfl.ch>, All rights reserved.
+  Copyright (c) Facebook, Inc. and Microsoft Corporation. All rights reserved.
+  Copyright 2016-2018 Intel Corporation
+  Copyright (c) 2007 MITSUNARI Shigeo. All rights reserved.
+  Copyright (c) 2015 Microsoft Corporation. All rights reserved.
+  Copyright 2018 The TensorFlow Authors. All rights reserved.
+  Copyright 2017, The TensorFlow Authors.
+  Copyright (c) Microsoft Corporation. All rights reserved.
+  Copyright (c) 2005, NumPy Developers
+  Copyright (c) 2016-     Facebook, Inc            (Adam Paszke)
+  Copyright (c) 2014-     Facebook, Inc            (Soumith Chintala)
+  Copyright (c) 2011-2014 Idiap Research Institute (Ronan Collobert)
+  Copyright (c) 2012-2014 Deepmind Technologies    (Koray Kavukcuoglu)
+  Copyright (c) 2011-2012 NEC Laboratories America (Koray Kavukcuoglu)
+  Copyright (c) 2011-2013 NYU                      (Clement Farabet)
+  Copyright (c) 2006-2010 NEC Laboratories America (Ronan Collobert, Leon Bottou, Iain Melvin, Jason Weston)
+  Copyright (c) 2006      Idiap Research Institute (Samy Bengio)
+  Copyright (c) 2001-2004 Idiap Research Institute (Ronan Collobert, Samy Bengio, Johnny Mariethoz)
+  Copyright (c) 2016-present, Facebook Inc. All rights reserved.
+  Copyright (c) 2016 Facebook Inc.
+  Copyright (c) 2015 Google Inc.
+  Copyright (c) 2015 Yangqing Jia
+  Copyright(c) 2013, 2014, 2015, the respective contributors
+  Copyright(c) 2015, 2016 the respective contributors
+  Copyright (c) 2014-2017 The Regents of the University of California (Regents)
+  Copyright (c) 2014-2017, the respective contributors
+  Copyright (c) 2003-2017 University of Illinois at Urbana-Champaign.
+  Copyright (c) 2016 HalideIR contributors
+  Copyright (c) 2012-2014 MIT CSAIL, Google Inc., and other contributors
+  Copyright (c) 2015 by Contributors
+  Copyright 2017 by Contributors
+  Copyright (c) 1987, 1993, 1994
+  Copyright 2008, Google Inc.
+  Copyright (c) 2007–2018 The scikit-learn developers.
+  Copyright (c) 2009 The RE2 Authors. All rights reserved.
+  Copyright (c) 2018, NVIDIA CORPORATION. All rights reserved.
+  Copyright (c) 2018 Open Neural Network Exchange
+  Copyright (c) 2017 - 2022 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+  Copyright 2014 Google Inc.
+  Copyright (c) 2008, Google Inc.
+  Copyright (c) 2003-2008, Jouni Malinen <j@w1.fi> and contributors
+  Copyright (c) 2013-2019 Niels Lohmann
+  Copyright (c) 2018 Microsoft
+  Copyright (c) 2004-2010 The Trustees of Indiana University and Indiana
+  Copyright (c) 2004-2017 The University of Tennessee and The University
+  Copyright (c) 2004-2010 High Performance Computing Center Stuttgart,
+  Copyright (c) 2004-2008 The Regents of the University of California.
+  Copyright (c) 2006-2017 Los Alamos National Security, LLC.  All rights
+  Copyright (c) 2006-2017 Cisco Systems, Inc.  All rights reserved.
+  Copyright (c) 2006-2010 Voltaire, Inc. All rights reserved.
+  Copyright (c) 2006-2017 Sandia National Laboratories. All rights reserved.
+  Copyright (c) 2006-2010 Sun Microsystems, Inc.  All rights reserved.
+  Copyright (c) 2006-2017 The University of Houston. All rights reserved.
+  Copyright (c) 2006-2009 Myricom, Inc.  All rights reserved.
+  Copyright (c) 2007-2017 UT-Battelle, LLC. All rights reserved.
+  Copyright (c) 2007-2017 IBM Corporation.  All rights reserved.
+  Copyright (c) 1998-2005 Forschungszentrum Juelich, Juelich Supercomputing
+  Copyright (c) 2005-2008 ZIH, TU Dresden, Federal Republic of Germany
+  Copyright (c) 2007      Evergrid, Inc. All rights reserved.
+  Copyright (c) 2008      Chelsio, Inc.  All rights reserved.
+  Copyright (c) 2008-2009 Institut National de Recherche en
+  Copyright (c) 2007      Lawrence Livermore National Security, LLC.
+  Copyright (c) 2007-2017 Mellanox Technologies.  All rights reserved.
+  Copyright (c) 2006-2010 QLogic Corporation.  All rights reserved.
+  Copyright (c) 2008-2017 Oak Ridge National Labs.  All rights reserved.
+  Copyright (c) 2006-2012 Oracle and/or its affiliates.  All rights reserved.
+  Copyright (c) 2009-2015 Bull SAS.  All rights reserved.
+  Copyright (c) 2010      ARM ltd.  All rights reserved.
+  Copyright (c) 2016      ARM, Inc.  All rights reserved.
+  Copyright (c) 2010-2011 Alex Brick .  All rights reserved.
+  Copyright (c) 2012      The University of Wisconsin-La Crosse. All rights
+  Copyright (c) 2013-2016 Intel, Inc. All rights reserved.
+  Copyright (c) 2011-2017 NVIDIA Corporation.  All rights reserved.
+  Copyright (c) 2016      Broadcom Limited.  All rights reserved.
+  Copyright (c) 2011-2017 Fujitsu Limited.  All rights reserved.
+  Copyright (c) 2014-2015 Hewlett-Packard Development Company, LP.  All
+  Copyright (c) 2013-2017 Research Organization for Information Science (RIST).
+  Copyright (c) 2017-2018 Amazon.com, Inc. or its affiliates.  All Rights
+  Copyright (c) 2018      DataDirect Networks. All rights reserved.
+  Copyright (c) 2018-2019 Triad National Security, LLC. All rights reserved.
+  Copyright (C) 2017 The Android Open Source Project
+  Copyright (c) 2014-2015      UT-Battelle, LLC. All rights reserved.
+  Copyright (C) 2014-2020      Mellanox Technologies Ltd. All rights reserved.
+  Copyright (C) 2014-2015      The University of Houston System. All rights reserved.
+  Copyright (C) 2015           The University of Tennessee and The University
+  Copyright (C) 2016-2020      ARM Ltd. All rights reserved.
+  Copyright (c) 2016           Los Alamos National Security, LLC. All rights reserved.
+  Copyright (C) 2016-2020      Advanced Micro Devices, Inc.  All rights reserved.
+  Copyright (C) 2019           UChicago Argonne, LLC.  All rights reserved.
+  Copyright (c) 2018-2020      NVIDIA CORPORATION. All rights reserved.
+  Copyright (C) 2020           Huawei Technologies Co., Ltd. All rights reserved.
+  Copyright (C) 2016-2020      Stony Brook University. All rights reserved.
+  Copyright (c) 2019, Lisandro Dalcin.
+  Copyright (C) 2008-2011 INADA Naoki <songofacandy@gmail.com>
+  Copyright (c) 2017 Tzu-Wei Huang
+  Copyright 2017 The TensorFlow Authors.  All rights reserved.
+  Copyright (c) 2012-2016 Nicola Iarocci.
+  Copyright (c) 2013 Matthew Stevens
+  Copyright (c) 2018 Emscripten authors (see AUTHORS in Emscripten)
+  Copyright (c) 2020, Apple Inc. All rights reserved.
+  Copyright (c) Facebook, Inc. and its affiliates.
+  Copyright (c) 2019 Google LLC
+  Copyright (c) 2017-2018 Facebook Inc.
+  Copyright (C) 2012-2017 Georgia Institute of Technology
+  Copyright (C) 2010-2012 Marat Dukhan
+  Copyright (c) Facebook, Inc. and its affiliates. All rights reserved.
+  Copyright 2019 Google LLC
+  Copyright © 1997-2011 by Secret Labs AB
+  Copyright © 1995-2011 by Fredrik Lundh
+  Copyright © 2010-2023 by Alex Clark and contributors
+  Copyright (C) 2015 THL A29 Limited, a Tencent company, and Milo Yip.  All rights reserved.
+  Copyright (c) 2006-2013 Alexander Chemeris
+  Copyright (c) 2002 JSON.org
+  Copyright (c) 2022, NVIDIA CORPORATION. All rights reserved.
+  Copyright (c) 2018-2021 Microsoft Corporation, Daan Leijen
+  Copyright (C) Daniel Stenberg, <daniel@haxx.se>, and many
+  Copyright 2016-2019 Intel Corporation
+  Copyright 2018 YANDEX LLC
+  Copyright (c) 2022, the respective contributors, as shown by the AUTHORS file.
+  Copyright 2017-2023 The Dawn & Tint Authors
+  Copyright 2024-2025 Arm Limited and/or its affiliates <open-source-office@arm.com>
+  Copyright (c) 2025 DeepSeek
+Full licenses / upstream notices:
+  licenses/python/onnxruntime-1.31.1/onnxruntime/LICENSE
+  licenses/python/onnxruntime-1.31.1/onnxruntime/ThirdPartyNotices.txt
+
+openpyxl 3.1.5
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: MIT
+Version evidence: PyInstaller TOCs and openpyxl 3.1.5 distribution metadata.
+Copyright statements:
+  Copyright (c) 2010 openpyxl
+Full licenses / upstream notices:
+  licenses/python/openpyxl-3.1.5/openpyxl-3.1.5.dist-info/LICENCE.rst
+
+pandas 3.1.0
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: BSD-3-Clause
+Version evidence: PyInstaller TOCs and pandas 3.1.0 distribution metadata.
+Copyright statements:
+  Copyright (c) 2008-2011, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team
+  Copyright (c) 2011-2026, Open source contributors.
+  Copyright (c) 2010-2019 Keith Goodman
+  Copyright (c) 2019 Bottleneck Developers
+  Copyright 2017- Paul Ganssle <paul@ganssle.io>
+  Copyright 2017- dateutil contributors (see AUTHORS file)
+  Copyright (c) 2003-2011 - Gustavo Niemeyer <gustavo@niemeyer.net>
+  Copyright (c) 2012-2014 - Tomi Pieviläinen <tomi.pievilainen@iki.fi>
+  Copyright (c) 2014-2016 - Yaron de Leeuw <me@jarondl.net>
+  Copyright (c) 2015-     - Paul Ganssle <paul@ganssle.io>
+  Copyright (c) 2015-     - dateutil contributors (see AUTHORS file)
+  Copyright (c) 2019 Hadley Wickham; RStudio; and Evan Miller
+  Copyright (c) 2008-     Attractive Chaos <attractor@live.co.uk>
+  Copyright © 2005-2020 Rich Felker, et al.
+  src/regex/tre*) is Copyright © 2001-2008 Ville Laurikari and licensed
+  Copyright © 1993,2004 Sun Microsystems or
+  Copyright © 2003-2011 David Schultz or
+  Copyright © 2003-2009 Steven G. Kargl or
+  Copyright © 2003-2009 Bruce D. Evans or
+  Copyright © 2008 Stephen L. Moshier or
+  Copyright © 2017-2018 Arm Limited
+  The ARM memcpy code (src/string/arm/memcpy.S) is Copyright © 2008
+  Copyright © 1999-2019, Arm Limited.
+  Copyright © 1994 David Burren. It is licensed under a BSD license.
+  The smoothsort implementation (src/stdlib/qsort.c) is Copyright © 2011
+  Copyright (c) 2005-2023, NumPy Developers.
+  Copyright (c) Donald Stufft and individual contributors.
+  i.e., "Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010,
+  License Agreement and CNRI's notice of copyright, i.e., "Copyright (c)
+  Copyright (c) 1991 - 1995, Stichting Mathematisch Centrum Amsterdam,
+  Copyright (c) 2014, Al Sweigart
+  Copyright (c) 2017 Anthony Sottile
+  Copyright (c) 2015-2019 Jared Hobbs
+  > Copyright (c) 2012-2016: Dahua Lin, Simon Byrne, Andreas Noack,
+  Copyright (c) 2014, Electronic Arts Inc.
+  Copyright 2005, 2006, 2007
+  Copyright (c) 1988-1993 The Regents of the University of California.
+  Copyright (c) 1994 Sun Microsystems, Inc.
+  Copyright (c) 2016, Johan Mabille, Sylvain Corlay, Wolf Vollprecht and Martin Renou
+  Copyright (c) 2016, QuantStack
+  Copyright (c) 2018, Serge Guelton
+  Copyright 2021 The fast_float authors
+  Copyright (c) 2021 The fast_float authors
+Full licenses / upstream notices:
+  licenses/python/pandas-3.1.0/pandas-3.1.0.dist-info/licenses/LICENSE
+  licenses/python/pandas-3.1.0/pandas-3.1.0.dist-info/licenses/LICENSES/BOTTLENECK_LICENCE
+  licenses/python/pandas-3.1.0/pandas-3.1.0.dist-info/licenses/LICENSES/DATEUTIL_LICENSE
+  licenses/python/pandas-3.1.0/pandas-3.1.0.dist-info/licenses/LICENSES/HAVEN_LICENSE
+  licenses/python/pandas-3.1.0/pandas-3.1.0.dist-info/licenses/LICENSES/HAVEN_MIT
+  licenses/python/pandas-3.1.0/pandas-3.1.0.dist-info/licenses/LICENSES/KLIB_LICENSE
+  licenses/python/pandas-3.1.0/pandas-3.1.0.dist-info/licenses/LICENSES/MUSL_LICENSE
+  licenses/python/pandas-3.1.0/pandas-3.1.0.dist-info/licenses/LICENSES/NUMPY_LICENSE
+  licenses/python/pandas-3.1.0/pandas-3.1.0.dist-info/licenses/LICENSES/PACKAGING_LICENSE
+  licenses/python/pandas-3.1.0/pandas-3.1.0.dist-info/licenses/LICENSES/PSF_LICENSE
+  licenses/python/pandas-3.1.0/pandas-3.1.0.dist-info/licenses/LICENSES/PYPERCLIP_LICENSE
+  licenses/python/pandas-3.1.0/pandas-3.1.0.dist-info/licenses/LICENSES/PYUPGRADE_LICENSE
+  licenses/python/pandas-3.1.0/pandas-3.1.0.dist-info/licenses/LICENSES/SAS7BDAT_LICENSE
+  licenses/python/pandas-3.1.0/pandas-3.1.0.dist-info/licenses/LICENSES/STATSBASE_JL_LICENSE
+  licenses/python/pandas-3.1.0/pandas-3.1.0.dist-info/licenses/LICENSES/ULTRAJSON_LICENSE
+  licenses/python/pandas-3.1.0/pandas-3.1.0.dist-info/licenses/LICENSES/XSIMD_LICENSE
+  licenses/python/pandas-3.1.0/pandas-3.1.0.dist-info/licenses/subprojects/fast_float-8.2.10/LICENSE-APACHE
+  licenses/python/pandas-3.1.0/pandas-3.1.0.dist-info/licenses/subprojects/fast_float-8.2.10/LICENSE-BOOST
+  licenses/python/pandas-3.1.0/pandas-3.1.0.dist-info/licenses/subprojects/fast_float-8.2.10/LICENSE-MIT
+
+pdfminer.six 20260107
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: MIT
+Version evidence: PyInstaller TOCs and pdfminer.six 20260107 distribution metadata.
+Copyright statements:
+  Copyright (c) 2004-2016  Yusuke Shinyama <yusuke at shinyama dot jp>
+Full licenses / upstream notices:
+  licenses/python/pdfminer.six-20260107/pdfminer_six-20260107.dist-info/licenses/LICENSE
+
+pdfplumber 0.11.10
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: See full text; metadata does not identify a complete license
+Version evidence: PyInstaller TOCs and pdfplumber 0.11.10 distribution metadata.
+Copyright statements:
+  Copyright (c) 2015, Jeremy Singer-Vine
+Full licenses / upstream notices:
+  licenses/python/pdfplumber-0.11.10/pdfplumber-0.11.10.dist-info/licenses/LICENSE.txt
+
+pillow 13.0.0
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: MIT-CMU
+Version evidence: PyInstaller TOCs and pillow 13.0.0 distribution metadata.
+Copyright statements:
+  Copyright © 1997-2011 by Secret Labs AB
+  Copyright © 1995-2011 by Fredrik Lundh and contributors
+  Copyright © 2010 by Jeffrey 'Alex' Clark and contributors
+  Copyright (c) 2009, 2010, 2013-2016 by the Brotli Authors.
+  Copyright 1996-2002, 2006 by
+  The FreeType  Project is copyright (C) 1996-2000  by David Turner,
+  Copyright (C) 1989, 1991 Free Software Foundation, Inc.
+  Gnomovision version 69, Copyright (C) year  name of author
+  Copyright © 2010-2022  Google, Inc.
+  Copyright © 2015-2020  Ebrahim Byagowi
+  Copyright © 2019,2020  Facebook, Inc.
+  Copyright © 2012,2015  Mozilla Foundation
+  Copyright © 2011  Codethink Limited
+  Copyright © 2008,2010  Nokia Corporation and/or its subsidiary(-ies)
+  Copyright © 2009  Keith Stribley
+  Copyright © 2011  Martin Hosken and SIL International
+  Copyright © 2007  Chris Wilson
+  Copyright © 2005,2006,2020,2021,2022,2023  Behdad Esfahbod
+  Copyright © 2004,2007,2008,2009,2010,2013,2021,2022,2023  Red Hat, Inc.
+  Copyright © 1998-2005  David Turner and Werner Lemberg
+  Copyright © 2016  Igalia S.L.
+  Copyright © 2022  Matthias Clasen
+  Copyright © 2018,2021  Khaled Hosny
+  Copyright © 2018,2019,2020  Adobe, Inc
+  Copyright © 2013-2015  Alexei Podtelezhnikov
+  Copyright (c) 2023 Marti Maria Saguer
+  Copyright 2019 Joe Drago. All rights reserved.
+  Copyright © 2018-2019, VideoLAN and dav1d authors
+  This software is copyright (C) 1991-2013, Thomas G. Lane, Guido Vollbeding.
+  Copyright 2020 Emmanuel Gil Peyrot. All rights reserved.
+  Copyright 2011 The LibYuv Project Authors. All rights reserved.
+  This software is copyright (C) 1991-2020, Thomas G. Lane, Guido Vollbeding.
+  Copyright (C) 2009-2026 D. R. Commander<br>
+  Copyright (C) 2018-2023 Randy <randy408@protonmail.com>
+  Copyright (c) 1995-2026 The PNG Reference Library Authors.
+  Copyright (c) 2018-2026 Cosmin Truta.
+  Copyright (c) 2000-2002, 2004, 2006-2018 Glenn Randers-Pehrson.
+  Copyright (c) 1996-1997 Andreas Dilger.
+  Copyright (c) 1995-1996 Guy Eric Schalnat, Group 42, Inc.
+  Copyright (c) 2000-2002, 2004, 2006-2018 Glenn Randers-Pehrson, are
+  Copyright (c) 1998-2000 Glenn Randers-Pehrson, are derived from
+  Copyright (c) 1996-1997 Andreas Dilger, are derived from libpng-0.88,
+  Copyright (c) 2010, Google Inc. All rights reserved.
+  Copyright (c) 2002-2014, Universite catholique de Louvain (UCL), Belgium
+  Copyright (c) 2002-2014, Professor Benoit Macq
+  Copyright (c) 2003-2014, Antonin Descampe
+  Copyright (c) 2003-2009, Francois-Olivier Devaux
+  Copyright (c) 2005, Herve Drolon, FreeImage Team
+  Copyright (c) 2002-2003, Yannick Verschueren
+  Copyright (c) 2001-2003, David Janssens
+  Copyright (c) 2011-2012, Centre National d'Etudes Spatiales (CNES), France
+  Copyright (c) 2012, CS Systemes d'Information, France
+  Copyright © 1988-1997 Sam Leffler\
+  Copyright © 1991-1997 Silicon Graphics, Inc.
+  Copyright (c) 1985, 1986 The Regents of the University of California.
+  Copyright (C) The XZ Utils authors and contributors
+Full licenses / upstream notices:
+  licenses/python/pillow-13.0.0/pillow-13.0.0.dist-info/licenses/LICENSE
+
+pyinstaller 6.22.3
+Scope: PyInstaller bootloader/runtime hooks
+Terms: GPLv2-or-later with a special exception which allows to use PyInstaller to build and distribute non-free programs (including commercial ones)
+Choice/conditions: GPL-2.0-or-later WITH the embedded bootloader exception; runtime hooks/fake-modules are Apache-2.0. This is not a blanket MIT executable.
+Version evidence: PyInstaller TOCs and pyinstaller 6.22.3 distribution metadata.
+Copyright statements:
+  Copyright (c) 2010-2023, PyInstaller Development Team
+  Copyright (c) 2005-2009, Giovanni Bajo
+  Based on previous work under copyright (c) 2002 McMillan Enterprises, Inc.
+  # Copyright (c) 2005-2023, PyInstaller Development Team.
+  Copyright (C) 1989, 1991 Free Software Foundation, Inc.
+Full licenses / upstream notices:
+  licenses/python/pyinstaller-6.22.3/pyinstaller-6.22.3.dist-info/licenses/COPYING.txt
+
+pyinstaller-hooks-contrib 2026.9
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: See full text; metadata does not identify a complete license
+Choice/conditions: Only rthooks are in scope: Apache-2.0. Standard build hooks are GPL-2.0-or-later and are not application runtime code.
+Version evidence: PyInstaller TOCs and pyinstaller-hooks-contrib 2026.9 distribution metadata.
+Copyright statements:
+  Copyright (C) 1989, 1991 Free Software Foundation, Inc.
+Full licenses / upstream notices:
+  licenses/python/pyinstaller-hooks-contrib-2026.9/_pyinstaller_hooks_contrib/stdhooks/__pycache__/hook-yapf_third_party.cpython-311.pyc
+  licenses/python/pyinstaller-hooks-contrib-2026.9/pyinstaller_hooks_contrib-2026.9.dist-info/licenses/LICENSE
+
+pypdfium2 5.14.0
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: BSD-3-Clause, Apache-2.0, dependency licenses
+Version evidence: PyInstaller TOCs and pypdfium2 5.14.0 distribution metadata.
+Copyright statements:
+  // Copyright (C) 2002-2005 Maxim Shemanarev (http://www.antigrain.com)
+  Copyright (c) 2021 The fast_float authors
+  Copyright 1996-2002, 2006 by
+  The FreeType  Project is copyright (C) 1996-2000  by David Turner,
+  Copyright © 2016-2025 Unicode, Inc.
+  Copyright (c) 1995-2016 International Business Machines Corporation and others
+  #  Copyright (C) 2006-2008, Google Inc.
+  #   * Copyright (c) 1999 TaBE Project.
+  #   * Copyright (c) 1999 Pai-Hsiang Hsiao.
+  #   * Copyright (c) 1999 Computer Systems and Communication Lab,
+  #  Copyright 1996 Chih-Hao Tsai @ Beckman Institute,
+  #  Copyright 2000, 2001, 2002, 2003 Nara Institute of Science
+  # Copyright (C) 2016 and later: Unicode, Inc. and others.
+  # Copyright (c) 2015 International Business Machines Corporation
+  #  Copyright (C) 2013 Brian Eugene Wilson, Robert Martin Campbell.
+  #  Copyright (c) 2014 International Business Machines Corporation
+  #  Copyright (c) 2013, LeRoy Benjamin Sharon
+  Copyright 2006-2011, the V8 project authors. All rights reserved.
+  Copyright (c) 2013-2022 Niels Lohmann
+  Copyright © 2004 Scott James Remnant <scott@netsplit.com>.
+  Copyright © 2012-2015 Dan Nicholson <dbn.lists@gmail.com>
+  Copyright 1991 by the Massachusetts Institute of Technology
+  Copyright (c) 1997-date Stuart Langridge
+  //  Copyright (c) 1998-2026 Marti Maria Saguer
+  This software is copyright (C) 1991-2020, Thomas G. Lane, Guido Vollbeding.
+  Copyright (C)2009-2024 D. R. Commander.  All Rights Reserved.<br>
+  Copyright (C)2015 Viktor Szathmáry.  All Rights Reserved.
+  Copyright (c) 2005, Herve Drolon, FreeImage Team
+  Copyright (c) 2008, 2011-2012, Centre National d'Etudes Spatiales (CNES), FR
+  Copyright (c) 2012, CS Systemes d'Information, France
+  Copyright (c) 1995-2026 The PNG Reference Library Authors.
+  Copyright (c) 2018-2026 Cosmin Truta.
+  Copyright (c) 2000-2002, 2004, 2006-2018 Glenn Randers-Pehrson.
+  Copyright (c) 1996-1997 Andreas Dilger.
+  Copyright (c) 1995-1996 Guy Eric Schalnat, Group 42, Inc.
+  Copyright (c) 2000-2002, 2004, 2006-2018 Glenn Randers-Pehrson, are
+  Copyright (c) 1998-2000 Glenn Randers-Pehrson, are derived from
+  Copyright (c) 1996-1997 Andreas Dilger, are derived from libpng-0.88,
+  Copyright (c) 2007-2019 University of Illinois at Urbana-Champaign.
+  Copyright 2014-2025 Benoit Blanchon
+  Copyright 2014 The PDFium Authors
+  Copyright 2021 The simdutf authors
+  Copyright (C) 1995-2026 Jean-loup Gailly and Mark Adler
+Full licenses / upstream notices:
+  licenses/python/pypdfium2-5.14.0/pypdfium2-5.14.0.dist-info/licenses/LICENSES/Apache-2.0.txt
+  licenses/python/pypdfium2-5.14.0/pypdfium2-5.14.0.dist-info/licenses/LICENSES/BSD-3-Clause.txt
+  licenses/python/pypdfium2-5.14.0/pypdfium2-5.14.0.dist-info/licenses/LICENSES/CC-BY-4.0.txt
+  licenses/python/pypdfium2-5.14.0/pypdfium2-5.14.0.dist-info/licenses/data/windows_x64/BUILD_LICENSES/abseil.txt
+  licenses/python/pypdfium2-5.14.0/pypdfium2-5.14.0.dist-info/licenses/data/windows_x64/BUILD_LICENSES/agg23.txt
+  licenses/python/pypdfium2-5.14.0/pypdfium2-5.14.0.dist-info/licenses/data/windows_x64/BUILD_LICENSES/fast_float.txt
+  licenses/python/pypdfium2-5.14.0/pypdfium2-5.14.0.dist-info/licenses/data/windows_x64/BUILD_LICENSES/freetype.txt
+  licenses/python/pypdfium2-5.14.0/pypdfium2-5.14.0.dist-info/licenses/data/windows_x64/BUILD_LICENSES/icu.txt
+  licenses/python/pypdfium2-5.14.0/pypdfium2-5.14.0.dist-info/licenses/data/windows_x64/BUILD_LICENSES/lcms.txt
+  licenses/python/pypdfium2-5.14.0/pypdfium2-5.14.0.dist-info/licenses/data/windows_x64/BUILD_LICENSES/libjpeg_turbo.ijg
+  licenses/python/pypdfium2-5.14.0/pypdfium2-5.14.0.dist-info/licenses/data/windows_x64/BUILD_LICENSES/libjpeg_turbo.md
+  licenses/python/pypdfium2-5.14.0/pypdfium2-5.14.0.dist-info/licenses/data/windows_x64/BUILD_LICENSES/libopenjpeg.txt
+  licenses/python/pypdfium2-5.14.0/pypdfium2-5.14.0.dist-info/licenses/data/windows_x64/BUILD_LICENSES/libpng.txt
+  licenses/python/pypdfium2-5.14.0/pypdfium2-5.14.0.dist-info/licenses/data/windows_x64/BUILD_LICENSES/llvm-libc.txt
+  licenses/python/pypdfium2-5.14.0/pypdfium2-5.14.0.dist-info/licenses/data/windows_x64/BUILD_LICENSES/pdfium-binaries.txt
+  licenses/python/pypdfium2-5.14.0/pypdfium2-5.14.0.dist-info/licenses/data/windows_x64/BUILD_LICENSES/pdfium.txt
+  licenses/python/pypdfium2-5.14.0/pypdfium2-5.14.0.dist-info/licenses/data/windows_x64/BUILD_LICENSES/simdutf.txt
+  licenses/python/pypdfium2-5.14.0/pypdfium2-5.14.0.dist-info/licenses/data/windows_x64/BUILD_LICENSES/zlib.txt
+
+python-dateutil 4.0.0
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: BSD-3-Clause
+Version evidence: PyInstaller TOCs and python-dateutil 4.0.0 distribution metadata.
+Copyright statements:
+  Copyright 2017- Paul Ganssle <paul@ganssle.io>
+  Copyright 2017- dateutil contributors (see AUTHORS file)
+  Copyright (c) 2003-2011 - Gustavo Niemeyer <gustavo@niemeyer.net>
+  Copyright (c) 2012-2014 - Tomi Pieviläinen <tomi.pievilainen@iki.fi>
+  Copyright (c) 2014-2016 - Yaron de Leeuw <me@jarondl.net>
+  Copyright (c) 2015-     - Paul Ganssle <paul@ganssle.io>
+  Copyright (c) 2015-     - dateutil contributors (see AUTHORS file)
+Full licenses / upstream notices:
+  licenses/python/python-dateutil-4.0.0/python_dateutil-4.0.0.dist-info/licenses/AUTHORS.md
+  licenses/python/python-dateutil-4.0.0/python_dateutil-4.0.0.dist-info/licenses/LICENSE
+
+python-pptx 1.0.2
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: MIT
+Version evidence: PyInstaller TOCs and python-pptx 1.0.2 distribution metadata.
+Copyright statements:
+  Copyright (c) 2013 Steve Canny, https://github.com/scanny
+Full licenses / upstream notices:
+  licenses/python/python-pptx-1.0.2/python_pptx-1.0.2.dist-info/LICENSE
+
+requests 2.34.2
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: Apache-2.0
+Version evidence: PyInstaller TOCs and requests 2.34.2 distribution metadata.
+Copyright statements:
+  Copyright 2019 Kenneth Reitz
+Full licenses / upstream notices:
+  licenses/python/requests-2.34.2/requests-2.34.2.dist-info/licenses/LICENSE
+  licenses/python/requests-2.34.2/requests-2.34.2.dist-info/licenses/NOTICE
+
+six 1.17.0
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: MIT
+Version evidence: PyInstaller TOCs and six 1.17.0 distribution metadata.
+Copyright statements:
+  Copyright (c) 2010-2024 Benjamin Peterson
+Full licenses / upstream notices:
+  licenses/python/six-1.17.0/six-1.17.0.dist-info/LICENSE
+
+soupsieve 4.0
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: MIT
+Version evidence: PyInstaller TOCs and soupsieve 4.0 distribution metadata.
+Copyright statements:
+  Copyright (c) 2018 - 2026 Isaac Muse <isaacmuse@gmail.com>
+Full licenses / upstream notices:
+  licenses/python/soupsieve-4.0/soupsieve-4.0.dist-info/licenses/LICENSE.md
+
+typing_extensions 4.16.0
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: PSF-2.0
+Version evidence: PyInstaller TOCs and typing_extensions 4.16.0 distribution metadata.
+Copyright statements:
+  i.e., "Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010,
+  License Agreement and CNRI's notice of copyright, i.e., "Copyright (c)
+  Copyright (c) 1991 - 1995, Stichting Mathematisch Centrum Amsterdam,
+Full licenses / upstream notices:
+  licenses/python/typing_extensions-4.16.0/typing_extensions-4.16.0.dist-info/licenses/LICENSE
+
+tzdata 2026.6
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: Apache-2.0
+Version evidence: PyInstaller TOCs and tzdata 2026.6 distribution metadata.
+Copyright statements:
+  Copyright (c) 2020, Paul Ganssle (Google)
+  Copyright (c) 2026, Stan Ulbrych
+Full licenses / upstream notices:
+  licenses/python/tzdata-2026.6/tzdata-2026.6.dist-info/licenses/LICENSE
+  licenses/python/tzdata-2026.6/tzdata-2026.6.dist-info/licenses/licenses/LICENSE_APACHE
+
+urllib3 2.8.0
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: MIT
+Version evidence: PyInstaller TOCs and urllib3 2.8.0 distribution metadata.
+Copyright statements:
+  Copyright (c) 2008-2020 Andrey Petrov and contributors.
+Full licenses / upstream notices:
+  licenses/python/urllib3-2.8.0/urllib3-2.8.0.dist-info/licenses/LICENSE.txt
+
+xlrd 2.0.2
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: BSD
+Version evidence: PyInstaller TOCs and xlrd 2.0.2 distribution metadata.
+Copyright statements:
+  Portions copyright © 2005-2009, Stephen John Machin, Lingfo Pty Ltd
+  Copyright (c) 2001 David Giffin.
+  Based on the the Java version: Andrew Khan Copyright (c) 2000.
+Full licenses / upstream notices:
+  licenses/python/xlrd-2.0.2/xlrd-2.0.2.dist-info/LICENSE
+
+xlsxwriter 3.3.1
+Scope: markitdown-cli.exe PYZ / _internal
+Terms: BSD-2-Clause
+Version evidence: PyInstaller TOCs and xlsxwriter 3.3.1 distribution metadata.
+Copyright statements:
+  Copyright (c) 2013-2026, John McNamara <jmcnamara@cpan.org>
+Full licenses / upstream notices:
+  licenses/python/xlsxwriter-3.3.1/xlsxwriter-3.3.1.dist-info/licenses/LICENSE.txt
+
+Go modules and bundled language runtimes
+========================================
+
+github.com/richardlehane/mscfb v1.0.7
+Scope: ticket-export.exe
+Terms: Apache-2.0
+Version evidence: packaged Go build information or exact installed runtime distribution.
+Copyright: see full texts and retained source headers; individual statement review remains open.
+Full licenses / upstream notices:
+  licenses/go/github.com__richardlehane__mscfb-v1.0.7/LICENSE.txt
+
+github.com/richardlehane/msoleps v1.0.6
+Scope: ticket-export.exe
+Terms: Apache-2.0
+Version evidence: packaged Go build information or exact installed runtime distribution.
+Copyright: see full texts and retained source headers; individual statement review remains open.
+Full licenses / upstream notices:
+  licenses/go/github.com__richardlehane__msoleps-v1.0.6/LICENSE.txt
+
+github.com/tiendc/go-deepcopy v1.7.2
+Scope: ticket-export.exe
+Terms: MIT
+Version evidence: packaged Go build information or exact installed runtime distribution.
+Copyright statements:
+  Copyright (c) 2023 tiendc
+Full licenses / upstream notices:
+  licenses/go/github.com__tiendc__go-deepcopy-v1.7.2/LICENSE
+
+github.com/xuri/efp v0.0.1
+Scope: ticket-export.exe
+Terms: BSD-3-Clause
+Version evidence: packaged Go build information or exact installed runtime distribution.
+Copyright statements:
+  Copyright (c) 2017 - 2025 Ri Xu All rights reserved.
+Full licenses / upstream notices:
+  licenses/go/github.com__xuri__efp-v0.0.1/LICENSE
+
+github.com/xuri/excelize/v2 v2.11.0
+Scope: ticket-export.exe
+Terms: BSD-3-Clause
+Version evidence: packaged Go build information or exact installed runtime distribution.
+Copyright statements:
+  Copyright (c) 2016-2026 The excelize Authors.
+  Copyright (c) 2011-2017 Geoffrey J. Teale
+Full licenses / upstream notices:
+  licenses/go/github.com__xuri__excelize__v2-v2.11.0/LICENSE
+
+github.com/xuri/nfp v0.0.2-0.20250530014748-2ddeb826f9a9
+Scope: ticket-export.exe
+Terms: BSD-3-Clause
+Version evidence: packaged Go build information or exact installed runtime distribution.
+Copyright statements:
+  Copyright (c) 2022-2025 Ri Xu All rights reserved.
+Full licenses / upstream notices:
+  licenses/go/github.com__xuri__nfp-v0.0.2-0.20250530014748-2ddeb826f9a9/LICENSE
+
+golang.org/x/crypto v0.53.0
+Scope: ticket-export.exe
+Terms: BSD-3-Clause
+Version evidence: packaged Go build information or exact installed runtime distribution.
+Copyright statements:
+  Copyright 2009 The Go Authors.
+Full licenses / upstream notices:
+  licenses/go/golang.org__x__crypto-v0.53.0/LICENSE
+
+golang.org/x/net v0.56.0
+Scope: ticket-export.exe
+Terms: BSD-3-Clause
+Version evidence: packaged Go build information or exact installed runtime distribution.
+Copyright statements:
+  Copyright 2009 The Go Authors.
+Full licenses / upstream notices:
+  licenses/go/golang.org__x__net-v0.56.0/LICENSE
+
+golang.org/x/sys v0.49.0
+Scope: ticket-export.exe
+Terms: BSD-3-Clause
+Version evidence: packaged Go build information or exact installed runtime distribution.
+Copyright statements:
+  Copyright 2009 The Go Authors.
+Full licenses / upstream notices:
+  licenses/go/golang.org__x__sys-v0.49.0/LICENSE
+
+golang.org/x/text v0.38.0
+Scope: ticket-export.exe
+Terms: BSD-3-Clause
+Version evidence: packaged Go build information or exact installed runtime distribution.
+Copyright statements:
+  Copyright 2009 The Go Authors.
+Full licenses / upstream notices:
+  licenses/go/golang.org__x__text-v0.38.0/LICENSE
+
+Go 1.27.1
+Scope: ticket-export.exe runtime
+Terms: BSD-3-Clause
+Version evidence: packaged Go build information or exact installed runtime distribution.
+Copyright statements:
+  Copyright 2009 The Go Authors.
+Full licenses / upstream notices:
+  licenses/go/Go-1.27.1/LICENSE
+
+Node.js 24.15.0
+Scope: ticket-demo.exe, embedding.exe, rag/rag.exe, rag/rag-service.exe
+Terms: Composite distribution terms; see full license
+Version evidence: packaged Go build information or exact installed runtime distribution.
+Copyright statements:
+  Copyright (C) 2012-2022 by various contributors (see AUTHORS)
+  Copyright (c) 1998 Massachusetts Institute of Technology
+  Copyright (c) 2007 - 2023 Daniel Stenberg with many contributors, see AUTHORS
+  Copyright 2026 Yagiz Nizipli
+  Copyright (c) 2019 Intel Corporation. All rights reserved.
+  Copyright (c) Marco Ippolito and Amaro contributors
+  Copyright 2024 SWC contributors.
+  Copyright © 2016-2025 Unicode, Inc.
+  Copyright (c) 1995-2016 International Business Machines Corporation and others
+  #  Copyright (C) 2006-2008, Google Inc.
+  #   * Copyright (c) 1999 TaBE Project.
+  #   * Copyright (c) 1999 Pai-Hsiang Hsiao.
+  #   * Copyright (c) 1999 Computer Systems and Communication Lab,
+  #  Copyright 1996 Chih-Hao Tsai @ Beckman Institute,
+  #  Copyright 2000, 2001, 2002, 2003 Nara Institute of Science
+  # Copyright (C) 2016 and later: Unicode, Inc. and others.
+  # Copyright (c) 2015 International Business Machines Corporation
+  #  Copyright (C) 2013 Brian Eugene Wilson, Robert Martin Campbell.
+  #  Copyright (c) 2014 International Business Machines Corporation
+  #  Copyright (c) 2013, LeRoy Benjamin Sharon
+  Copyright 2006-2011, the V8 project authors. All rights reserved.
+  Copyright (c) 2013-2022 Niels Lohmann
+  Copyright © 2004 Scott James Remnant .
+  Copyright © 2012-2015 Dan Nicholson
+  Copyright 1991 by the Massachusetts Institute of Technology
+  Copyright (c) 1997-date Stuart Langridge
+  Copyright (c) 2015-present libuv project contributors.
+  Copyright 2017 - 2025 R. Thomas
+  Copyright 2017 - 2025 Quarkslab
+  Copyright © Corepack contributors**
+  Copyright (c) Matteo Collina and Undici contributors
+  Copyright (c) 2022 Postman, Inc
+  Copyright 2017 - 2022 R. Thomas
+  Copyright 2017 - 2022 Quarkslab
+  Copyright 2014, the V8 project authors. All rights reserved.
+  Copyright (c) 2016 Jean-Philippe Aumasson <jeanphilippe.aumasson@gmail.com>
+  Copyright (C) 1995-2024 Jean-loup Gailly and Mark Adler
+  Copyright 2018-2025 The simdjson authors
+  Copyright 2021 The simdutf authors
+  Copyright 2023 Yagiz Nizipli and Daniel Lemire
+  Copyright (c) npm, Inc. and Contributors
+  Copyright (c) their respective copyright owners
+  Copyright (c) Mathias Pettersson and Brian Hammond
+  Copyright (c) Tjarda Koster, https://jelloween.deviantart.com
+  Copyright (c) 2000-2006, The Perl Foundation.
+  Copyright (c) 2020 Node.js contributors. All rights reserved.
+  Copyright (c) 2009 Google Inc. All rights reserved.
+  // Copyright 2016 The Chromium Authors.
+  Copyright (c) 2009 by the Jinja Team, see AUTHORS for more details.
+  Copyright (c) 2010 by Armin Ronacher and contributors.  See AUTHORS
+  Copyright 2008, Google Inc.
+  Copyright (c) 2012, 2014, 2015, 2016 Tatsuhiro Tsujikawa
+  Copyright (c) 2012, 2014, 2015, 2016 nghttp2 contributors
+  Copyright (C) 2018 Intel Corporation
+  Adapted from SES/Caja - Copyright (C) 2011 Google Inc.
+  Copyright (C) 2018 Agoric
+  Copyright (c) 2009, 2010, 2013-2016 by the Brotli Authors.
+  Copyright (c) Meta Platforms, Inc. and affiliates. All rights reserved.
+  Copyright (c) 2012, 2013, 2014 Gil Tene
+  Copyright (c) 2014 Michael Barker
+  Copyright (c) 2014 Matt Warren
+  Copyright (c) 2012, Ben Noordhuis <info@bnoordhuis.nl>
+  Copyright (c) 2014, StrongLoop Inc.
+  Copyright (c) Isaac Z. Schlueter and Contributors
+  Copyright (c) 2019 Colin Ihrig and Contributors
+  Copyright (c) 2016 ngtcp2 contributors
+  Copyright (c) 2019 nghttp3 contributors
+  Copyright (c) 2011-2017 JP Richardson
+  Copyright (c) 2021 Matteo Collina
+  Copyright (c) 2017 Matteo Collina
+Full licenses / upstream notices:
+  licenses/node-v24.15.0/LICENSE
+
+CPython 3.11.9
+Scope: markitdown/_internal/python311.dll and standard library
+Terms: Composite distribution terms; see full license
+Version evidence: packaged Go build information or exact installed runtime distribution.
+Copyright statements:
+  i.e., "Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010,
+  License Agreement and CNRI's notice of copyright, i.e., "Copyright (c)
+  Copyright (c) 1991 - 1995, Stichting Mathematisch Centrum Amsterdam,
+  documentation, are copyright (C) 1996-2019 Julian R Seward.  All
+  libffi - Copyright (c) 1996-2022  Anthony Green, Red Hat, Inc and others.
+  Copyright (c) 1993-1999 Ioi Kim Lam.
+  Copyright (c) 2000-2001 Tix Project Group.
+  Copyright (c) 2004 ActiveState
+Full licenses / upstream notices:
+  licenses/python/CPython-3.11.9/LICENSE.txt
+
+5. Vendored UI code (also retained in the source repository)
+
+nerdamer-prime snapshot at fa2bde5543f8e74866f1cd1e85abff29d5fc4e59; package version not established
+Scope: tools/ui/src/lib/vendors/nerdamer-prime and bundled UI symbolic-math code.
+Terms: MIT
+Copyright (c) 2023 together-science
+Full text: licenses/ui-vendored/nerdamer-prime/LICENSE
+
+decimal.js 10.6.0 (source header)
+Scope: tools/ui/src/lib/vendors/decimal.js and bundled UI symbolic-math code.
+Terms: MIT
+Copyright (c) 2025 Michael Mclaughlin
+Full text: licenses/ui-vendored/decimal.js/LICENCE.md
+
+big-integer snapshot at fa2bde5543f8e74866f1cd1e85abff29d5fc4e59; package version not established
+Scope: tools/ui/src/lib/vendors/big-integer and bundled UI symbolic-math code.
+Terms: Unlicense
+Full text: licenses/ui-vendored/big-integer/LICENSE
+
+6. llama.cpp runtime for the embedding server (runtime/embedding)
+The cpu build below is delivered in runtime/embedding.
+Source-license copies below are supplemental reference material.
+
+llama.cpp b11297, cpu build; source commit ca2e2037b68ae7d821113d538110e6ce6903864c
+Delivered as runtime/embedding.
+  ggml-base.dll SHA-256 7f452b70d34ad18d96e0c836c974df960f7e1d72212f3dfb1f50d2a16cdf5970
+  ggml-cpu-alderlake.dll SHA-256 e9a69b23d8f82793b30881107834c99a8990dae4ce58f7dacd02befe2adc644b
+  ggml-cpu-cannonlake.dll SHA-256 7c03ab78f5318303bf1453363ab8903f238ff256710bac79dfdb8fe4bfecdfdd
+  ggml-cpu-cascadelake.dll SHA-256 e09f9690284f1315aa6aaa78e915ca6b25a9863cccb4e7a12829806868b547af
+  ggml-cpu-cooperlake.dll SHA-256 f6a1e46312da9602f3a679c5ae9adf417f4bad9d780926a4b449d89db0afe1cc
+  ggml-cpu-haswell.dll SHA-256 d0b0cf6feaf610efcb20a7e040d822a67bc4f182ab19a4749c894791f4bee4a9
+  ggml-cpu-icelake.dll SHA-256 f1de31a109d3feaab55835b029cbd11d4f2a87e09f42bb6dbb75bdbe7464b9a4
+  ggml-cpu-ivybridge.dll SHA-256 c3eec4200ca35996670d730fa12df920cf24366d7eba81fa667751bf2a705377
+  ggml-cpu-piledriver.dll SHA-256 064d8a1d56eea17350d7cec3365a23d29403988904356487fbe4595ab5c61e3e
+  ggml-cpu-sandybridge.dll SHA-256 59bc1d962e64439eddc694eef98a71e59211dd995ecf951cb83b5a8f79b79204
+  ggml-cpu-sapphirerapids.dll SHA-256 f412b14c61bf96ef9fef189d5e9ad095da32d52b68e00191974c09944ea9ca17
+  ggml-cpu-skylakex.dll SHA-256 d42f0d10c163a0c497c70bc9af6bb2dedeaf04ba11ac612238badac129cc6401
+  ggml-cpu-sse42.dll SHA-256 8b526c920e2af1a0847cee13af3e0de04cfe544cd5a6464871d35f1c227d9bd5
+  ggml-cpu-x64.dll SHA-256 07cab6a00e029f4b83b9f9a744ac38a4ab1d0c13dbc1e3adc08252576fb3f6ac
+  ggml-cpu-zen4.dll SHA-256 83049edceebad467a2c692796fdef323ef5e0dee266ea84ecbb9159208ef20b7
+  ggml-rpc.dll SHA-256 74ebe60f2217236f31975404567881e05828a43639db8b2e0f12baf9d641a800
+  ggml.dll SHA-256 78b1592d72a93ed290fd4a221c4bccc39d6e5f254f4acf5f21a53ff6dc986f74
+  libomp.dll SHA-256 a12116ba72d1d6820407cf30be23da04ce79d6bb8a71a5ee71759c5a1faa6f1c
+  LICENSE-LLVM-OpenMP SHA-256 fdad1758a9e1f9d5a81e18879b3406772115edc92c24bfa36b70c654f325e8e4
+  llama-batched-bench-impl.dll SHA-256 9c297d54b3472470dab6d507912c8b5dc1474bdfc06703a376ba3870d8f565de
+  llama-bench-impl.dll SHA-256 5bcca8471c6c9915ebd69917f294cbd7f021f7e5a3c78f48375a93dbd3e398f3
+  llama-cli-impl.dll SHA-256 06e7aacdf6d2729755bbfaf183c5f9f75ad680423de8e02d498a56f027494207
+  llama-common.dll SHA-256 e6d9854e3d5217a0056a9ae86ed837757ce288a691fb975e919a8b616e4d5856
+  llama-completion-impl.dll SHA-256 d628c46a3d86d0d0692bd6b6f5eb7d295ffc4d16ffbfa1f761796183b61134a6
+  llama-fit-params-impl.dll SHA-256 eb767d462d72131ccb44cef0f87c6de97c9a66524c5e27a6880ed2bdc197ca9b
+  llama-perplexity-impl.dll SHA-256 326c39bf4553406a380f6c9fcc9bdb0062d5aa11aba7fd7ef35ef94c5f0dcd62
+  llama-quantize-impl.dll SHA-256 9152249acf7c973a04862070b4c150f4a12e266574e8a94f24d8569a090daebb
+  llama-server-impl.dll SHA-256 556a308b0f8d21bd73d7a3065e2a74c37a65b00c3e367ed0f10cb46f271d5469
+  llama-server.exe SHA-256 5212d251f3e4461182f46127e95e7fe4bb260fbebff7b1e26d3145c2b5d25a9b
+  llama.dll SHA-256 dda87abdd9050c35fc87d137f539e11144851839d49309325e6ba8d65562a345
+  mtmd.dll SHA-256 eb71fca2ca13139ecabc2d22f51d52dd0883edcb26d99549f30f2b7bd1595f07
+Reference licenses:
+  licenses/runtime-candidates/cpu-ca2e2037b/LICENSE
+  licenses/runtime-candidates/cpu-ca2e2037b/licenses/LICENSE-jsonhpp
+  licenses/runtime-candidates/cpu-ca2e2037b/vendor/cpp-httplib/LICENSE
+  licenses/runtime-candidates/cpu-ca2e2037b/vendor/hash/rotate-bits/LICENSE.md
+  licenses/runtime-candidates/cpu-ca2e2037b/vendor/hash/sha256/LICENSE
+  licenses/runtime-candidates/cpu-ca2e2037b/vendor/hash/xxhash/LICENSE
+  licenses/runtime-candidates/cpu-ca2e2037b/LICENSE-LLVM-OpenMP
+
+CPU libomp.dll has LICENSE-LLVM-OpenMP: Apache-2.0 WITH LLVM exceptions; retain the complete file.
+MSVC and Vulkan-driver prerequisites not copied with these runtime folders are distinct from Microsoft DLLs
+actually copied inside markitdown/_internal. Python's Windows LICENSE includes additional redistribution conditions.
+CUDA libraries are not delivered. llama.cpp MIT does not cover NVIDIA libraries.
+
+7. Models
+Language models (Gemma or others) are not part of the installation package. The model setup downloads the
+files that the customer selects; each model's own terms apply. Model notices are in licenses/models.
+The embedding model below is delivered in models/.
+
+multilingual-e5-small-q8_0.gguf
+Scope: embedding model of the knowledge index and conversation documents, delivered in models/.
+Bytes: 132439008
+SHA-256: e011debc1208e31bf7b6aebee2d9fc8bd2ca11694a77ed66ac9d0c9d0a877c93
+Claimed base: https://huggingface.co/intfloat/multilingual-e5-small (model card declares MIT).
+GGUF general.organization=Tmp and general.basename=e5 do not establish a source commit or converter.
+Conversion: the GGUF converter and revision are not recorded. Model notice: licenses/models/multilingual-e5-small-q8_0.gguf.txt.
+
+Magika standard_v3_3 model.onnx
+Scope: markitdown/_internal/magika/models/standard_v3_3/model.onnx
+SHA-256: fe2d2eb49c5f88a9e0a6c048e15d6ffdf86235519c2afc535044de433169ec8c
+Metadata: epoch_num=91; packaged by magika 1.0.3. No separate weight license file is included.
+
+8. Verification sources
+https://opensource.org/license/mit
+https://www.apache.org/licenses/LICENSE-2.0 (especially sections 2 and 4)
+https://infra.apache.org/licensing-howto.html
+https://www.finlex.fi/fi/lainsaadanto/1961/404 (especially 25 j and 25 k)
+https://raw.githubusercontent.com/nodejs/node/v24.15.0/LICENSE
+Local Python311/LICENSE.txt includes Windows-binary notices beyond the generic CPython source LICENSE.

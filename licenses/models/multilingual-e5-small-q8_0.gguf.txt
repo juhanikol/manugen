@@ -1,0 +1,7 @@
+Model file: multilingual-e5-small-q8_0.gguf
+Local GGUF file, used unchanged. Delivered in models/.
+Base model: intfloat/multilingual-e5-small
+Source and declared MIT license: https://huggingface.co/intfloat/multilingual-e5-small
+The local GGUF converter/revision is not established by this notice.
+Package MANIFEST.json records the actual delivered file hash.
+The upstream license named above applies; its full text is at the link above.
