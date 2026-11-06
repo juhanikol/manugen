@@ -6,7 +6,6 @@
 | IT-GUIDE.md | Installation guide for IT support |
 | FILES.md | This list |
 | LICENSE | MANUgen pilot and usage terms |
-| MAINTENANCE.md | How to publish the site and a release |
 | docs | Product site (GitHub Pages) |
 | installer/MANUgen.iss | Installer script (Inno Setup). Shows what is installed, kept and registered. |
 | launchers/MANUgen.cmd | Opens MANUgen in its own browser window. Starts it first when needed. |

@@ -6,6 +6,11 @@ Mikä tämä on
   (llama-server) ei toimiteta: ne ladataan erikseen alla olevan ohjeen mukaan. Node.js:ää, npm:ää tai
   PowerShelliä ei tarvita. Tämä on testijakelu; koodiallekirjoitusta ei ole.
 
+Ohjeet verkossa
+  Esittely ja asennusohje:  https://juhanikol.github.io/manugen/
+  IT-tuen ohje (englanniksi): https://github.com/juhanikol/manugen/blob/main/IT-GUIDE.md
+  Yhteystiedot: juhani.kolehmainen@edu.savonia.fi · https://jk-mainen.fi/
+
 Sisältö
   ticket-demo.exe                    käynnistys ja tikettisovellus (käyttöliittymä ja sovelluksen rajapinta)
   MANUgen.cmd                        avaa MANUgenin omaan ikkunaan ja käynnistää sen tarvittaessa

@@ -1,6 +1,8 @@
 # Configuration guide
 
-This guide describes the settings that the current version reads: `settings.json` and `workflows.json` in the same folder as this file. It is the one maintained guide; the package build copies it unchanged beside the packaged `settings.json`.
+Administrator reference. This guide is for the person who maintains a MANUgen installation. Normal use needs no changes: the installer and the model setup (Mallin asennus) write working settings.
+
+This guide describes the settings that the current version reads: `settings.json` and `workflows.json` in the installation folder.
 
 ## General rules
 
@@ -8,40 +10,11 @@ This guide describes the settings that the current version reads: `settings.json
 
 `rag/rag.exe` provides `prepare`, `index --replace`, `query` and `serve` commands.
 `query` uses the configured `mode`, or `hybrid` when absent; `--mode` overrides it.
-`--add` is not implemented. See `rag/OHJE-FI.md` in the package for command syntax.
+`--add` is not implemented. See `rag/OHJE-FI.md` in the installation folder for command syntax.
 `embedding.exe [--settings FILE]` uses the same startup component to start only
 `application.rag.embeddingServer`. RAG mode must be `start` or `connect` so this
 definition is available. It starts no backend, retrieval service or generation
 server. It keeps the native arguments unchanged and stops only its own child.
-
-`npm run package` also builds `rag/rag-service.exe` as an independent Node single
-executable. It needs no installed Node, npm or PowerShell. The application still
-calls RAG over HTTP. `settings.json` selects its executable and `--config` argument.
-RAG reads `rag.config.json` beside its executable by default, regardless of cwd.
-The build copies `rag/packaging/rag.distribution.json` unchanged to that location
-and installs an empty knowledge index at the path it names (currently `initial_index/index.sqlite`):
-`rag/packaging/empty_index/index.sqlite`, a valid index with no documents or chunks. The build refuses an
-index with content; knowledge content is not delivered. The customer builds the own index (rag\OHJE-FI.md).
-This is an explicit build-time seed, not a runtime restore: startup never
-populates, replaces or repairs a customer's database. Change `database` and
-restart RAG to use another compatible index. A missing/invalid index is an error.
-No runtime build, model path, file size, SHA or historical probe fingerprint is
-required to open or rebuild an index. Vector encoding/dimensions and readable
-SQLite data remain necessary. Rebuild embeddings when changing the embedding
-model; changing a llama-server version alone does not require a rebuild.
-RAG loads the index into memory: replacing the file takes effect after restart,
-not during an active request. An absent seed does not block packaging.
-Source knowledge and `rag/output` scripts are not included or removed.
-The complete build must include the configured embedding runtime and model as
-well as the generation runtime and models. The current distribution settings
-select the E2B Vulkan configuration and E5 CPU configuration.
-
-Packaging does not require branding. Apply `branding/apply-brand.mjs` explicitly
-only when updating the brand. Package file hashes, copy comparisons and runtime
-binary inspection are off by default; `npm run package -- --verify-files` opts
-into these build-time checks. MANIFEST.json is inventory, not a startup gate.
-The normal package build replaces its output folder; use a fresh `--out` for
-packages with user data. RAG-only packaging preserves existing config/database.
 
 `mode: "hybrid"` selects retrieval. `acceptance.score: "cosine"` with `min: 0.86`
 selects the provisional filter; `"hybrid"` is not an acceptance score.
@@ -51,9 +24,9 @@ selects the provisional filter; `"hybrid"` is not an acceptance score.
 - **When changes take effect.** Both files are read once when the application starts. Restart it after an edit (Ctrl+C, then start again). There is no hot reload. A run keeps the settings it started with.
 - **Strict validation.** Unknown keys, wrong types, out-of-range values and missing required keys stop the start with a message that names the key. Nothing is guessed or filled in. There are no hidden defaults: every key listed as required must be written.
 - **Paths.** A relative path resolves against the file that contains it (`settings.json` or `workflows.json`). An absolute path is used as written. llama-server runs with the folder of `settings.json` as its working directory, so a relative model path in its `args` (for example `models/x.gguf`) means a file beside `settings.json`.
-- **Command line.** `--settings FILE` selects another settings file (development `node start.mjs --settings FILE`, package `ticket-demo.cmd --settings FILE`). `ticket-demo.exe --serve` starts only the HTTP backend.
+- **Command line.** `--settings FILE` selects another settings file (`ticket-demo.cmd --settings FILE`). `ticket-demo.exe --serve` starts only the HTTP backend.
 - **Environment.** `LLAMA_API_KEY` is read (sent as a bearer token when llama-server runs with `--api-key`). Credentials never go into the files.
-- **Model trace (development only).** `TICKET_DEMO_MODEL_TRACE=1` in the environment of the start (exactly `1`; unset or any other value = off) makes the backend write every model call of the workflows to `model-trace\model-trace-<UTC start time>-<pid>.jsonl` beside settings.json: one JSON line per event with `seq`, `time`, `runId`, `workflow`, `role` (call id), `callId`, `event` (`request`, `response`, `error`) and `endpoint` (`/apply-template`, `/tokenize`, `/completion`). A request holds the body exactly as sent; a response holds the HTTP status and the raw answer body as received (for the streamed `/completion` the raw event stream and `stream`: `final`, `no-final-chunk`, `error-event` or the abort error), before the application parses it. No HTTP headers or credentials are written; free chat is not traced. The file contains the deviation descriptions: enable it only for testing and delete the files afterwards. `model-trace/` is ignored by Git.
+- **Model trace (testing only).** `TICKET_DEMO_MODEL_TRACE=1` in the environment of the start (exactly `1`; unset or any other value = off) makes the backend write every model call of the workflows to `model-trace\model-trace-<UTC start time>-<pid>.jsonl` beside settings.json: one JSON line per event with `seq`, `time`, `runId`, `workflow`, `role` (call id), `callId`, `event` (`request`, `response`, `error`) and `endpoint` (`/apply-template`, `/tokenize`, `/completion`). A request holds the body exactly as sent; a response holds the HTTP status and the raw answer body as received (for the streamed `/completion` the raw event stream and `stream`: `final`, `no-final-chunk`, `error-event` or the abort error), before the application parses it. No HTTP headers or credentials are written; free chat is not traced. The file contains the deviation descriptions: enable it only for testing and delete the files afterwards.
 - **Version.** Settings only select behaviour that the running version implements. For example, `auth.mode` `"none"` works only with a version built with it; editing `settings.json` does not add the capability to an older `ticket-demo.exe`.
 
 ## settings.json
@@ -66,7 +39,7 @@ Top level: `application` (object, required) and `servers` (array, required, at l
 |---|---|---|---|
 | `application.server` | The server definition used: its `url` always; its `executable` and `args` in `start` mode | an `id` from `servers` | yes |
 | `application.modelServer` | `"start"`: the startup starts the selected llama-server, then the application. `"connect"`: it starts only the application and uses a llama-server that is already running | `"start"`, `"connect"` | yes |
-| `application.workflowFile` | The workflow file | path, normally `"workflows.json"` (the package requires this name) | yes |
+| `application.workflowFile` | The workflow file | path, `"workflows.json"` (the installation requires this name) | yes |
 | `application.workflow` | The workflow, or the set of workflows the user chooses from, without a restart | an `id` in the workflow file, or a list of unique `id`s; no default among them. Each one is validated at start with its own export target; slots and context are checked at each run against the running server | yes |
 | `application.probeMs` | Timeout of readiness and status probes to llama-server (`/health`, `/props`, `/v1/models`), and of each readiness check during start | integer 100-60000 (ms) | yes |
 
@@ -93,8 +66,8 @@ Address separation: `listen.host` is where the application listens; the browser 
 
 | Key | Purpose | Values | Required |
 |---|---|---|---|
-| `application.ui.integrated` | Folder of the integrated UI (chat and tickets) served at `/` | path or `null` (not served; `/` then redirects to `/standalone/`). Development `"../tools/ui/dist"` (build it with `npm run build` in `tools/ui`), package `"ui"` | yes |
-| `application.ui.standalone` | Folder of the standalone ticket view served at `/standalone/` | path or `null`. Development and package `"public"` | yes |
+| `application.ui.integrated` | Folder of the integrated UI (chat and tickets) served at `/` | path or `null` (not served; `/` then redirects to `/standalone/`). Installation: `"ui"` | yes |
+| `application.ui.standalone` | Folder of the standalone ticket view served at `/standalone/` | path or `null`. Installation: `"public"` | yes |
 | `application.capacity.maxActiveJobs` | Workflow runs and chat generations running at the same time (all users together) | integer 1-64 | yes |
 | `application.capacity.queueLength` | Jobs that may wait; a full queue answers `QUEUE_FULL` | integer 0-1000 | yes |
 
@@ -104,9 +77,9 @@ Address separation: `listen.host` is where the application listens; the browser 
 
 | Key | Purpose | Values | Required |
 |---|---|---|---|
-| `application.tickets.directory` | Folder where "Hyväksy ja tallenna" writes accepted tickets, on the computer that runs the application (not the browser's computer) | path, or `null` (saving is off: the save action is disabled and `POST /api/tickets` answers `TICKETS_DISABLED`). Development and package `"tickets"` | yes |
+| `application.tickets.directory` | Folder where "Hyväksy ja tallenna" writes accepted tickets, on the computer that runs the application (not the browser's computer) | path, or `null` (saving is off: the save action is disabled and `POST /api/tickets` answers `TICKETS_DISABLED`). Installation: `"tickets"` | yes |
 
-- **Path.** A relative path resolves against the folder of `settings.json`: development `ticket-demo\tickets\`, package `tickets\` beside `ticket-demo.exe`. An absolute path (for example a shared network folder) is used as written. The folder is created on the first save. The browser never sends or chooses a path.
+- **Path.** A relative path resolves against the folder of `settings.json`: `tickets\` beside `ticket-demo.exe`. An absolute path (for example a shared network folder) is used as written. The folder is created on the first save. The browser never sends or chooses a path.
 - **Files.** One file per accepted ticket, `<submission id>.json` (UTF-8 JSON). The file is created exclusively and is never replaced. A repeated save of the same draft (double click, retry after a lost answer) returns the ticket that already exists; the same draft with other content is refused (`TICKET_CONFLICT`).
 - **Validation.** The application checks the submitted values against the selected workflow's field definitions (types, allowed values, required text) and the source text against the workflow's `inputs`. A failed check writes nothing and answers `TICKET_INVALID` with the problems per field.
 - **Content.** `format` `"manugenius-deviation-ticket"`, `formatVersion` `1`, `ticketId` (assigned by the application, `PK-YYYYMMDD-XXXXXX`), `savedAt` (UTC), `workflow` (`id`, `workflowHash`, `settingsHash`), `generation` (`origin`, `runId`, `model`, `promptVersion`, `generatedAt` as the run result gave them to the browser), `source` (the description and the user's answers to model questions), `fields` (the values the user accepted), `aiSuggestionFields` (fields whose definition has `"aiSuggestion": true`, the same mark that highlights them in the view; it states the field's purpose, not the origin or correctness of a value), `modelDraft`, `editedFields` and `reviewedFields`. With Excel export on for the workflow, also `export` (see "Excel register export").
@@ -115,12 +88,12 @@ Address separation: `listen.host` is where the application listens; the browser 
 
 ### Excel register export (`application.export`)
 
-Optional. After the ticket JSON is saved, the application adds the accepted values as **one new row** of a named Excel table in one shared `.xlsx` register. It does not make one Excel file per ticket. The JSON file stays the original record; the export never changes it. The export program is `ticket-export.exe` (Go, [../ticket-export/](../ticket-export/README.md)); the application starts it as a direct child process for each attempt (no shell, not a service). Request, result and exit codes: [../ticket-export/CONTRACT.md](../ticket-export/CONTRACT.md).
+Optional. After the ticket JSON is saved, the application adds the accepted values as **one new row** of a named Excel table in one shared `.xlsx` register. It does not make one Excel file per ticket. The JSON file stays the original record; the export never changes it. The export program is `ticket-export.exe`; the application starts it as a direct child process for each attempt (no shell, not a service).
 
 | Key | Purpose | Values | Required |
 |---|---|---|---|
 | `application.export` | Export on or off | object, or `null`. Absent or `null` = off (default in both repository settings files; existing installations keep their behaviour) | no |
-| `export.program` | The export program | path; relative to `settings.json`. Package: `"ticket-export.exe"` (beside `ticket-demo.exe`). Development: `"../ticket-export/bin/ticket-export.exe"` after `go build -o bin/ticket-export.exe .` in `ticket-export/` | yes |
+| `export.program` | The export program | path; relative to `settings.json`. Installation: `"ticket-export.exe"` (beside `ticket-demo.exe`) | yes |
 | `export.timeoutMs` | Time limit of one export attempt; the application then stops the process | 1000–600000 | yes |
 | `export.lockWaitMs` | How long one attempt waits for another export of the same register | 0–600000, smaller than `timeoutMs` | yes |
 | `export.targets[]` | One target per workflow | list; a workflow without a target exports nothing | yes |
@@ -133,7 +106,7 @@ Optional. After the ticket JSON is saved, the application adds the accepted valu
 | `targets[].fieldColumns` | Field id → column header | object; keys are field `id`s of the workflow (never the UI `label`) | yes |
 | `targets[].omitFields` | Fields that are deliberately not exported | list of field `id`s | yes (may be `[]`) |
 
-Example (copy into `application`; it matches the example register `examples\poikkeamarekisteri-esimerkki.xlsx` and the workflow `single-call`): [../ticket-export/examples/export-settings.example.json](../ticket-export/examples/export-settings.example.json).
+Example (copy into `application`; it matches the example register `examples\poikkeamarekisteri-esimerkki.xlsx` and the workflow `single-call`): `examples\export-settings.example.json` in the installation folder.
 
 - **Checks at start.** The settings reader checks the target of the selected workflow: every field of the workflow is in exactly one of `fieldColumns` or `omitFields`; no unknown field id; no column header twice (case is ignored). A new field in `workflows.json` therefore stops the start until it is mapped or omitted. A text-result workflow cannot have a target. Missing program or register files give a start-up warning, and each export then fails with its reason.
 - **Supported register.** One `.xlsx` workbook (no `.xlsm`, no macros) with a named table on the named sheet. The table has a header row, no totals row and no calculated columns (no formulas in table columns). Every mapped header exists in the table with the same text. The table may have more columns (for example "Käsittelijä"); the new row leaves them empty. The row below the table must be empty, so the table can grow. The application never adds, removes or renames columns and never repairs the structure.
@@ -168,7 +141,7 @@ Example (copy into `application`; it matches the example register `examples\poik
 To start generation without RAG, use modelServer `"start"` and rag.mode `"off"`.
 If port 8080 reports `ECONNREFUSED` with modelServer `"connect"`, start that server
 separately or select `"start"`; changing RAG mode does not start it. Restart
-`npm start` after changing settings. No package rebuild is needed for development.
+MANUgen after changing settings.
 
 - `"start"`: before anything is started, the startup checks the settings and the workflow, the authentication mode and listen address, that the listen port is free, and that the selected server's `executable` and its model files (`-m`/`--model`, `-md`/`--model-draft`) exist. If a server already answers at the selected `url`, the start stops: it never reuses, stops or replaces that server. Otherwise llama-server starts (log: `logs/llama-<time>.log` beside `settings.json`), the startup waits for `/health`, then starts the application. Ctrl+C stops only these two processes.
 - `"connect"`: no llama-server is started and no local inference files are needed; the application connects to `url`. A llama-server started separately keeps running when the application stops.
@@ -177,7 +150,7 @@ separately or select `"start"`; changing RAG mode does not start it. Restart
 ### RAG retrieval (`application.rag`)
 
 Optional knowledge retrieval for calls with a `rag` budget (workflows.json). The retrieval service is the separate
-RAG component (repository-root `rag/`, `scripts/serve.mjs`); its own `rag.config.json` selects the index, the
+RAG component (`rag\rag-service.exe`); its own `rag.config.json` selects the index, the
 embedding model, the retrieval mode, the candidate count, topK (a maximum) and the relevance acceptance policy
 (`rag/OHJE-FI.md`). The backend sends only the query and never imports RAG code.
 
@@ -198,7 +171,7 @@ embedding model, the retrieval mode, the candidate count, topK (a maximum) and t
 
 ### Retrieved passages in free chat (`application.chatRetrieval`)
 
-Shared budget of retrieved passages for a chat request (`src/chat-retrieval.js`). Absent = chat retrieval off. A
+Shared budget of retrieved passages for a chat request. Absent = chat retrieval off. A
 chat request without a retrieval source is forwarded unchanged. Sources (both need `application.rag` not `off`):
 `rag`, the central knowledge base with the service's own acceptance decisions ("Käytä tietopohjaa" in the + menu,
 off by default, a browser chat preference); and `documents`, the conversation's attached `.txt`/`.md` files in
@@ -211,7 +184,7 @@ off by default, a browser chat preference); and `documents`, the conversation's 
 | `maxKnowledgeTokens` | Optional cap of the passage tokens, common to all sources | integer >= 1 or null | no (null: only the slot context limits) |
 | `sourceShares` | Target shares of the cap when `documents` and `rag` are used together: `{ "documents": 512, "rag": 256 }`. Flexible: each source first fills its share in its own rank order, then the room left goes to the remaining passages of both. One source alone may use the whole cap. Sum <= `maxKnowledgeTokens` | object | no (absent: no shares) |
 
-- **Conversation documents.** The browser reads the file; the backend sends the text to the RAG service (`POST /documents`) under an owner key of the identity and the conversation id. The service parses it (Markdown or plain text), chunks it with the chunking settings of the served index, skips and reports chunks over the embedding model's token limit, and embeds it once. It keeps documents in memory only, never in the index database: at most 200000 characters and 400 chunks per document, 5 per conversation, 100 in all, one processing at a time, removed after 4 hours unused. "Poista hausta", a deleted conversation and a restart remove them; after a restart the chat registers the document again from its own copy before the next question. Search per question: hybrid ranking over the active documents, at most 5 chunks, accepted at or above the median cosine of the query over the searched chunks (no process filter, not the knowledge-base threshold). Locations are file name and line numbers of the attached text. Office documents (`.docx`, `.pptx`, `.xlsx`, `.xls`, `.msg`) are converted to Markdown on upload (`POST /api/chat/convert`, all files of one upload in one [markitdown](../markitdown/README.md) run; it takes several seconds) and are then text attachments in either mode. The converter has a fixed location, no setting: `markitdown\markitdown-cli.exe` beside ticket-demo.exe (development: repository root). PDF and other formats keep the earlier behaviour (whole text or images).
+- **Conversation documents.** The browser reads the file; the backend sends the text to the RAG service (`POST /documents`) under an owner key of the identity and the conversation id. The service parses it (Markdown or plain text), chunks it with the chunking settings of the served index, skips and reports chunks over the embedding model's token limit, and embeds it once. It keeps documents in memory only, never in the index database: at most 200000 characters and 400 chunks per document, 5 per conversation, 100 in all, one processing at a time, removed after 4 hours unused. "Poista hausta", a deleted conversation and a restart remove them; after a restart the chat registers the document again from its own copy before the next question. Search per question: hybrid ranking over the active documents, at most 5 chunks, accepted at or above the median cosine of the query over the searched chunks (no process filter, not the knowledge-base threshold). Locations are file name and line numbers of the attached text. Office documents (`.docx`, `.pptx`, `.xlsx`, `.xls`, `.msg`) are converted to Markdown on upload (`POST /api/chat/convert`, all files of one upload in one MarkItDown run; it takes several seconds) and are then text attachments in either mode. The converter has a fixed location, no setting: `markitdown\markitdown-cli.exe` beside ticket-demo.exe. PDF and other formats keep the earlier behaviour (whole text or images).
 - **Continuation.** "Jatka" sends the exact passages the answer used again (source `reuse`, body `retrieval_reuse`), budgeted anew, with no new retrieval. If they are not available or do not all fit (HTTP 409), the chat asks before a continuation without them. Each continuation has its own evidence.
 
 - **Context limit.** The per-slot context that the running server reports (`/props`, from `-c` and `-np` of the server definition). There is no separate chat context setting.
@@ -281,7 +254,7 @@ All keys are optional. Defaults (`public/fields.js` `UI_DEFAULTS`) are neutral; 
 
 General actions, status and error messages ("Hyväksy ja tallenna", "Hylkää luonnos", "Ajotiedot", ...) are application texts and are not configurable. An unknown key, an empty text or a text over its limit stops the start with a message such as `workflows.json "x"/ui: unknown key "subtitle"` or `.../fields/2/width: must be equal to one of the allowed values (auto, half, full)`.
 
-**Example: the same view for another purpose, by configuration only** (restart applies it). The test fixture `test/fixtures/variant-workflows.json` is a complete example (a maintenance request).
+**Example: the same view for another purpose, by configuration only** (restart applies it). The example below is a maintenance request.
 
 ```json
 "inputs": [{ "id": "request_text", "label": "Huoltopyynnön kuvaus", "maxChars": 2000, "placeholder": "Mikä laite, mikä vika ja onko käyttö estynyt?" }],

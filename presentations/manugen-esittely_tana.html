@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="MANUgen – paikallinen tekoäly ja omat työnkulut. Noin 8 minuutin esittely.">
+<title>MANUgen — Teidän tietonne. Teidän työnkulkunne.</title>
+<!-- EDITING: Each numbered SLIDE section is independent. Edit its heading,
+     content and hidden .notes (shown to the viewer as "Lisätietoja", key N).
+     Navigation and numbering update automatically.
+     No external assets, fonts, analytics or network calls are used.
+     Content reviewed against the pilot installer: 2026-11-06.
+-->
+<style>
+:root{color-scheme:dark;--bg:#071122;--ink:#f8fafc;--muted:#adbed4;--blue:#2563eb;--sky:#38bdf8;--line:#ffffff25;--font:"Segoe UI Variable Display","Segoe UI",system-ui,sans-serif}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#030914;color:var(--ink);font-family:var(--font)}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid var(--sky);outline-offset:5px}button:disabled{opacity:.25;cursor:default}
+#stage{position:absolute;width:1440px;height:810px;transform-origin:top left;overflow:hidden;background:var(--bg)}
+#stage:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 95% 12%,#2563eb25,transparent 55%);pointer-events:none}
+.slide{position:absolute;inset:0;padding:85px 100px 100px;visibility:hidden;opacity:0;transform:translateY(22px);transition:opacity .45s,transform .55s,visibility .55s;overflow:hidden}
+.slide.active{visibility:visible;opacity:1;transform:none}.slide.light{background:#f0f5fc;color:#0f172a;--muted:#4b607c;--line:#0f172a25}.slide.blue{background:linear-gradient(125deg,#123b9c,#2563eb 65%,#159ad0);--muted:#dfebff;--line:#ffffff40}
+.eyebrow{font-size:15px;letter-spacing:.19em;text-transform:uppercase;font-weight:650;color:var(--muted);margin:0 0 26px}.eyebrow b{color:var(--sky)}h1,h2,h3,p{margin:0}h1{font-size:108px;line-height:1.02;letter-spacing:-.055em;font-weight:650}h2{font-size:76px;line-height:1.07;letter-spacing:-.045em;font-weight:630;max-width:1200px}h3{font-size:30px;line-height:1.2;font-weight:600;letter-spacing:-.02em}.lead{font-size:29px;line-height:1.45;max-width:1030px;margin-top:30px;color:var(--muted)}.accent{color:var(--sky)}.light .accent{color:#2563eb}.gradient{background:linear-gradient(110deg,#fff 0%,#a1ddff 35%,#38bdf8 70%,#fff 100%);background-size:200%;-webkit-background-clip:text;background-clip:text;color:transparent}.active .gradient{animation:sweep 2.8s ease both}@keyframes sweep{from{background-position:100%}to{background-position:0%}}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:70px;margin-top:44px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:38px;margin-top:48px}.item{border-top:1px solid var(--line);padding-top:24px}.item p{font-size:24px;line-height:1.45;color:var(--muted);margin-top:15px}.number{font-size:18px;color:var(--sky);margin-bottom:18px}.light .number{color:var(--blue)}.tag{display:inline-block;padding:8px 13px;border:1px solid var(--line);border-radius:100px;font-size:15px;letter-spacing:.02em}.status{color:#ffe3a0;border-color:#ffe3a060}.light .status{color:#815200;border-color:#b08434}.footnote{position:absolute;bottom:104px;left:100px;right:100px;font-size:18px;line-height:1.4;color:var(--muted)}.notes{display:none}.wordmark{font-size:28px;letter-spacing:-.05em;font-weight:700}.wordmark span{font-weight:350;color:var(--sky)}
+.orbit{position:absolute;right:-175px;top:95px;width:710px;height:710px;border:1px solid #38bdf850;border-radius:50%;box-shadow:0 0 100px #2563eb24,inset 0 0 100px #2563eb15;pointer-events:none}.orbit:before,.orbit:after{content:"";position:absolute;border:1px solid #38bdf830;border-radius:50%;inset:75px}.orbit:after{inset:150px;background:radial-gradient(circle,#38bdf81c,transparent 70%)}.hero-copy{position:relative;z-index:1}.hero-copy .lead{max-width:800px}.hero-bottom{display:flex;gap:20px;align-items:center;margin-top:50px}.hero-bottom .tag{font-size:18px}.huge{font-size:180px;line-height:1;letter-spacing:-.075em;font-weight:650}.statement{font-size:51px;line-height:1.17;letter-spacing:-.035em;max-width:1050px}
+.steps{display:flex;align-items:stretch;gap:16px;margin-top:54px}.step{flex:1;border-top:2px solid var(--sky);padding:22px 10px 0 0}.step b{display:block;font-size:28px;font-weight:600}.step p{font-size:22px;line-height:1.4;margin-top:14px;color:var(--muted)}.arrow{align-self:center;color:var(--sky);font-size:32px}.light .step{border-color:var(--blue)}.light .arrow{color:var(--blue)}
+.conversation{margin-top:38px;max-width:1030px}.bubble{padding:24px 30px;font-size:28px;line-height:1.4;border-radius:22px;background:#152741;max-width:860px}.bubble.user{margin-left:160px;background:#2563eb}.conversation .caption{font-size:18px;color:var(--muted);margin:14px 0 22px 160px}.reply{margin-top:20px;border-left:3px solid var(--sky);padding:4px 0 4px 28px;font-size:28px;line-height:1.4;max-width:960px}.formats{display:flex;gap:16px;margin-top:48px}.format{flex:1;border:1px solid var(--line);border-radius:16px;padding:24px 18px}.format b{font-size:27px;display:block}.format span{display:block;margin-top:12px;font-size:19px;color:var(--muted)}
+.boundary{border:1px solid #38bdf86b;border-radius:28px;margin-top:38px;padding:30px 40px;background:#38bdf806}.boundary-label{font-size:16px;text-transform:uppercase;letter-spacing:.16em;color:var(--sky)}.boundary .steps{margin-top:25px}.boundary .step{border:0}.boundary .step p{font-size:20px}.line-list{margin-top:35px;display:grid;gap:0}.line-list div{border-top:1px solid var(--line);padding:20px 0;display:grid;grid-template-columns:240px 1fr;gap:30px;font-size:24px}.line-list span{color:var(--muted)}
+#chrome{position:absolute;bottom:0;left:0;right:0;height:72px;display:flex;align-items:center;padding:0 38px;gap:20px;background:#071122;color:#f8fafc;border-top:1px solid #ffffff16;z-index:5}#chrome .wordmark{font-size:22px}#chrome .hint{font-size:14px;color:#adbed4;margin-left:8px}#chrome nav{margin-left:auto;display:flex;align-items:center;gap:10px}#chrome button{border:1px solid #ffffff26;background:transparent;border-radius:9px;min-width:44px;height:38px;font-size:16px}#counter{font-variant-numeric:tabular-nums;font-size:16px;min-width:80px;text-align:center}#progress{position:absolute;bottom:71px;left:0;height:3px;background:var(--sky);transition:width .35s}#notes{position:fixed;bottom:0;left:0;right:0;padding:24px 6%;background:#071122f5;border-top:2px solid var(--sky);font-size:19px;line-height:1.55;z-index:30;max-height:45vh;overflow:auto}#notes[hidden]{display:none}#notes strong{color:var(--sky);display:block;margin-bottom:8px}#closeNotes{float:right;background:transparent;border:1px solid var(--line);border-radius:5px;padding:6px 12px}
+.cost-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:70px;margin-top:32px}.cost-grid .huge{font-size:112px}.cost-grid .lead{font-size:24px;margin-top:18px}.question{font-size:30px;line-height:1.3;letter-spacing:-.02em}.reveal-button{border:1px solid #38bdf880;border-radius:12px;background:#38bdf810;padding:14px 22px;font-size:22px;margin-top:24px}.answer{margin-top:22px}.answer[hidden]{display:none}.answer b{font-size:68px;line-height:1;color:var(--sky);letter-spacing:-.04em}.answer p{font-size:21px;line-height:1.4;color:var(--muted);margin-top:12px}.active .enter{animation:enter .7s both}.active .delay{animation-delay:.12s}@keyframes enter{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+@media print{html,body{height:auto;overflow:visible;background:white}#stage{position:static;transform:none!important;width:1440px;height:auto;overflow:visible}#chrome,#notes{display:none!important}.slide{position:relative;visibility:visible;opacity:1;transform:none;width:1440px;height:810px;break-after:page;print-color-adjust:exact;-webkit-print-color-adjust:exact}.answer[hidden]{display:block}.reveal-button{display:none}@page{size:16in 9in;margin:0}}
+</style>
+</head>
+<body>
+<main id="stage" aria-label="MANUgen-esittely">
+
+<!-- 01 OPENING — 30 seconds -->
+<section class="slide active" data-title="Teidän tietonne. Teidän työnkulkunne.">
+  <div class="orbit"></div><div class="hero-copy">
+  <p class="eyebrow">MANUgen / Tekoälyavustaja yrityksen arkeen</p>
+  <h1 class="enter">Teidän tietonne.<br><span class="gradient">Teidän<br>työnkulkunne.</span></h1>
+  <p class="lead enter delay">Paikallinen tekoäly, joka auttaa muuttamaan<br>arkisen tiedon tarkistettavaksi tulokseksi.</p>
+  <div class="hero-bottom"><span class="tag">Oma data</span><span class="tag">Oma kone tai palvelin</span><span class="tag">Oma työnkulku</span></div>
+  </div>
+  <aside class="notes">MANUgen on tekoälyavustaja, joka toimii yrityksen omalla Windows-koneella. Kielimalli ajetaan paikallisesti, joten tekstejä ei lähetetä pilvipalveluun eikä käyttö vaadi tiliä. Työntekijä kuvaa havainnon omin sanoin, ja MANUgen muotoilee siitä tarkistettavan luonnoksen. Mitä tallennetaan, päättää aina ihminen.</aside>
+</section>
+
+<!-- 02 FAMILIAR EXPERIENCE — 35 seconds -->
+<section class="slide" data-title="Tuttu tapa aloittaa">
+  <p class="eyebrow">01 / Helppokäyttöisyys</p>
+  <h2>Jos osaat kirjoittaa viestin,<br><span class="accent">osaat aloittaa.</span></h2>
+  <div class="conversation"><div class="bubble user">”Kappaleen pinnassa on jälkiä viimeistelyn jälkeen.<br>Auta kirjaamaan havainto.”</div><p class="caption">Havainnollistava esimerkki</p><div class="reply">Keskustele → muodosta luonnos → tarkista ja hyväksy.</div></div>
+  <p class="lead">Tuttu chat-näkymä. Selkeä lomake.<br>Ihminen päättää, mitä lopulta tallennetaan.</p>
+  <aside class="notes">MANUgen avautuu omaan ikkunaansa. Samassa sovelluksessa ovat vapaa keskustelu ja tikettinäkymä. Keskusteluun voi liittää tiedostoja ja kysyä niiden sisällöstä. Tikettinäkymässä kuvaus muuttuu lomakkeen kentiksi. Jokaista kenttää voi muokata ennen hyväksyntää, ja mallin omat ehdotukset on merkitty erikseen. Kuvan viesti on havainnollistava esimerkki, ei mallin todellinen vastaus.</aside>
+</section>
+
+<!-- 03 OWN WORKFLOW — 50 seconds -->
+<section class="slide light" data-title="Rakenna oma työnkulku">
+  <p class="eyebrow">02 / Tärkein ominaisuus</p>
+  <h2>Teidän työnne ei tarvitse<br>mahtua <span class="accent">yhteen tikettiin.</span></h2>
+  <p class="lead">Luo oma työnkulku helppokäyttöisellä editorilla.</p>
+  <div class="steps"><div class="step"><b>1. Kerro tehtävä</b><p>Mitä käyttäjä antaa?<br>Mitä avustajan pitää tehdä?</p></div><span class="arrow">→</span><div class="step"><b>2. Valitse tulos</b><p>Tekstivastaus tai<br>omat lomakekentät.</p></div><span class="arrow">→</span><div class="step"><b>3. Ota käyttöön</b><p>Esikatsele rakenne.<br>Valitse työnkulku sovellukseen.</p></div></div>
+  <p class="footnote">Esimerkiksi poikkeamailmoitus, huoltohavainto tai tiedon jäsentely. Uusi työnkulku tulee voimaan, kun MANUgen käynnistetään uudelleen.</p>
+  <aside class="notes">Työnkulun rakentaja avautuu Käynnistä-valikosta selaimeen. Siinä luodaan uusi työnkulku tai monistetaan valmis pohjaksi: mitä käyttäjä kirjoittaa, millaiset ohjeet malli saa ja mitkä kentät tulokseen tulee. Tulos voi olla tekstivastaus tai oma lomake. Esikatselu näyttää lomakkeen rakenteen ajamatta mallia. Sivulla Sovelluksen työnkulut valitaan, mitkä työnkulut näkyvät sovelluksessa. Tikettinäkymässä niiden välillä voi vaihtaa kesken käytön. Monivaiheiset ja erikoisemmat työnkulut voidaan määrittää käyttöönoton yhteydessä.</aside>
+</section>
+
+<!-- 04 CONTROLLED WORK — 35 seconds -->
+<section class="slide" data-title="Agenttimaisia vaiheita pienelläkin mallilla">
+  <p class="eyebrow">03 / Hallittu eteneminen</p>
+  <h2>Useita työvaiheita.<br><span class="gradient">Yksi hallittu työnkulku.</span></h2>
+  <div class="three"><div class="item"><p class="number">01</p><h3>Jaa tehtävä</h3><p>Eri vaiheet voivat poimia tiedot, jäsentää sisällön ja muodostaa tuloksen.</p></div><div class="item"><p class="number">02</p><h3>Rajaa kuormitus</h3><p>Vaiheiden järjestys ja rinnakkaisuus sovitetaan käytettävissä oleviin resursseihin.</p></div><div class="item"><p class="number">03</p><h3>Tarkista tulos</h3><p>Sovellus tarkistaa rakenteen. Käyttäjä tarkistaa sisällön.</p></div></div>
+  <p class="footnote">Agenttimaisia toimintoja jäljitellään ennalta määritellyillä workflow-vaiheilla.</p>
+  <aside class="notes">Pieni paikallinen malli onnistuu paremmin, kun yksi iso tehtävä jaetaan useaksi rajatuksi vaiheeksi. Sovelluksen mukana tulee kolme valmista työnkulkua: yksi kutsu, kolme roolia ja kuusi roolia. Jokainen rooli tekee oman osansa, esimerkiksi poimii tiedot, arvioi syyn tai ehdottaa toimenpiteen. Jos kuvauksesta puuttuu jotain olennaista, malli voi kysyä tarkentavan kysymyksen, ja vastauksen jälkeen luonnos tehdään uudelleen. Vaiheet on määritelty etukäteen: kyse ei ole itsenäisesti toimivasta agentista, eikä monivaiheisuus takaa vastausten oikeellisuutta.</aside>
+</section>
+
+<!-- 05 COMPANY KNOWLEDGE — 40 seconds -->
+<section class="slide" data-title="Oma tieto mukaan vastauksiin">
+  <p class="eyebrow">04 / Yrityksen oma tietopohja</p>
+  <h2>Hyvä vastaus alkaa<br><span class="accent">oikeasta lähteestä.</span></h2>
+  <div class="steps"><div class="step"><b>Yrityksen aineisto</b><p>Ohjeet, dokumentit<br>ja muu oma tietosisältö.</p></div><span class="arrow">→</span><div class="step"><b>Paikallinen tietokanta</b><p>Aineisto valmistellaan<br>haettavaksi tiedoksi.</p></div><span class="arrow">→</span><div class="step"><b>Kysymys + lähteet</b><p>Olennainen tieto haetaan<br>mallin vastauksen tueksi.</p></div></div>
+  <p class="lead">Hakua on kokeiltu koneistuksen vianmääritysohjeilla.<br>Vastauksen lähteet näkyvät käyttäjälle.</p>
+  <p class="footnote">Toimitettu tietopohja on tyhjä. Oma aineisto lisätään ohjeen mukaan tai avustettuna käyttöönoton yhteydessä.</p>
+  <aside class="notes">Tietopohjahaku käynnistyy MANUgenin mukana automaattisesti. Yrityksen ohjeet ja dokumentit valmistellaan paikalliseen tietokantaan (ohje rag\OHJE-FI.md). Kun kuvaus tai kysymys liittyy niihin, sovellus hakee osuvimmat kohdat mallin tueksi ja näyttää, mitä lähteitä käytettiin. Jos osuvaa ohjetta ei löydy, malli vastaa ilman sitä, ja sovellus kertoo tästä. Chatissa tietopohjan käyttö kytketään päälle +-valikosta. Malli ei opi aineistoa eikä sitä kouluteta uudelleen: aineisto on haettavissa vain siltä koneelta. Hakua on kokeiltu koneistuksen vianmääritysaineistolla, mutta sitä ei toimiteta sovelluksen mukana. Asennuksen tietopohja on tyhjä. Vastausten laatu riippuu aineiston laadusta ja ajantasaisuudesta.</aside>
+</section>
+
+<!-- 06 FILES AND MARKITDOWN — 35 seconds -->
+<section class="slide light" data-title="Tiedostot mukaan keskusteluun">
+  <p class="eyebrow">05 / Tiedostot <span class="tag status">Käytössä</span></p>
+  <h2>Olemassa oleva tieto.<br><span class="accent">Suoraan tiedostoista.</span></h2>
+  <div class="formats"><div class="format"><b>Word</b><span>.docx</span></div><div class="format"><b>Excel</b><span>.xlsx · .xls</span></div><div class="format"><b>PowerPoint</b><span>.pptx</span></div><div class="format"><b>Outlook</b><span>.msg</span></div><div class="format"><b>Teksti</b><span>.txt · .md · .pdf</span></div></div>
+  <p class="lead">Liitä tiedosto keskusteluun ja kysy sen sisällöstä. Microsoftin <strong>MarkItDown</strong> muuntaa Office-tiedostot tekstiksi koneella itsellään.</p>
+  <p class="footnote">Liitteet pysyvät vain muistissa eivätkä tallennu tietopohjaan. Monimutkaiset asettelut ja skannatut sivut eivät aina muunnu täydellisesti.</p>
+  <aside class="notes">Kun Word-, Excel-, PowerPoint- tai Outlook-tiedosto liitetään keskusteluun, se muunnetaan tekstiksi paikallisesti. Muunnos kestää muutaman sekunnin. Tekstitiedostot ja PDF:t liitetään sellaisenaan. Hae tiedostosta -tilassa MANUgen etsii jokaiseen kysymykseen tiedoston osuvimmat kohdat ja näyttää, mistä kohdasta vastaus on peräisin. Keskusteluun voi liittää enintään viisi tiedostoa. Liitteet säilyvät vain sovelluksen muistissa ja poistuvat, kun niitä ei ole käytetty neljään tuntiin, tai kun keskustelu poistetaan. Ne eivät siirry pysyvään tietopohjaan.</aside>
+</section>
+
+<!-- 07 APPROVAL AND INTEGRATIONS — 40 seconds -->
+<section class="slide" data-title="Hyväksytty tieto Exceliin">
+  <p class="eyebrow">06 / Tieto eteenpäin</p>
+  <h2>Luonnoksesta<br><span class="gradient">Excelin riviksi.</span></h2>
+  <div class="steps"><div class="step"><b>Työnkulku</b><p>Muodostaa ehdotuksen.</p></div><span class="arrow">→</span><div class="step"><b>Ihmisen hyväksyntä</b><p>Tarkista ja muokkaa tiedot.</p></div><span class="arrow">→</span><div class="step"><b>Excel-rekisteri</b><p>Hyväksytty tiketti viedään riviksi, kun vienti on käytössä.</p></div></div>
+  <div class="item" style="margin-top:44px"><h3>Pyynnöstä myös muihin järjestelmiin</h3><p>Azure · Microsoft 365 / Office · SharePoint · Power BI · tietokantasovellukset</p></div>
+  <p class="footnote">Muut integraatiot toteutetaan erikseen käyttökohteen ja käyttöoikeuksien mukaan.</p>
+  <aside class="notes">Jokainen hyväksytty tiketti tallentuu omaksi tiedostokseen asennuskansioon. Lisäksi sen voi viedä uudeksi riviksi yrityksen omaan Excel-rekisteriin, esimerkiksi verkkolevyllä olevaan poikkeamarekisteriin. Vienti lisää rivin olemassa olevaan taulukkoon eikä muuta aiempia rivejä. Jos Excel on auki, vientiä voi yrittää myöhemmin uudelleen. Vienti on oletuksena pois päältä, ja sarakkeet sovitetaan rekisteriin käyttöönotossa; mukana on esimerkkirekisteri. Muut järjestelmät, kuten SharePoint, Power BI tai tietokannat, eivät ole valmiita liittimiä, vaan ne toteutetaan erikseen tarpeen mukaan. Pilvipalveluihin liitettäessä tiedonkulku arvioidaan erikseen.</aside>
+</section>
+
+<!-- 08 DATA AND SAFETY — 45 seconds -->
+<section class="slide" data-title="Tieto pysyy teillä">
+  <p class="eyebrow">07 / Turvallisuus</p>
+  <h2>Tieto pysyy <span class="accent">teillä.</span></h2>
+  <p class="lead">Paikallisessa kokoonpanossa aineistoa ei tarvitse<br>lähettää ulkopuoliseen tekoälypalveluun.</p>
+  <div class="boundary"><p class="boundary-label">Yrityksen oma kone tai hallittu ympäristö</p><div class="steps"><div class="step"><b>Oma aineisto</b><p>Dokumentit ja tietopohja</p></div><span class="arrow">↔</span><div class="step"><b>Paikallinen malli</b><p>Käsittely yrityksen ympäristössä</p></div><span class="arrow">→</span><div class="step"><b>Tarkistettu tulos</b><p>Käyttäjän hyväksyntä</p></div></div></div>
+  <p class="footnote">Paikallisuus tukee tietojen hallintaa. Käyttöoikeudet, varmuuskopiot ja ympäristön suojaus suunnitellaan käyttöönotossa.</p>
+  <aside class="notes">Oletusasennuksessa MANUgen on käytettävissä vain samalta koneelta, eikä se ota käytön aikana yhteyttä internetiin. Verkkoyhteyttä tarvitaan vain kerran, kun kielimalli ladataan. Tiketit, asetukset, lokit ja tietopohja ovat tavallisina tiedostoina asennuskansiossa, keskusteluhistoria selaimen omassa muistissa. Tiedostoja ei salata, joten niiden suojaus ja varmuuskopiointi hoidetaan yrityksen omien käytäntöjen mukaan. Sovellus ei ole tietoturvasertifioitu. Malli voi erehtyä, ja siksi ihminen tarkistaa ja hyväksyy jokaisen kirjauksen.</aside>
+</section>
+
+<!-- 09 INSTALLATION — 35 seconds -->
+<section class="slide blue" data-title="Asenna. Valitse malli. Aloita.">
+  <p class="eyebrow">08 / Käyttöönotto</p>
+  <h2 style="font-size:100px">Asenna.<br>Valitse malli.<br>Aloita.</h2>
+  <p class="lead" style="max-width:1020px">Yksi asennusohjelma. Mallin asennus tunnistaa koneen<br>ja lataa siihen sopivan kielimallin.</p>
+  <p class="footnote">Windows 10 tai 11. Ylläpitäjän oikeuksia ei tarvita. Mallin lataus 1–5 Gt, levytilaa noin 6 Gt.</p>
+  <aside class="notes">MANUgen-setup.exe asentaa sovelluksen käyttäjälle ilman ylläpitäjän oikeuksia ja lisää sen Käynnistä-valikkoon. Lopuksi käynnistyy Mallin asennus. Se tunnistaa koneen muistin ja näytönohjaimen, ehdottaa sopivaa kielimallia ja lataa sen luvan saatuaan. Kehitystyökaluja tai erillisiä ohjelmia ei tarvitse asentaa, lukuun ottamatta Microsoftin Visual C++ -kirjastoa, jos se puuttuu koneelta. Sen asentaminen vaatii ylläpitäjän oikeudet. Sovellus ei ole vielä koodiallekirjoitettu, joten Windows voi näyttää varoituksen ensimmäisellä käynnistyskerralla. Yrityksen IT-tuelle on oma ohje.</aside>
+</section>
+
+<!-- 10 ENVIRONMENTS AND RESOURCE CHECK — 45 seconds -->
+<section class="slide light" data-title="Omasta koneesta palvelimelle">
+  <p class="eyebrow">09 / Ympäristöön sopiva toteutus</p>
+  <h2>Oma kone tänään.<br><span class="accent">Palvelin tarpeen mukaan.</span></h2>
+  <div class="line-list"><div><strong>Paikallinen käyttö</strong><span>Sovellus ja malli samalla koneella.</span></div><div><strong>Sisäverkon palvelin</strong><span>Suljettuun, luotettuun verkkoon erikseen sovittuna.<br>Käyttäjät jakavat yhteisen tunnisteen.</span></div><div><strong>Laajempi käyttö</strong><span>Kirjautuminen ja käyttäjien erottelu ovat jatkokehitystä.</span></div></div>
+  <p class="footnote"><strong>Laitetunnistus:</strong> kertoo koneen muistin ja näytönohjaimen sekä suosittelee sopivan mallin.<br><strong>Käyttöönotto:</strong> ympäristö, aineistot, malli ja integraatiot sovitetaan tarpeeseen.</p>
+  <aside class="notes">Tavallisessa asennuksessa sovellus ja kielimalli toimivat samalla koneella. Laitetunnistus selvittää koneen muistin ja näytönohjaimen ja valitsee sopivan mallin: pienimmästä, joka toimii pelkällä suorittimella, tarkimpaan, joka hyötyy näytönohjaimesta. Raportin voi lähettää tukeen, jos asennus ei onnistu. Sisäverkon palvelimella usea käyttäjä voi käyttää samaa MANUgenia selaimella. Silloin käyttäjiä ei erotella eikä kirjautumista ole, joten palvelin sopii vain suljettuun verkkoon. Palvelinasennus tehdään erikseen sovittuna, avustettuna palveluna.</aside>
+</section>
+
+<!-- 11 BATCH DEVELOPMENT IDEA — 35 seconds -->
+<section class="slide" data-title="Entä jos työ valmistuisi yön aikana?">
+  <p class="eyebrow">10 / Seuraava mahdollisuus <span class="tag status">Kehitysidea</span></p>
+  <h2>Kaiken ei tarvitse<br>valmistua <span class="gradient">sekunnissa.</span></h2>
+  <p class="lead">Pienikin viive voi olla hyväksyttävä, kun avustaja vähentää käsityötä tiedon siirrossa ja rajatussa analyysissä.</p>
+  <div class="three"><div class="item"><h3>Iso aineisto</h3><p>Jaetaan hallittaviin osiin ja rajattuihin tehtäviin.</p></div><div class="item"><h3>Työnkulku jonoon</h3><p>Käsitellään kapasiteetin mukaan, esimerkiksi yöajona.</p></div><div class="item"><h3>Tulokset tarkistukseen</h3><p>Valmiit tulokset odottavat käyttäjää aamulla.</p></div></div>
+  <p class="footnote">Toteutettavissa jatkokehityksenä. Vaatii pysyvän työjonon, ajastuksen, virheistä palautumisen ja seurannan.</p>
+  <aside class="notes">Tämä on kehitysidea, ei nykyinen ominaisuus. Nykyisin MANUgen käsittelee pyynnöt yksi kerrallaan heti, ja muut odottavat lyhyessä jonossa. Yöajossa suuri aineisto jaettaisiin osiin ja käsiteltäisiin työnkululla silloin, kun kone on muuten vapaana. Aamulla tulokset odottaisivat tarkistusta ja hyväksyntää samalla tavalla kuin nyt. Toteutus vaatii pysyvän työjonon, ajastuksen ja virheistä palautumisen. Käsittelynopeus riippuu koneesta ja aineistosta, ja se mitataan aina aineistolla.</aside>
+</section>
+
+<!-- 12 COST — 55 seconds; reveal the answer after audience guesses -->
+<section class="slide" data-title="Mitä tämä kustantaa?">
+  <p class="eyebrow">11 / Mitä tämä kustantaa?</p>
+  <h2>Alku voi olla <span class="accent">yllättävän pieni.</span></h2>
+  <div class="cost-grid"><div><p class="huge">0 €</p><h3 style="margin-top:16px">Asennus vielä maksutta,<br>kun ehditte varata.</h3><p class="lead">Kuopio ensisijaisena alueena.<br>Sovitaan teille sopiva käyttöönotto.</p><p style="font-size:18px;color:var(--muted);margin-top:25px">Laitteisto ja erikseen sovittavat integraatiot<br>eivät sisälly maksuttomaan asennukseen.</p></div><div class="item"><p class="question">Mitä arvelette kustannuksen olleen, kun sain suorituskyvyn <strong>yli nelinkertaistettua?</strong></p><button class="reveal-button" id="reveal" aria-expanded="false" aria-controls="answer">Näytä vastaus ↗</button><div class="answer" id="answer" hidden><b>350 €</b><p>Sijoitus 7 vuotta vanhaan pöytäkoneeseen.<br>Vertailukohtana oma 8 vuotta vanha kannettava.</p><p style="font-size:16px">Oma käyttökokemus — ei yleinen suorituskykylupaus.</p></div></div></div>
+  <aside class="notes">Pilottiasennus on maksuton, ensisijaisesti Kuopion alueella. Asennuksessa valitaan yksi arjen tehtävänne ja katsotaan yhdessä, millainen työnkulku siihen sopii. Laitteisto sekä erikseen sovittavat integraatiot ja palvelinasennukset eivät sisälly maksuttomaan asennukseen. Paikallinen tekoäly ei välttämättä vaadi uutta kallista konetta: 350 euron näytönohjainpäivitys seitsemän vuotta vanhaan pöytäkoneeseen nopeutti mallia yli nelinkertaisesti verrattuna kahdeksan vuotta vanhaan kannettavaan. Kyse on tekijän omasta kokemuksesta, ei yleisestä suorituskykylupauksesta. Yhteystiedot: juhani.kolehmainen@edu.savonia.fi · jk-mainen.fi</aside>
+</section>
+
+<footer id="chrome"><span class="wordmark">MANU<span>gen</span></span><span class="hint">← → siirry · N lisätietoja · F koko näyttö</span><nav aria-label="Esityksen ohjaus"><button id="notesToggle" aria-label="Näytä lisätietoja" aria-expanded="false">N</button><button id="fullscreen" aria-label="Koko näyttö">⛶</button><button id="prev" aria-label="Edellinen kalvo">←</button><span id="counter" aria-live="polite"></span><button id="next" aria-label="Seuraava kalvo">→</button></nav><div id="progress"></div></footer>
+</main>
+<aside id="notes" hidden aria-label="Lisätietoja"><button id="closeNotes">Sulje ×</button><strong id="notesTitle"></strong><div id="notesText"></div></aside>
+<script>
+'use strict';
+const slides=[...document.querySelectorAll('.slide')];
+const stage=document.getElementById('stage'), counter=document.getElementById('counter');
+const prev=document.getElementById('prev'), next=document.getElementById('next');
+const notes=document.getElementById('notes'), notesToggle=document.getElementById('notesToggle');
+const answer=document.getElementById('answer'), reveal=document.getElementById('reveal');
+let current=0;
+function fit(){const scale=Math.min(innerWidth/1440,innerHeight/810);stage.style.transform=`scale(${scale})`;stage.style.left=`${(innerWidth-1440*scale)/2}px`;stage.style.top=`${(innerHeight-810*scale)/2}px`;}
+function show(index,updateHash=true){current=Math.max(0,Math.min(slides.length-1,index));slides.forEach((slide,i)=>{const active=i===current;slide.classList.toggle('active',active);slide.setAttribute('aria-hidden',String(!active));slide.inert=!active;});counter.textContent=`${String(current+1).padStart(2,'0')} / ${slides.length}`;prev.disabled=current===0;next.disabled=current===slides.length-1&&!answer.hidden;document.getElementById('progress').style.width=`${(current+1)/slides.length*100}%`;document.getElementById('notesTitle').textContent=`${current+1}. ${slides[current].dataset.title}`;document.getElementById('notesText').textContent=slides[current].querySelector('.notes')?.textContent||'';document.title=`MANUgen — ${slides[current].dataset.title}`;if(updateHash){try{history.replaceState(null,'',`#${current+1}`);}catch{}}}
+function revealAnswer(){answer.hidden=false;reveal.hidden=true;reveal.setAttribute('aria-expanded','true');next.disabled=true;}
+function forward(){if(current===slides.length-1){if(answer.hidden)revealAnswer();return;}show(current+1);}
+function toggleNotes(){notes.hidden=!notes.hidden;notesToggle.setAttribute('aria-expanded',String(!notes.hidden));}
+async function fullscreen(){try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}catch{document.getElementById('fullscreen').title='Koko näyttö ei ole sallittu tässä upotuksessa.';}}
+prev.addEventListener('click',()=>show(current-1));next.addEventListener('click',forward);reveal.addEventListener('click',revealAnswer);notesToggle.addEventListener('click',toggleNotes);document.getElementById('closeNotes').addEventListener('click',toggleNotes);document.getElementById('fullscreen').addEventListener('click',fullscreen);
+document.addEventListener('keydown',event=>{if(event.altKey||event.ctrlKey||event.metaKey)return;if(event.target.closest('button')&&(event.key===' '||event.key==='Enter'))return;switch(event.key){case'ArrowRight':case'ArrowDown':case'PageDown':case' ':event.preventDefault();forward();break;case'ArrowLeft':case'ArrowUp':case'PageUp':event.preventDefault();show(current-1);break;case'Home':event.preventDefault();show(0);break;case'End':event.preventDefault();show(slides.length-1);break;case'n':case'N':toggleNotes();break;case'f':case'F':fullscreen();break;case'Escape':if(!notes.hidden)toggleNotes();break;}});
+let touchStart=null;stage.addEventListener('touchstart',event=>{touchStart={x:event.changedTouches[0].clientX,y:event.changedTouches[0].clientY};},{passive:true});stage.addEventListener('touchend',event=>{if(!touchStart||event.target.closest('button'))return;const dx=event.changedTouches[0].clientX-touchStart.x,dy=event.changedTouches[0].clientY-touchStart.y;if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy))dx<0?forward():show(current-1);touchStart=null;},{passive:true});
+function fromHash(){const value=Number(location.hash.slice(1));show(Number.isInteger(value)&&value>0?value-1:0,false);}
+addEventListener('resize',fit);addEventListener('hashchange',fromHash);fit();fromHash();
+</script>
+</body>
+</html>
