@@ -38,23 +38,23 @@ You start your day with having problems on the machine floor. Milling parts are 
 
 -> generate report -> verify and save -> let the people in the office read the generated report
 
-![your description and generate report](assets/start_processing.gif)
+![your description and generate report](./assets/start_processing.gif)
 
 ### You can change the values if you forgot to describe all the necessary fields
 
-![change values](change_value.gif)
+![change values](./assets/change_value.gif)
 
 ### You can check what the AI offers for solution or what is infered from you description
 
-![review AI notes](review_AI_notes.gif)
+![review AI notes](./assets/review_AI_notes.gif)
 
 ### But you are unsure about the solution AI offered, so you decide to check what is the reference for the suggestion
 
-![look used citations](used_citations.gif)
+![look used citations](./assets/used_citations.gif)
 
 ### Everything looks fine or none of the fields needs changing. Just save.
 
-![save ticket](save_ticket.gif)
+![save ticket](./assets/save_ticket.gif)
 
 ### Day continues
 
@@ -62,7 +62,7 @@ You continue you day and as a senior engineer you have the luxury of sitting dow
 
 ### Another task - another workflow - just choose which to use
 
-![choose workflow](choose_workflow.gif)
+![choose workflow](./assets/choose_workflow.gif)
 
 Not all things cannot be turned to workflows. However all the tasks you need to perform are governed by your domain. Maybe company have guidelines, instructions, steps-to-follow. Or your domain is so specific that there are simply too specific information and searching the answer to some problem is exhausting. Maybe it slipped your mind - you are sure that just yesterday you searched the answer to the same question.
 
@@ -70,14 +70,14 @@ But you were smart and gave the AI all the data you use - even the sensitive gui
 
 ### Ask something about the data stored in the system
 
-![use_knowledge_for_answers](use_knowledge_for_answers.gif)
+![use_knowledge_for_answers](./assets/use_knowledge_for_answers.gif)
 
 ## Verify the used data
 
 You are smart and you also check what the references are
 
-![review_used_citations.gif](review_used_citations.gif)
+![review_used_citations.gif](./assets/review_used_citations.gif)
 
 Sometimes you need to go back to what you have done. Thankfully the MANUgen feels already familiar and everything is there where you expect it to be.
 
-![familiar_tools.gif](familiar_tools.gif)
+![familiar_tools.gif](./assets/familiar_tools.gif)
