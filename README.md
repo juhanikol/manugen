@@ -4,7 +4,7 @@
 
 A local AI assistant for manufacturing teams. A worker describes an observation in their own words. MANUgen prepares a structured draft. A person reviews, corrects and approves it. Teams can define their own workflows and fields.
 
-**[Explore MANUgen in Finnish](https://juhanikol.github.io/manugen/)** · **[Windows releases](https://github.com/juhanikol/manugen/releases)**
+**[Explore MANUgen in Finnish](https://juhanikol.github.io/manugen/)** **[Explore MANUgen in English (compacted)](https://juhanikol.github.io/manugen/en/)**· **[Windows releases](https://github.com/juhanikol/manugen/releases)**
 
 ## Inside the application
 
