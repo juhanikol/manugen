@@ -5,7 +5,7 @@
 <title>MANUgen · Paikallinen tekoäly valmistavaan työhön</title>
 <meta name="description" content="Kirjaa tuotannon havainto omin sanoin. MANUgen tekee siitä tarkistettavan luonnoksen yrityksen omalla koneella, ilman pilvipalvelua.">
 <link rel="alternate" hreflang="fi" href="https://juhanikol.github.io/manugen/"><link rel="alternate" hreflang="en" href="https://juhanikol.github.io/manugen/en/">
-<link rel="icon" href="assets/brand-symbol.svg"><link rel="stylesheet" href="style.css"><script src="release.js" defer></script>
+<link rel="icon" href="assets/brand-symbol.svg"><link rel="stylesheet" href="style.css"><script src="release.js" defer></script><script src="tour.js" defer></script>
 </head>
 <body><a class="skip" href="#sisalto">Siirry sisältöön</a>
 <header><div class="wrap bar"><a class="wordmark" href="#sisalto"><img src="assets/brand-symbol-dark.svg" alt="">MANU<span>gen</span></a><nav aria-label="Päävalikko"><a href="#kaytto">Käyttö</a><a href="#ominaisuudet">Ominaisuudet</a><a href="#pilotti">Pilotti</a><a href="en/" hreflang="en" lang="en">English</a></nav></div></header>
@@ -24,7 +24,22 @@
 <article><span>02 / Tarkista</span><h3>Käy luonnos läpi</h3><p>Vertaa lomakkeen tietoja havaintoosi. Mallin omat ehdotukset on merkitty. Korjaa ja täydennä ennen hyväksyntää.</p></article>
 <article><span>03 / Hyväksy</span><h3>Tallenna kirjaus</h3><p>Hyväksytty kirjaus tallentuu omaksi tiedostokseen. Halutessasi se viedään myös uudeksi riviksi Excel-rekisteriin.</p></article></div>
 
-<video class="demo" src="assets/save_ticket.mp4" poster="assets/save_ticket.jpg" controls muted loop playsinline preload="none" aria-label="Poikkeaman kirjaaminen MANUgenilla"></video>
+<div class="tour" data-tour data-base="assets/"><div class="tour-head"><p class="label">Esittely · 9 lyhyttä videota</p><h3>Yksi työpäivä, monta ongelmaa ja monta työkalua</h3></div>
+<div class="tour-stage"><video src="assets/start_processing.mp4" poster="assets/start_processing.jpg" controls muted playsinline preload="metadata" aria-label="Kerro omin sanoin"></video>
+<div class="tour-caption" aria-live="polite"><p class="label"><span data-chapter>Aamu konepajalla</span> · <span data-count>1 / 9</span></p><h3 data-title>Kerro omin sanoin</h3><p data-text>Jyrsityt kappaleet eivät ole sitä, mitä piti, ja ne vaativat lisätyötä. Vielä isompi urakka on poikkeamalomake. Kirjoita havainto niin kuin kertoisit sen kollegalle, ja MANUgen tekee siitä raporttiluonnoksen.</p>
+<div class="tour-nav"><button type="button" data-prev aria-label="Edellinen video">←</button><button type="button" data-next aria-label="Seuraava video">→</button></div></div></div>
+<nav class="tour-list" aria-label="Esittelyn vaiheet"><p class="tour-chapter">Aamu konepajalla</p><ol>
+<li><button type="button" data-video="start_processing" data-chapter="Aamu konepajalla" data-title="Kerro omin sanoin" aria-current="step"><span>01</span>Kerro omin sanoin</button><p hidden>Jyrsityt kappaleet eivät ole sitä, mitä piti, ja ne vaativat lisätyötä. Vielä isompi urakka on poikkeamalomake. Kirjoita havainto niin kuin kertoisit sen kollegalle, ja MANUgen tekee siitä raporttiluonnoksen.</p></li>
+<li><button type="button" data-video="change_value" data-chapter="Aamu konepajalla" data-title="Korjaa ja täydennä"><span>02</span>Korjaa ja täydennä</button><p hidden>Unohtuiko jotain olennaista? Muuta tai täydennä kenttien arvoja suoraan lomakkeella.</p></li>
+<li><button type="button" data-video="review_AI_notes" data-chapter="Aamu konepajalla" data-title="Katso tekoälyn päättely"><span>03</span>Katso tekoälyn päättely</button><p hidden>Näet, mitä tekoäly ehdottaa ratkaisuksi ja mitä se päätteli kuvauksestasi.</p></li>
+<li><button type="button" data-video="used_citations" data-chapter="Aamu konepajalla" data-title="Tarkista lähde"><span>04</span>Tarkista lähde</button><p hidden>Etkö ole varma ehdotetusta ratkaisusta? Avaa lähde, johon ehdotus perustuu.</p></li>
+<li><button type="button" data-video="save_ticket" data-chapter="Aamu konepajalla" data-title="Tallenna"><span>05</span>Tallenna</button><p hidden>Kaikki näyttää hyvältä, eikä kenttiä tarvitse muuttaa. Tallenna, ja toimistossa luetaan valmis raportti. Kenenkään ei tarvitse kävellä selittämään.</p></li>
+</ol><p class="tour-chapter">Iltapäivä toimistossa</p><ol start="6">
+<li><button type="button" data-video="choose_workflow" data-chapter="Iltapäivä toimistossa" data-title="Toinen tehtävä, toinen työnkulku"><span>06</span>Valitse työnkulku</button><p hidden>Kuun lopussa käsin kirjoitetut lähetyslistat pitää syöttää järjestelmään, koska esihenkilö tarvitsee ne. Toinen tehtävä, toinen työnkulku: valitse vain, kumpaa käytät.</p></li>
+<li><button type="button" data-video="use_knowledge_for_answers" data-chapter="Iltapäivä toimistossa" data-title="Kysy omasta aineistosta"><span>07</span>Kysy omasta aineistosta</button><p hidden>Kaikesta ei voi tehdä työnkulkua, mutta yrityksen ohjeet ja alan erikoistieto ovat tietopohjassa, myös luottamukselliset ohjeet. MANUgen toimii vaikka suljetussa verkossa ilman internetiä.</p></li>
+<li><button type="button" data-video="review_used_citations" data-chapter="Iltapäivä toimistossa" data-title="Varmista käytetty tieto"><span>08</span>Varmista käytetty tieto</button><p hidden>Tarkista vielä, mihin lähteisiin vastaus perustuu.</p></li>
+<li><button type="button" data-video="familiar_tools" data-chapter="Iltapäivä toimistossa" data-title="Palaa aiempaan"><span>09</span>Palaa aiempaan</button><p hidden>Joskus tehtyyn pitää palata. MANUgen tuntuu jo tutulta: kaikki on siellä, missä odotatkin.</p></li>
+</ol></nav></div>
 
 </section>
 
