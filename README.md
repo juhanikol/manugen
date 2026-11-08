@@ -20,7 +20,7 @@ A knowledge base prepared for machining is available to the language model. It i
 
 | Location                                                 | Contents                                                                      |
 | -------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| [Product site](docs/)                                     | Finnish introduction, installation guide, examples and brand assets           |
+| [Product site](https://juhanikol.github.io/manugen/)                                     | Finnish introduction, installation guide, examples and brand assets           |
 | [Releases](https://github.com/juhanikol/manugen/releases) | Version notes, Windows installer, checksums and file manifest                 |
 | [IT guide](IT-GUIDE.md)                                   | How the installation works: options, network, data, security and requirements |
 | [File list](FILES.md)                                     | Every file in this repository and what it is for                              |
